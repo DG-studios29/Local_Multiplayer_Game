@@ -4,43 +4,32 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public List<Transform> spawnPoints;
+    public GameObject playerPrefab; // The player prefab to spawn
+    public int numberOfPlayers = 2; // Number of players to spawn
+    public List<Transform> spawnPoints; // List of spawn points for players
 
     private void Start()
     {
-        SpawnPlayers();
+        SpawnPlayers(); // Call the function to spawn players when the game starts
     }
 
     void SpawnPlayers()
     {
-        for (int i = 0; i < 4; i++)
+        // Loop through the number of players to spawn
+        for (int i = 0; i < numberOfPlayers; i++)
         {
             if (i < spawnPoints.Count)
             {
-                GameObject player = Instantiate(playerPrefab, spawnPoints[i].position, Quaternion.identity);
-                var playerInput = player.GetComponent<PlayerInput>();
-
-                // Assign input control schemes
-                if (i == 0)
-                {
-                    playerInput.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current);
-                    playerInput.defaultActionMap = "Player";
-                    player.name = "Player 1";
-                }
-                else if (i == 1)
-                {
-                    playerInput.SwitchCurrentControlScheme("Arrows", Keyboard.current);
-                    playerInput.defaultActionMap = "Player";
-                    player.name = "Player 2";
-                }
-                else if (Gamepad.all.Count >= (i - 1))
-                {
-                    playerInput.SwitchCurrentControlScheme("Gamepad", Gamepad.all[i - 2]);
-                    playerInput.defaultActionMap = "Player";
-                    player.name = $"Player {i + 1} (Controller {i - 1})";
-                }
+                // Check if there's a valid spawn point available
+                GameObject player = Instantiate(playerPrefab, spawnPoints[i].position, Quaternion.identity); // Instantiate the player at the spawn point
+                player.name = "Player " + (i + 1); // Set the player's name
+            }
+            else
+            {
+                // Warn if there aren't enough spawn points for the number of players
+                Debug.LogWarning("Not enough spawn points for all players!");
             }
         }
     }
+
 }

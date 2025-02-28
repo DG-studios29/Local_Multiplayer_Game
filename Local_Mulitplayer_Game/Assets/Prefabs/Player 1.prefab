@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 7358896010019213307}
   - component: {fileID: 8150811918895403325}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
+  m_Name: Player 1
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc261aec29c2ac4da426d7695ca9e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
 --- !u!114 &7358896010019213307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +165,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: dd99d3f5-07a0-496d-afee-e2ec8aba89e5
-    m_ActionName: 'Player3/Movement[/DualShock4GamepadHID/leftStick]'
+    m_ActionId: d111663e-e431-4ea7-89b8-8c65b262fca5
+    m_ActionName: 'Player/Movement[/DualShock4GamepadHID/leftStick,/DualSenseGamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
