@@ -25,15 +25,17 @@ public class ItemObject : MonoBehaviour
     private void OnEnable()
     {
         EnemyAI.onEnemySpawn += AddEnemyToTarget;
+        EnemyAI.onEnemyDeath += RemoveEnemyFromTargets;
     }
 
     private void OnDisable()
     {
         EnemyAI.onEnemySpawn -= AddEnemyToTarget;
+        EnemyAI.onEnemyDeath -= RemoveEnemyFromTargets;
     }
 
 
-    void Start()
+    protected virtual void Start()
     {
         s_timerSinceAttack = 0f;
         InitializeObject();
@@ -44,7 +46,7 @@ public class ItemObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         s_timerSinceAttack += Time.deltaTime;
 
@@ -70,17 +72,21 @@ public class ItemObject : MonoBehaviour
 
     public void RemoveEnemyFromTargets(GameObject enemy)
     {
+        bool removable = false;
         foreach(GameObject target in enemyTargets)
         {
             if(target == enemy)
             {
-                enemyTargets.Remove(target);  //remove an enemy from the list when its destroyed
+                //enemyTargets.Remove(target);  //remove an enemy from the list when its destroyed
+                removable = true;
             }
         }
+
+        if (removable) enemyTargets.Remove(enemy);
     }
 
 
-    public virtual void DoAttack()
+    protected virtual void DoAttack()
     {
         if (s_timerSinceAttack >= s_attackRate)
         {
@@ -96,9 +102,10 @@ public class ItemObject : MonoBehaviour
 
                     //Take Damage
                     nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage);
-                    Debug.Log("Taking damage from: \t" + nearestTarget.name);
+                    Debug.Log("Dealing damage to: \t" + nearestTarget.name);
 
                     s_timerSinceAttack = 0; //reset the timer
+                    nearestTarget = null; //nulling the nearest target
                 }
             }
 
@@ -108,7 +115,7 @@ public class ItemObject : MonoBehaviour
 
     }
 
-    void FindNearest()
+    protected void FindNearest()
     {
         if(enemyTargets.Count == 0)
         {

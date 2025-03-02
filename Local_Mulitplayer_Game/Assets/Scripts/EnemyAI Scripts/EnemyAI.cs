@@ -60,8 +60,8 @@ public class EnemyAI : MonoBehaviour
 
     void EnemyDestroy()
     {
-        onEnemyDeath?.Invoke(this.gameObject);
-        Destroy(gameObject, 0.1f);
+       
+        Destroy(gameObject, 0.5f);
     }
 
     public void TakeDamage(float hp)
@@ -70,6 +70,7 @@ public class EnemyAI : MonoBehaviour
 
         if(health <= 0)
         {
+            onEnemyDeath?.Invoke(this.gameObject);
             EnemyDestroy();
         }
     }

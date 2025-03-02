@@ -5,16 +5,21 @@ public class ItemShoot : ItemObject
   
 
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
+        Debug.Log("called");
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
+    }
+
+    protected override void DoAttack()
+    {
+        base.DoAttack();
     }
 }
