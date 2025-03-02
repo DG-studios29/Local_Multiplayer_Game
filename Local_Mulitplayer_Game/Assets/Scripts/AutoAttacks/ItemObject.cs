@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ItemObject : MonoBehaviour
 {
@@ -14,7 +15,12 @@ public class ItemObject : MonoBehaviour
     public List<GameObject> enemyTargets;
 
 
-    protected float nearestTarget;
+    protected GameObject nearestTarget;
+    protected float nearestDistance;
+    private float nearestTemp;
+
+    public static event Action<ItemObject> findEnemies;
+
   
     private void OnEnable()
     {
@@ -29,7 +35,12 @@ public class ItemObject : MonoBehaviour
 
     void Start()
     {
+        s_timerSinceAttack = 0f;
         InitializeObject();
+
+        findEnemies?.Invoke(this);
+        Debug.Log("Called from Item Object");
+
     }
 
     // Update is called once per frame
@@ -69,14 +80,27 @@ public class ItemObject : MonoBehaviour
     }
 
 
-    void DoAttack()
+    public virtual void DoAttack()
     {
         if (s_timerSinceAttack >= s_attackRate)
         {
             //if enough time has elapsed
+            FindNearest();
 
-            //if there is an enemy within range
-            //if()
+            //if the nearest enemy is within range
+            if(nearestTarget != null)
+            {
+                if(Vector3.Distance(gameObject.transform.position, nearestTarget.transform.position) <= radius)
+                {
+                    // Visually Show something
+
+                    //Take Damage
+                    nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage);
+                    Debug.Log("Taking damage from: \t" + nearestTarget.name);
+
+                    s_timerSinceAttack = 0; //reset the timer
+                }
+            }
 
         }
 
@@ -88,15 +112,21 @@ public class ItemObject : MonoBehaviour
     {
         if(enemyTargets.Count == 0)
         {
+            nearestTarget = null;
             return;
+        }
+        else
+        {
+            nearestDistance = Vector3.Distance(transform.position, enemyTargets[0].transform.position); //first element will be used as nearest
         }
 
         foreach(GameObject target in enemyTargets)
         {
             var distance = Vector3.Distance(transform.position,target.transform.position);
-            if(distance < nearestTarget)
+            if(distance < nearestDistance)
             {
-
+                nearestDistance = distance;
+                nearestTarget = target;
             }
         }
     }

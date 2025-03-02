@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
 {
     public EnemyData enemyData;
 
-    public NavMeshAgent agent;
+    public NavMeshAgent navAgent;
     public GameObject parentPlayer; //a ref of something like this to check if friend or foe
 
     public List<GameObject> targetList;
@@ -23,12 +23,29 @@ public class EnemyAI : MonoBehaviour
     private float openRange;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+    private void OnEnable()
+    {
+        ItemObject.findEnemies += AddToEnemyList;
+    }
+
+    private void OnDisable()
+    {
+        ItemObject.findEnemies -= AddToEnemyList;
+    }
+
+
     void Start()
     {
 
-       onEnemySpawn?.Invoke(this.gameObject);
+        navAgent = GetComponent<NavMeshAgent>();
+        GetEnemyData();
 
-       GetEnemyData();
+        navAgent.speed = speed;
+        
+        onEnemySpawn?.Invoke(this.gameObject);
+
 
     }
 
@@ -38,7 +55,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DoTargetChase();
     }
 
     void EnemyDestroy()
@@ -47,7 +64,7 @@ public class EnemyAI : MonoBehaviour
         Destroy(gameObject, 0.1f);
     }
 
-    void TakeDamage(float hp)
+    public void TakeDamage(float hp)
     {
         health -= hp;
 
@@ -61,13 +78,23 @@ public class EnemyAI : MonoBehaviour
     void GetEnemyData()
     {
 
-        agent = GetComponent<NavMeshAgent>();
-
+   
         health = enemyData.MaxHealth;
         damage = enemyData.Damage;
         speed = enemyData.MoveSpeed;
         targetPlayerRange = enemyData.TargetPlayerRange;
         openRange = enemyData.OpenRange;
+    }
+
+    //finds all existing enemies
+    public void AddToEnemyList(ItemObject itemObject)
+    {
+        itemObject.AddEnemyToTarget(this.gameObject);
+    }
+
+    void DoTargetChase()
+    {
+
     }
 
 }

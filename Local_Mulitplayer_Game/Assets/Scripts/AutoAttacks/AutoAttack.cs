@@ -12,6 +12,7 @@ public class AutoAttack : MonoBehaviour
     public List<ItemObject> itemHolder;
     public int itemSize;
 
+    public GameObject basicAutoBB;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,17 +29,21 @@ public class AutoAttack : MonoBehaviour
         }
 
         ItemHolder();  // initialising the item slots
+
         
+        Instantiate(basicAutoBB,this.transform);
+        itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
+
     }
 
     public void ItemHolder()
     {
         itemHolder = new List<ItemObject>(itemSize);
 
-        for(int i = 0; i < itemSize; i++)
+      /*  for(int i = 0; i < itemSize; i++)
         {
             itemHolder.Add(new ItemObject());
-        }
+        }*/
 
     }
 
