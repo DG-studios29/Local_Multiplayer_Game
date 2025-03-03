@@ -8,6 +8,7 @@ public class EnemyData : ScriptableObject
     [SerializeField] private float moveSpeed;
     [SerializeField] private float targetPlayerRange;
     [SerializeField] private float openRange;
+    [SerializeField] private float attackRange;
 
     public float MaxHealth => maxHealth;
 
@@ -18,4 +19,6 @@ public class EnemyData : ScriptableObject
     public float TargetPlayerRange => targetPlayerRange;
 
     public float OpenRange => openRange;
+
+    public float AttackRange => attackRange;
 }

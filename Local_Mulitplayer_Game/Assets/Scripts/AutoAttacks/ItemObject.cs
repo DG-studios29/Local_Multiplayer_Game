@@ -21,6 +21,8 @@ public class ItemObject : MonoBehaviour
 
     public static event Action<ItemObject> findEnemies;
 
+    public GameObject parentPlayer;
+
   
     private void OnEnable()
     {
@@ -35,13 +37,22 @@ public class ItemObject : MonoBehaviour
     }
 
 
+
+    private void Awake()
+    {
+       
+    }
+
+
     protected virtual void Start()
     {
+        parentPlayer = this.GetComponentInParent<PlayerController>().gameObject;
+
         s_timerSinceAttack = 0f;
 
         InitializeObject();
 
-        findEnemies?.Invoke(this);
+        findEnemies?.Invoke(this);  //find all enemies that currently exist in the scene
         Debug.Log("Called from Item Object");
 
     }
@@ -67,8 +78,16 @@ public class ItemObject : MonoBehaviour
 
     public void AddEnemyToTarget(GameObject enemy)
     {
-
-        enemyTargets.Add(enemy);
+        
+            if (parentPlayer != enemy.GetComponent<EnemyAI>().enemyParent)  // if not siblings, add to enemy and target list
+            {
+                enemyTargets.Add(enemy);
+            }
+            else
+            {
+                //Debug.Log("Object parent :  " + parentPlayer + "Enemy :  " + enemy.GetComponent<EnemyAI>().enemyParent);
+            }
+        
     }
 
     public void RemoveEnemyFromTargets(GameObject enemy)
@@ -89,7 +108,6 @@ public class ItemObject : MonoBehaviour
 
     protected virtual void DoAttack()
     {
-        Debug.Log("Calling every frame");
 
         if (s_timerSinceAttack > s_attackRate)
         {
@@ -123,7 +141,6 @@ public class ItemObject : MonoBehaviour
         if(enemyTargets.Count == 0)
         {
             nearestTarget = null;
-            Debug.Log("Enemy targets list is null");
             return;
         }
         else

@@ -16,7 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   atkDamage: 5
   atkRate: 2
-  atkRadius: 20
+  atkRadius: 10
   behavior: 0
   description: Shoots basic bullets to the nearest enemy
   objectInstance: {fileID: 189975902129390228, guid: e0650f72d35bb5e4aa7cf60abd8e787f, type: 3}
