@@ -32,6 +32,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected GameObject nearestTarget;
     protected float nearestDistance;
 
+    [SerializeField]protected GameObject nearestPlayerTarget;
+    protected float nearestPlayerDistance;
+
 
 
     private string playerTag = "Player";
@@ -89,7 +92,13 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //might keep the tracking functions to a global interval or something like that
+        NearestTargetTracking();
+        NearestPlayerTracking();
+
         DoTargetChase();
+
+
     }
 
     void EnemyDestroy()
@@ -203,6 +212,9 @@ public class EnemyAI : MonoBehaviour
             else
             {
                 targetList.Add(enemy);
+                //initialize target tracking
+                nearestDistance = Vector3.Distance(transform.position, targetList[0].transform.position); //first element will be used as nearest
+                nearestTarget = targetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
             }
             
         }
@@ -235,7 +247,95 @@ public class EnemyAI : MonoBehaviour
     }
 
 
+    void NearestTargetTracking()
+    {
+
+        if (targetList.Count == 0)
+        {
+            nearestTarget = null;
+            return;
+        }
+        else if (targetList.Count == 1)
+        {
+            nearestDistance = Vector3.Distance(transform.position, targetList[0].transform.position); //first element will be used as nearest
+            nearestTarget = targetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
+
+        }
+        else
+        {
+            foreach (GameObject target in targetList)
+            {
+                var distance = Vector3.Distance(transform.position, target.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestTarget = target;
+                }
+            }
+        }
+
+
+    }
+
+    void NearestPlayerTracking()
+    {
+        if (playerTargetList.Count == 0)
+        {
+            nearestPlayerTarget = null;
+            return;
+        }
+        else if (playerTargetList.Count == 1)
+        {
+            nearestPlayerDistance = Vector3.Distance(transform.position, playerTargetList[0].transform.position); //first element will be used as nearest
+            nearestPlayerTarget = playerTargetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
+
+        }
+        else
+        {
+            foreach (GameObject target in playerTargetList)
+            {
+                var distance = Vector3.Distance(transform.position, target.transform.position);
+                if (distance < nearestPlayerDistance)
+                {
+                    nearestPlayerDistance = distance;
+                    nearestPlayerTarget = target;
+                }
+            }
+        }
+    }
+
+
     void DoTargetChase()
+    {
+        if (nearestPlayerTarget != null)
+        {
+            if (nearestPlayerDistance < targetPlayerRange)
+            {
+                navAgent.SetDestination(nearestTarget.transform.position);
+            }
+        }
+        else if (nearestTarget != null && nearestPlayerTarget != null)
+        {
+            if (nearestDistance < nearestPlayerDistance)
+            {
+                navAgent.SetDestination(nearestTarget.transform.position);
+            }
+            else
+            {
+                navAgent.SetDestination(nearestPlayerTarget.transform.position);
+            }
+        }
+
+        else if (nearestTarget != null)
+        {
+            navAgent.SetDestination(nearestTarget.transform.position);
+        }
+
+
+    }
+
+
+    void DoAttack()
     {
 
     }
@@ -243,9 +343,12 @@ public class EnemyAI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,targetPlayerRange);
+        Gizmos.DrawWireSphere(transform.position,attackRange);
 
         Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position,targetPlayerRange);
+
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position,openRange);
 
 
