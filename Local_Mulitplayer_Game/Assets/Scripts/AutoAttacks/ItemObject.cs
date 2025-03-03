@@ -4,7 +4,7 @@ using System;
 
 public class ItemObject : MonoBehaviour
 {
-    [SerializeField]protected ItemData itemData; //item data to be used
+    [SerializeField]public ItemData itemData; //item data to be used
 
     protected float damage;
     protected float radius;
@@ -15,7 +15,7 @@ public class ItemObject : MonoBehaviour
     public List<GameObject> enemyTargets;
 
 
-    protected GameObject nearestTarget;
+    [SerializeField]protected GameObject nearestTarget;
     protected float nearestDistance;
     private float nearestTemp;
 
@@ -38,6 +38,7 @@ public class ItemObject : MonoBehaviour
     protected virtual void Start()
     {
         s_timerSinceAttack = 0f;
+
         InitializeObject();
 
         findEnemies?.Invoke(this);
@@ -88,7 +89,9 @@ public class ItemObject : MonoBehaviour
 
     protected virtual void DoAttack()
     {
-        if (s_timerSinceAttack >= s_attackRate)
+        Debug.Log("Calling every frame");
+
+        if (s_timerSinceAttack > s_attackRate)
         {
             //if enough time has elapsed
             FindNearest();
@@ -120,11 +123,14 @@ public class ItemObject : MonoBehaviour
         if(enemyTargets.Count == 0)
         {
             nearestTarget = null;
+            Debug.Log("Enemy targets list is null");
             return;
         }
         else
         {
             nearestDistance = Vector3.Distance(transform.position, enemyTargets[0].transform.position); //first element will be used as nearest
+            nearestTarget = enemyTargets[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
+
         }
 
         foreach(GameObject target in enemyTargets)

@@ -17,6 +17,8 @@ public class ItemData : ScriptableObject
 
     [TextArea(4, 4)]
     public string description; //detailed description of the item
+
+    public GameObject objectInstance;
     
    
 
