@@ -7,6 +7,7 @@ public class ArmyControls : MonoBehaviour
     public float damage = 30f;
     private Animator animator;
     public float damagePerSecond = 10f;
+    public Collider armyCollider;
 
     private bool isDead = false;
 
@@ -43,19 +44,19 @@ public class ArmyControls : MonoBehaviour
             Debug.Log($"{gameObject.name} has died.");
 
             // Disable movement or other scripts if needed
-            GetComponent<Collider>().enabled = false;
+            armyCollider.enabled = false;
 
             // Optionally destroy the object after the animation finishes
             StartCoroutine(DestroyAfterAnimation());
-            Destroy(gameObject);
+           
         }
     }
 
     private IEnumerator DestroyAfterAnimation()
     {
-        
-        yield return new WaitForSeconds(1);
+        AnimatorStateInfo dead = animator.GetCurrentAnimatorStateInfo(1);
+        yield return new WaitForSeconds(dead.length);
 
-        Destroy(gameObject);
+        Destroy(gameObject,10f);
     }
 }

@@ -564,8 +564,6 @@ GameObject:
   - component: {fileID: 7847882063640399627}
   - component: {fileID: 8171867629769987996}
   - component: {fileID: 2416964424772704739}
-  - component: {fileID: 6693400669506181524}
-  - component: {fileID: 119448924441279738}
   m_Layer: 0
   m_Name: figurine-cube-detailed (5)
   m_TagString: Untagged
@@ -625,55 +623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &6693400669506181524
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763036044578990621}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &119448924441279738
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763036044578990621}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1 &838904063252349914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,8 +1313,6 @@ GameObject:
   - component: {fileID: 8910233093526211228}
   - component: {fileID: 5239109882737614068}
   - component: {fileID: 4283781499955089935}
-  - component: {fileID: 6499725399400636810}
-  - component: {fileID: 1194362938370857069}
   m_Layer: 0
   m_Name: figurine-cube-detailed (3)
   m_TagString: Untagged
@@ -1423,55 +1372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &6499725399400636810
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490092636498296057}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &1194362938370857069
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490092636498296057}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1 &1997581224034410591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,8 +1474,6 @@ GameObject:
   - component: {fileID: 3963917852298990592}
   - component: {fileID: 3841592916400676604}
   - component: {fileID: 3601590180262463524}
-  - component: {fileID: 1335358693069420400}
-  - component: {fileID: 142022032374502403}
   m_Layer: 0
   m_Name: figurine-cube-detailed (7)
   m_TagString: Untagged
@@ -1633,55 +1533,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &1335358693069420400
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115999360332706671}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &142022032374502403
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115999360332706671}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1 &2188012155140535408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,6 +1803,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8278492395530265507}
+  - component: {fileID: 7642080828163612796}
+  - component: {fileID: 7158903200997501436}
   m_Layer: 0
   m_Name: Army
   m_TagString: Untagged
@@ -1967,8 +1822,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 23762708552319004}
   - {fileID: 4889664519606225070}
@@ -1980,6 +1835,54 @@ Transform:
   - {fileID: 3963917852298990592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7642080828163612796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951857971312674443}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2790954, y: 0.7129318, z: 1.1214327}
+  m_Center: {x: -0.2914394, y: -0.050759166, z: 0.22262734}
+--- !u!54 &7158903200997501436
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951857971312674443}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3182952241631466927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,8 +2708,6 @@ GameObject:
   - component: {fileID: 4889664519606225070}
   - component: {fileID: 4396236847581285708}
   - component: {fileID: 6916154596703931994}
-  - component: {fileID: 5002704860395389745}
-  - component: {fileID: 4309088219973341844}
   m_Layer: 0
   m_Name: figurine-cube-detailed (4)
   m_TagString: Untagged
@@ -2866,55 +2767,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &5002704860395389745
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4920989129090484806}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &4309088219973341844
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4920989129090484806}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1 &5079021049036692456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,8 +2780,6 @@ GameObject:
   - component: {fileID: 1874476213348585789}
   - component: {fileID: 2776191245380794497}
   - component: {fileID: 5409457391711785494}
-  - component: {fileID: 1290966730096791414}
-  - component: {fileID: 6556459589545289419}
   m_Layer: 0
   m_Name: figurine-cube-detailed (6)
   m_TagString: Untagged
@@ -2987,55 +2839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &1290966730096791414
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5079021049036692456}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &6556459589545289419
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5079021049036692456}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1 &5229065686665287352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,8 +3145,6 @@ GameObject:
   - component: {fileID: 164738520331876017}
   - component: {fileID: 5805474927493436689}
   - component: {fileID: 5906435212546275181}
-  - component: {fileID: 5807340900647131437}
-  - component: {fileID: 4273654790382642513}
   m_Layer: 0
   m_Name: figurine-cube-detailed (1)
   m_TagString: Untagged
@@ -3401,55 +3204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &5807340900647131437
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652160574881743090}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &4273654790382642513
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652160574881743090}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1 &5881188560023351214
 GameObject:
   m_ObjectHideFlags: 0
@@ -3547,8 +3303,6 @@ GameObject:
   - component: {fileID: 5733509390689275977}
   - component: {fileID: 2476047228139185446}
   - component: {fileID: 6284331377892091342}
-  - component: {fileID: 2948940958396194390}
-  - component: {fileID: 7725033694609535649}
   m_Layer: 0
   m_Name: figurine-cube-detailed (2)
   m_TagString: Untagged
@@ -3608,55 +3362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &2948940958396194390
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949656942797981927}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &7725033694609535649
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5949656942797981927}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1 &6088922787869232389
 GameObject:
   m_ObjectHideFlags: 0
@@ -5329,8 +5036,6 @@ GameObject:
   - component: {fileID: 23762708552319004}
   - component: {fileID: 3156223423238894547}
   - component: {fileID: 4699866464413409248}
-  - component: {fileID: 5903056471364667177}
-  - component: {fileID: 2226563594469749948}
   m_Layer: 0
   m_Name: figurine-cube-detailed
   m_TagString: Untagged
@@ -5390,55 +5095,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 30
-  damagePerSecond: 5
---- !u!65 &5903056471364667177
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9215757939942009197}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5329281, y: 0.60128057, z: 0.35635284}
-  m_Center: {x: -0.000000059604645, y: 0.29049557, z: -0.014239922}
---- !u!54 &2226563594469749948
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9215757939942009197}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  damagePerSecond: 10
+  armyCollider: {fileID: 7642080828163612796}
 --- !u!1001 &543327638101028291
 PrefabInstance:
   m_ObjectHideFlags: 0
