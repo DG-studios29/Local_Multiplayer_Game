@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
 {
     public EnemyData enemyData;
 
-    public NavMeshAgent navAgent;
+    protected NavMeshAgent navAgent;
     public GameObject enemyParent; //a ref of something like this to check if friend or foe, will be set when spawned by the player
 
     public List<GameObject> targetList;
@@ -19,15 +19,15 @@ public class EnemyAI : MonoBehaviour
 
     public static event Action<EnemyAI> findEnemyTargets; //will add all existing enemy types
 
-    [SerializeField]private float health;
-    private float damage;
-    private float speed;
-    private float targetPlayerRange;
-    private float openRange;
+    [SerializeField]protected float health;
+    protected float damage;
+    protected float speed;
+    protected float targetPlayerRange;
+    protected float openRange;
 
-    private float attackRange;
-    private float attackCooldown = 1f;
-    private float time_sinceAttack = 0f;
+    protected float attackRange;
+    protected float attackCooldown = 1f;
+    protected float time_sinceAttack = 0f;
 
     [SerializeField] protected GameObject nearestTarget;
     protected float nearestDistance;
@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    void Start()
+    protected virtual void Start()
     {
 
         navAgent = GetComponent<NavMeshAgent>();
@@ -92,7 +92,7 @@ public class EnemyAI : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         time_sinceAttack += Time.deltaTime;
 
@@ -110,7 +110,7 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    void EnemyDestroy()
+    protected virtual void EnemyDestroy()
     {
        
         Destroy(gameObject, 0.1f);
@@ -268,8 +268,12 @@ public class EnemyAI : MonoBehaviour
         }
         else if (targetList.Count == 1)
         {
-            nearestDistance = Vector3.Distance(transform.position, targetList[0].transform.position); //first element will be used as nearest
-            nearestTarget = targetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
+            if (targetList[0] != null)
+            {
+                nearestDistance = Vector3.Distance(transform.position, targetList[0].transform.position); //first element will be used as nearest
+            }
+                nearestTarget = targetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
+            
 
         }
         else
@@ -364,7 +368,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     //maybe edit distance, target convention here and use etc (distance of nearest target)? nahh
-    void DoAttack()
+    protected virtual void DoAttack()
     {
 
         if(nearestTarget != null && nearestPlayerTarget != null)

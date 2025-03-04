@@ -17,7 +17,6 @@ public class ItemObject : MonoBehaviour
 
     [SerializeField]protected GameObject nearestTarget;
     protected float nearestDistance;
-    private float nearestTemp;
 
     public static event Action<ItemObject> findEnemies;
 
@@ -46,11 +45,12 @@ public class ItemObject : MonoBehaviour
 
     protected virtual void Start()
     {
-        parentPlayer = this.GetComponentInParent<PlayerController>().gameObject;
-
+        
         s_timerSinceAttack = 0f;
 
         InitializeObject();
+
+        parentPlayer = GetComponentInParent<PlayerController>().gameObject;
 
         findEnemies?.Invoke(this);  //find all enemies that currently exist in the scene
         Debug.Log("Called from Item Object");
