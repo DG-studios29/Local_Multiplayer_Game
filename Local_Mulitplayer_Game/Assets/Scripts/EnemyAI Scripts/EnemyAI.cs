@@ -304,31 +304,49 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-
+    //needs to make logical decisions in all posible cases of what to target
     void DoTargetChase()
     {
-        if (nearestPlayerTarget != null)
+        if (nearestTarget == null && nearestPlayerTarget != null)
         {
+            //We have no other enemies to worry about and will just target the player 
+            navAgent.SetDestination(nearestPlayerTarget.transform.position);
+
+            /* if (nearestPlayerDistance < targetPlayerRange)
+             {
+                 navAgent.SetDestination(nearestPlayerTarget.transform.position);
+             }*/
+        }
+
+        if (nearestTarget != null && nearestPlayerTarget != null)
+        {
+            //chase the player if its within a certain range no matter what
             if (nearestPlayerDistance < targetPlayerRange)
             {
                 navAgent.SetDestination(nearestPlayerTarget.transform.position);
             }
-        }
-        else if (nearestTarget != null && nearestPlayerTarget != null)
-        {
-            if (nearestDistance < nearestPlayerDistance)
+
+            //else, target the nearest enemy mob
+            else if (nearestDistance < nearestPlayerDistance)
             {
                 navAgent.SetDestination(nearestTarget.transform.position);
             }
+            //or player
             else
             {
                 navAgent.SetDestination(nearestPlayerTarget.transform.position);
             }
         }
 
-        else if (nearestTarget != null)
+        //outlier cases
+        if (nearestTarget != null && nearestPlayerTarget == null)
         {
             navAgent.SetDestination(nearestTarget.transform.position);
+        }
+
+        if(nearestTarget == null && nearestPlayerTarget == null)
+        {
+            navAgent.SetDestination(this.transform.position);
         }
 
 

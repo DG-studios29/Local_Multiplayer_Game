@@ -38,7 +38,10 @@ public class MiniArmySpawner : MonoBehaviour
     {
         if (canSpawn[index])
         {
-            Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
+            GameObject newArmy = Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
+            EnemyAI spawnedEnemy = newArmy.GetComponent<EnemyAI>();
+            spawnedEnemy.enemyParent = this.gameObject; //parent will be the player that spawned
+
             StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime)); // Start cooldown coroutine
         }
         else

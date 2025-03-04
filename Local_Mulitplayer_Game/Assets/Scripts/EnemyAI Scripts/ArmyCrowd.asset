@@ -16,5 +16,5 @@ MonoBehaviour:
   damage: 5
   moveSpeed: 6
   targetPlayerRange: 15
-  openRange: 50
+  openRange: 100
   attackRange: 3
