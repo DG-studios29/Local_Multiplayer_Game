@@ -311,7 +311,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (nearestPlayerDistance < targetPlayerRange)
             {
-                navAgent.SetDestination(nearestTarget.transform.position);
+                navAgent.SetDestination(nearestPlayerTarget.transform.position);
             }
         }
         else if (nearestTarget != null && nearestPlayerTarget != null)

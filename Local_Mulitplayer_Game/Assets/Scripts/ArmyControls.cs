@@ -18,8 +18,8 @@ public class ArmyControls : MonoBehaviour
 
     private void Update()
     {
-        TakeDamage(damagePerSecond * Time.deltaTime);
-        Debug.Log($"Health is now {health}.");
+        //TakeDamage(damagePerSecond * Time.deltaTime);
+        //Debug.Log($"Health is now {health}.");
     }
 
     public void TakeDamage(float amount)
