@@ -26,8 +26,8 @@ public class EnemyAI : MonoBehaviour
     private float openRange;
 
     private float attackRange;
-    private float attackCooldown;
-    private float time_sinceAttack;
+    private float attackCooldown = 1f;
+    private float time_sinceAttack = 0f;
 
     [SerializeField] protected GameObject nearestTarget;
     protected float nearestDistance;
@@ -71,6 +71,8 @@ public class EnemyAI : MonoBehaviour
 
         navAgent.speed = speed;
 
+        time_sinceAttack = 0f;
+
         if(enemyParent == null)
         {
             RandomizeParent(); //will randomize its parent
@@ -92,11 +94,18 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time_sinceAttack += Time.deltaTime;
+
         //might keep the tracking functions to a global interval or something like that
         NearestTargetTracking();
         NearestPlayerTracking();
 
         DoTargetChase();
+
+        if(time_sinceAttack > attackCooldown)
+        {
+            DoAttack();
+        }
 
 
     }
@@ -127,6 +136,8 @@ public class EnemyAI : MonoBehaviour
         targetPlayerRange = enemyData.TargetPlayerRange;
         openRange = enemyData.OpenRange;
         attackRange = enemyData.AttackRange;
+
+        attackCooldown = 1f;
     }
 
 
@@ -352,9 +363,40 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-
+    //maybe edit distance, target convention here and use etc (distance of nearest target)? nahh
     void DoAttack()
     {
+
+        if(nearestTarget != null && nearestPlayerTarget != null)
+        {
+            if(nearestDistance < nearestPlayerDistance && nearestDistance < attackRange)
+            {
+                nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage); //deal damage when in attack range
+                time_sinceAttack = 0; //sets the cooldown for this function's condition
+            }
+            else if(nearestPlayerDistance < nearestDistance && nearestPlayerDistance < attackRange)
+            {
+                //player take damage
+                time_sinceAttack = 0;
+            }
+        }
+
+        else if (nearestTarget == null && nearestPlayerTarget != null)
+        {
+            if(nearestPlayerDistance < attackRange)
+            {
+                //player to take damage
+                time_sinceAttack = 0;
+            }
+        }
+        else if(nearestTarget != null && nearestPlayerTarget == null)
+        {
+            if(nearestDistance < attackRange)
+            {
+                nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage);
+                time_sinceAttack = 0;
+            }
+        }
 
     }
 
