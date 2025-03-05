@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ItemShoot : ItemObject
 {
@@ -39,6 +40,8 @@ public class ItemShoot : ItemObject
                 if (Vector3.Distance(gameObject.transform.position, nearestTarget.transform.position) <= radius)
                 {
                     // Visually Show something
+                    GameObject shotTrail = GameObject.Instantiate(trailRend,this.transform.position,Quaternion.identity);
+                    StartCoroutine(DrawTrail(shotTrail,nearestTarget.transform.position));
 
                     //Take Damage
                     nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage);
@@ -50,6 +53,31 @@ public class ItemShoot : ItemObject
             }
 
         }
+
+    }
+
+    private IEnumerator DrawTrail(GameObject trail, Vector3 targetPos)
+    {
+        float percentageComplete = 0f;
+        float time = 0.1f;
+
+        Vector3 trailStartPosition = trail.transform.position;
+
+        while (percentageComplete < 1)
+        {
+            percentageComplete += Time.deltaTime / time;
+
+            if (percentageComplete > 1) percentageComplete = 1;
+
+
+            trail.transform.position = Vector3.Lerp(trailStartPosition, targetPos, percentageComplete);
+
+            yield return null;
+        }
+
+        //trail.transform.position = hit.transform.position;
+        //Destroy(bulletTrail.gameObject, 0.1f);
+        Destroy(trail.gameObject, 1f);
 
     }
 }
