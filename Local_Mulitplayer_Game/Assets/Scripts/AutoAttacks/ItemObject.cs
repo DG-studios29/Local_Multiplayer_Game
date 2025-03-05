@@ -8,7 +8,7 @@ public class ItemObject : MonoBehaviour
 
     protected float damage;
     protected float radius;
-    private float s_timerSinceAttack = 0f;
+    protected float s_timerSinceAttack = 0f;
     protected float s_attackRate;
 
     private Transform playerOrigin; //starting postion
