@@ -15,7 +15,6 @@ public class HeroSelectionUI : MonoBehaviour
 
     private void Awake()
     {
-        
         Instance = this;
     }
 
