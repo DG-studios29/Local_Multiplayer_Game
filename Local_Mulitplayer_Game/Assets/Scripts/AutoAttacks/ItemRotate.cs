@@ -8,6 +8,9 @@ public class ItemRotate : ItemObject
 
     public GameObject pivotInstance;
 
+    private float innerRadius;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
      protected override void Start()
     {
@@ -38,7 +41,23 @@ public class ItemRotate : ItemObject
         //base.DoAttack();
         //will deal area damage within that radius by attack rate
 
-       
+        if (s_timerSinceAttack > s_attackRate)
+        {
+
+            foreach (GameObject target in enemyTargets)
+            {
+                var tempDistance = Vector3.Distance(gameObject.transform.position, target.transform.position);
+
+
+                if(tempDistance <= radius && tempDistance >= innerRadius)
+                {
+                    //target.GetComponent<EnemyAI>().TakeDamage(damage);
+                }
+
+
+            }
+
+        }
 
 
     }
