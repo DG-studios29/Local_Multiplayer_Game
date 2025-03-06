@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HeroSelectionUI : MonoBehaviour
@@ -10,8 +9,9 @@ public class HeroSelectionUI : MonoBehaviour
     public GameObject selectionPanel;
     public Button startGameButton;
     public List<HeroManager> heroButtons;
-    private List<string> chosenHeroes = new List<string>();
-    private int currentPlayerIndex = 0;
+
+    private Dictionary<int, string> chosenHeroes = new Dictionary<int, string>();  
+    private int currentSelectingPlayer = 0;  // Tracks which player is selecting
 
     private void Awake()
     {
@@ -20,68 +20,57 @@ public class HeroSelectionUI : MonoBehaviour
 
     public void Setup(int numberOfPlayers)
     {
-        
         selectionPanel.SetActive(true);
         chosenHeroes.Clear();
 
-        // fill the heroes list with default choices (FireMage) for the number of players
+        // Initialize all players with no selection
         for (int i = 0; i < numberOfPlayers; i++)
         {
-            chosenHeroes.Add("FireMage");  // Default hero selection for each player
+            chosenHeroes[i] = "";
         }
 
-    
-        for (int i = 0; i < heroButtons.Count; i++)
+        startGameButton.interactable = false;
+
+        // Assign button listeners
+        foreach (var button in heroButtons)
         {
-            heroButtons[i].Initialize(i);  // Pass the player index to the hero button
+            button.Initialize();
         }
+
+        Debug.Log("Hero selection started.");
+    }
+
+    public void OnHeroSelected(string heroName)
+    {
+        if (chosenHeroes.ContainsKey(currentSelectingPlayer))
+        {
+            chosenHeroes[currentSelectingPlayer] = heroName;
+            Debug.Log($"Player {currentSelectingPlayer + 1} selected {heroName}");
 
         
-        currentPlayerIndex = 0;
-        startGameButton.interactable = false;
-        UpdateSelectionDisplay();
-    }
+            currentSelectingPlayer++;
 
-    public void OnHeroSelected(int playerIndex, string heroName)
-    {
-        // Ensure that only the current player can select a hero
-        if (playerIndex == currentPlayerIndex)
-        {
-            // Set the chosen hero for the current player
-            if (playerIndex < chosenHeroes.Count)
-            {
-                chosenHeroes[playerIndex] = heroName;
-                Debug.Log($"Player {playerIndex + 1} selected {heroName}");
-            }
-           
-            currentPlayerIndex++;
-           
-            if (currentPlayerIndex >= chosenHeroes.Count)
-            {
-                startGameButton.interactable = true;
-            }
-            else
-            {
-                UpdateSelectionDisplay();
-            }
+            // Check if all players have chosen
+            startGameButton.interactable = AreAllHeroesSelected();
         }
-        else
-        {
-            
-            Debug.LogError("Player cannot change the selection of another player!");
-        }
-    }
-
-    private void UpdateSelectionDisplay()
-    {
        
-        Debug.Log($"Player {currentPlayerIndex + 1}, choose your hero!");
+    }
+
+    private bool AreAllHeroesSelected()
+    {
+        foreach (var hero in chosenHeroes.Values)
+        {
+            if (string.IsNullOrEmpty(hero))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void OnStartGame()
     {
-        
         selectionPanel.SetActive(false);
-        GameManager.Instance.StartGame(chosenHeroes);
+        GameManager.Instance.StartGame(new List<string>(chosenHeroes.Values));
     }
 }
