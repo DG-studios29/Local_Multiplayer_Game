@@ -6,18 +6,19 @@ public class AutoAttack : MonoBehaviour
 {
     public string playerTag = "Player";  //will latch onto this object's transform
 
-    public GameObject playerTestObj;
-    public Transform playerObjOrigin;
+    //public GameObject playerTestObj;
+    //public Transform playerObjOrigin;
 
     public List<ItemObject> itemHolder;
     public int itemSize;
 
     public GameObject basicAutoBB;
+    public GameObject basicRevolve;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerTestObj = GameObject.FindGameObjectWithTag(playerTag);
+        /*playerTestObj = GameObject.FindGameObjectWithTag(playerTag);
 
         if (playerTestObj != null)
         {
@@ -27,12 +28,15 @@ public class AutoAttack : MonoBehaviour
 
             this.transform.position = playerObjOrigin.position;
         }
-
+*/
         ItemHolder();  // initialising the item slots
 
         // will fix this to make it cleaner, and place it in a function for it to be dynamic
         itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
         Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
+
+        itemHolder.Add(basicRevolve.GetComponent<ItemObject>());
+        Instantiate(itemHolder[1].itemData.objectInstance,this.transform.position, Quaternion.identity, this.transform);
 
     }
 

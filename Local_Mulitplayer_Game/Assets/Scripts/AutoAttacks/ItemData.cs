@@ -20,7 +20,9 @@ public class ItemData : ScriptableObject
 
     public GameObject objectInstance;
     
-   
+    public GameObject trailRenderer;
+    public GameObject projectilePrefab;
+    public GameObject particleFX;
 
 }
   
