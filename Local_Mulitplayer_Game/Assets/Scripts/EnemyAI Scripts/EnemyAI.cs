@@ -280,6 +280,7 @@ public class EnemyAI : MonoBehaviour
         {
             foreach (GameObject target in targetList)
             {
+                //Missisng reference error
                 var distance = Vector3.Distance(transform.position, target.transform.position);
                 if (distance < nearestDistance)
                 {

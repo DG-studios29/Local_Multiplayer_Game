@@ -16,7 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   atkDamage: 5
   atkRate: 2
-  atkRadius: 10
+  atkRadius: 5
   behavior: 1
   description: 
   objectInstance: {fileID: 6585421304354862384, guid: f72a2b35ffaba0249871cee625e01c57, type: 3}

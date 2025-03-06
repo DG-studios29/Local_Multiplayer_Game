@@ -48,6 +48,6 @@ MonoBehaviour:
   enemyTargets: []
   nearestTarget: {fileID: 0}
   parentPlayer: {fileID: 0}
-  rotationPivot: {fileID: 0}
+  rotationPivot: {fileID: 3652077933095549707, guid: 96e037b181fed684d96a06478e995687, type: 3}
   rotateObject: {fileID: 0}
   pivotInstance: {fileID: 0}

@@ -35,8 +35,8 @@ public class AutoAttack : MonoBehaviour
         itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
         Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
 
-        //itemHolder.Add(basicRevolve.GetComponent<ItemObject>());
-        //Instantiate(itemHolder[1].itemData.objectInstance,this.transform.position, Quaternion.identity, this.transform);
+        itemHolder.Add(basicRevolve.GetComponent<ItemObject>());
+        Instantiate(itemHolder[1].itemData.objectInstance,this.transform.position, Quaternion.identity, this.transform);
 
     }
 

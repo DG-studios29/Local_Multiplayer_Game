@@ -14,8 +14,9 @@ public class ItemRotate : ItemObject
 
         base.Start();
 
-        rotationPivot = new GameObject("Empty");
-        pivotInstance = Instantiate(rotationPivot, transform.position, Quaternion.identity,transform); // or just create a transform that sits where we want on the player
+        //rotationPivot = new GameObject("RotationPivot");
+        pivotInstance = Instantiate(rotationPivot, new Vector3(transform.position.x,transform.position.y +1,transform.position.z), Quaternion.identity,transform); // or just create a transform that sits where we want on the player
+        
       
         rotateObject = itemData.projectilePrefab;
 
@@ -26,8 +27,10 @@ public class ItemRotate : ItemObject
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();  
+        base.Update();
+        pivotInstance.transform.Rotate(0, 270 * Time.deltaTime, 0);
     }
+
 
 
     protected override void DoAttack()
@@ -35,39 +38,51 @@ public class ItemRotate : ItemObject
         //base.DoAttack();
         //will deal area damage within that radius by attack rate
 
+       
+
 
     }
 
 
     private void SetUpRotor()
     {
-        GameObject pivotInstanceN = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.Euler(0,0,0), pivotInstance.transform); // or just create a transform that sits where we want on the player
+        GameObject pivotInstanceN = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform); // or just create a transform that sits where we want on the player
         GameObject nR = Instantiate(rotateObject, new Vector3(pivotInstanceN.transform.position.x + radius,
                                               pivotInstanceN.transform.position.y,
                                               pivotInstanceN.transform.position.z) ,
             Quaternion.identity,
             pivotInstanceN.transform);
 
-        GameObject pivotInstanceS = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.Euler(0,180,0), pivotInstance.transform);
+        pivotInstanceN.transform.rotation = Quaternion.Euler(0f,0f,0f);
+
+        GameObject pivotInstanceS = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform);
         GameObject sR = Instantiate(rotateObject, new Vector3(pivotInstanceS.transform.position.x + radius,
                                               pivotInstanceS.transform.position.y,
                                               pivotInstanceS.transform.position.z) ,
             Quaternion.identity,
             pivotInstanceS.transform);
 
-        GameObject pivotInstanceW = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.Euler(0,90,0), pivotInstance.transform);
+        pivotInstanceS.transform.rotation = Quaternion.Euler(0f,180f,0f);
+
+
+        GameObject pivotInstanceW = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform);
         GameObject wR = Instantiate(rotateObject, new Vector3(pivotInstanceW.transform.position.x + radius,
                                               pivotInstanceW.transform.position.y,
                                               pivotInstanceW.transform.position.z) ,
             Quaternion.identity,
             pivotInstanceW.transform);
 
-        GameObject pivotInstanceE = Instantiate(rotationPivot,pivotInstance.transform.position, Quaternion.Euler(0,270,0), pivotInstance.transform);
+        pivotInstanceW.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+
+
+        GameObject pivotInstanceE = Instantiate(rotationPivot,pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform);
         GameObject eR = Instantiate(rotateObject, new Vector3(pivotInstanceE.transform.position.x + radius,
                                               pivotInstanceE.transform.position.y,
                                               pivotInstanceE.transform.position.z) ,
             Quaternion.identity,
             pivotInstanceE.transform);
+
+        pivotInstanceE.transform.rotation= Quaternion.Euler(0f,270f, 0f);
 
       
 
