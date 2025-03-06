@@ -39,7 +39,7 @@ public class MiniArmySpawner : MonoBehaviour
         if (canSpawn[index])
         {
             Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
-            StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime)); // Start cooldown coroutine
+            StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime));
         }
         else
         {
@@ -52,6 +52,6 @@ public class MiniArmySpawner : MonoBehaviour
         canSpawn[index] = false; // Disable spawning for this unit type
         yield return new WaitForSeconds(cooldown); 
         canSpawn[index] = true; // Enable spawning again
-        Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
+        Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); 
     }
 }

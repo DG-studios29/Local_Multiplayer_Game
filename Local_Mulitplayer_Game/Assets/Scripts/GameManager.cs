@@ -5,7 +5,7 @@ using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;  // Add singleton instance for easy access
+    public static GameManager Instance;  
     public GameObject playerPrefab;
     public int numberOfPlayers = 2;
     public List<Transform> spawnPoints;
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;  // Singleton setup
+        Instance = this;  
     }
 
     private void Start()
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         ShowHeroSelectionUI();
     }
 
+    // Adding the players to CinemachineTargetGroup after spawining.
     public void AddPlayerToCamera(GameObject player, float weight = 1f, float radius = 2f)
     {
         if (targetGroup == null || player == null) return;
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     void ShowHeroSelectionUI()
     {
-        HeroSelectionUI.Instance.Setup(numberOfPlayers);  // No need for callback now
+        HeroSelectionUI.Instance.Setup(numberOfPlayers);  
     }
 
     public void StartGame(List<string> chosenHeroes)
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         SpawnPlayers();
     }
 
+    // Spawn players at the spwan points.
     void SpawnPlayers()
     {
         for (int i = 0; i < numberOfPlayers; i++)
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Assign scripts to the player game objects.
     void AssignHeroScript(GameObject player, string heroName)
     {
         switch (heroName)

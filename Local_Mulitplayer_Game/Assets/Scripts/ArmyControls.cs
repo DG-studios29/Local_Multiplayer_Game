@@ -22,6 +22,7 @@ public class ArmyControls : MonoBehaviour
         Debug.Log($"Health is now {health}.");
     }
 
+    // Take damage
     public void TakeDamage(float amount)
     {
         if (isDead) return;
@@ -43,15 +44,13 @@ public class ArmyControls : MonoBehaviour
             animator.SetBool("isDead", true);
             Debug.Log($"{gameObject.name} has died.");
 
-            // Disable movement or other scripts if needed
             armyCollider.enabled = false;
-
-            // Optionally destroy the object after the animation finishes
             StartCoroutine(DestroyAfterAnimation());
            
         }
     }
 
+    // Delay death to finish the animation 
     private IEnumerator DestroyAfterAnimation()
     {
         AnimatorStateInfo dead = animator.GetCurrentAnimatorStateInfo(1);
