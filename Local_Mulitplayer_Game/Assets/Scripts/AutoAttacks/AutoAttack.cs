@@ -13,6 +13,7 @@ public class AutoAttack : MonoBehaviour
     public int itemSize;
 
     public GameObject basicAutoBB;
+    public GameObject basicRevolve;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +34,9 @@ public class AutoAttack : MonoBehaviour
         // will fix this to make it cleaner, and place it in a function for it to be dynamic
         itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
         Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
+
+        //itemHolder.Add(basicRevolve.GetComponent<ItemObject>());
+        //Instantiate(itemHolder[1].itemData.objectInstance,this.transform.position, Quaternion.identity, this.transform);
 
     }
 
