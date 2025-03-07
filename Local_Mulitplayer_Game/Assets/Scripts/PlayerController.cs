@@ -4,28 +4,29 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f; // Movement speed for the player
+    public float moveSpeed = 5f; 
     public bool isWalking = true;
     private Animator animator;
 
-    private Rigidbody rb; // Reference to the Rigidbody component
-    private Vector2 movementInput; // Stores player movement input from Input System
+    private Rigidbody rb; 
+    private Vector2 movementInput; 
 
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>(); // Gets the Rigidbody component attached to the GameObject
+        rb = GetComponent<Rigidbody>(); 
         animator = GetComponent<Animator>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
 
-        movementInput = context.ReadValue<Vector2>(); // Reads and stores movement input from the player
+        movementInput = context.ReadValue<Vector2>(); 
 
     }
 
+    // Make the player move
     private void FixedUpdate()
     {
         // Convert the 2D movement input to a 3D movement direction
