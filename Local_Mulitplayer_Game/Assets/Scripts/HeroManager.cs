@@ -1,15 +1,18 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HeroManager : MonoBehaviour
 {
+    public Button heroButton;
     public string heroName;
-    public Button selectButton;
 
-    // Assigning the button to the hero.
-    public void Initialize(int playerIndex)
+    public void Initialize()
     {
-        selectButton.onClick.AddListener(() => HeroSelectionUI.Instance.OnHeroSelected(playerIndex, heroName));
+        heroButton.onClick.AddListener(() => SelectHero());
+    }
+
+    void SelectHero()
+    {
+        HeroSelectionUI.Instance.OnHeroSelected(heroName);
     }
 }

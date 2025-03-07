@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;  
+    public static GameManager Instance;
+
     public GameObject playerPrefab;
     public int numberOfPlayers = 2;
     public List<Transform> spawnPoints;
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;  
+        Instance = this;
     }
 
     private void Start()
@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
         ShowHeroSelectionUI();
     }
 
-    // Adding the players to CinemachineTargetGroup after spawining.
     public void AddPlayerToCamera(GameObject player, float weight = 1f, float radius = 2f)
     {
         if (targetGroup == null || player == null) return;
@@ -32,23 +31,25 @@ public class GameManager : MonoBehaviour
 
     void ShowHeroSelectionUI()
     {
-        HeroSelectionUI.Instance.Setup(numberOfPlayers);  
+        HeroSelectionUI.Instance.Setup(numberOfPlayers);
     }
 
     public void StartGame(List<string> chosenHeroes)
     {
         selectedHeroes = chosenHeroes;
 
-        // Ensure we have enough heroes selected
-        while (selectedHeroes.Count < numberOfPlayers)
+        // Fill any missing selections with a default hero
+        for (int i = 0; i < selectedHeroes.Count; i++)
         {
-            selectedHeroes.Add("FireMage"); // Add a default hero if any selection is missing
+            if (string.IsNullOrEmpty(selectedHeroes[i]))
+            {
+                selectedHeroes[i] = "FireMage";
+            }
         }
 
         SpawnPlayers();
     }
 
-    // Spawn players at the spwan points.
     void SpawnPlayers()
     {
         for (int i = 0; i < numberOfPlayers; i++)
@@ -68,7 +69,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Assign scripts to the player game objects.
     void AssignHeroScript(GameObject player, string heroName)
     {
         switch (heroName)
@@ -81,6 +81,9 @@ public class GameManager : MonoBehaviour
                 break;
             case "ShadowRogue":
                 player.AddComponent<ShadowRogue>();
+                break;
+            case "EarthGuardian":
+                //player.AddComponent<EarthGuardian>();
                 break;
             default:
                 Debug.LogWarning("Hero not found: " + heroName);
