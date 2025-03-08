@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                 player.AddComponent<ShadowRogue>();
                 break;
             case "EarthGuardian":
-                //player.AddComponent<EarthGuardian>();
+                player.AddComponent<EarthGuardian>();
                 break;
             default:
                 Debug.LogWarning("Hero not found: " + heroName);
