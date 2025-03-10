@@ -1,13 +1,8 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
->>>>>>> Stashed changes
 =======
 ﻿using System.Collections;
 using System.Collections.Generic;
@@ -28,9 +23,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Settings")]
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -209,7 +201,6 @@ public class GameManager : MonoBehaviour
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
     public void StartGame(List<string> chosenHeroes)
     {
         selectedHeroes = chosenHeroes;
@@ -242,8 +233,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
