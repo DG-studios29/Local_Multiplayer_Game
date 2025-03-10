@@ -6,7 +6,10 @@ public class HeroManager : MonoBehaviour
 {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     [Header("UI Elements")]
