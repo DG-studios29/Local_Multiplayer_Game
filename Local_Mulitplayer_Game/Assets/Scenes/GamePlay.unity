@@ -665,15 +665,39 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!208 &293241696
 NavMeshObstacle:
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &275657842
 PrefabInstance:
 =======
 --- !u!114 &238665045
 MonoBehaviour:
+<<<<<<< Updated upstream
+=======
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238665039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!208 &293241696
+NavMeshObstacle:
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1565,6 +1589,9 @@ Transform:
 <<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!208 &838588981
@@ -1584,13 +1611,19 @@ NavMeshObstacle:
   m_Center: {x: -0.147, y: 7.0810003, z: -0.924}
   m_TimeToStationary: 0.5
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &878854657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4171694053024654179, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
   m_PrefabInstance: {fileID: 1397243616}
   m_PrefabAsset: {fileID: 0}
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &985847679
 GameObject:
@@ -2318,13 +2351,19 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 47.7, y: 1, z: 30.1}
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
   m_LocalPosition: {x: 5.07, y: 1, z: 0}
 =======
   m_LocalPosition: {x: 60.6, y: 1, z: 85.1}
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2470,6 +2509,9 @@ CanvasRenderer:
 <<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!208 &1389583219
@@ -2547,17 +2589,23 @@ PrefabInstance:
     - target: {fileID: 2947729866497104463, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4171694053024654179, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
       value: 0
 =======
+=======
+>>>>>>> Stashed changes
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4171694053024654179, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
       value: 1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5234633604259742062, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
@@ -2755,7 +2803,10 @@ NavMeshObstacle:
   m_Center: {x: -0.147, y: 7.0810003, z: -0.924}
   m_TimeToStationary: 0.5
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1414145292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2947729866497104463, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
@@ -2793,6 +2844,9 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1496441380
 GameObject:
@@ -4458,6 +4512,9 @@ CanvasRenderer:
 <<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!208 &1826232327
@@ -4477,7 +4534,10 @@ NavMeshObstacle:
   m_Center: {x: -0.147, y: 7.0810003, z: -0.924}
   m_TimeToStationary: 0.5
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1862057385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4509,6 +4569,9 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1881714036 stripped
 GameObject:
@@ -4548,6 +4611,9 @@ MonoBehaviour:
   m_NavMeshData: {fileID: 23800000, guid: 14bd7752d1df8354ab2d3ee13ab37971, type: 2}
   m_BuildHeightMesh: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
@@ -5059,8 +5125,11 @@ SceneRoots:
   - {fileID: 1476049217}
   - {fileID: 1318509370}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
   - {fileID: 2011754697}
   - {fileID: 275657842}
   - {fileID: 1955196848}
@@ -5070,6 +5139,9 @@ SceneRoots:
 =======
   - {fileID: 1862057386}
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   - {fileID: 1653617227}
   - {fileID: 2112957824}
