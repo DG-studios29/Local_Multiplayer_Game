@@ -267,7 +267,6 @@ NavMeshObstacle:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
@@ -323,8 +322,6 @@ NavMeshObstacle:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66145b941d22b3443a99f9a7a4982901, type: 3}
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -761,7 +758,6 @@ Transform:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 --- !u!1001 &275657842
 PrefabInstance:
 =======
@@ -882,8 +878,6 @@ NavMeshObstacle:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4a67a02010c1748bca41effff44429, type: 3}
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2035,12 +2029,9 @@ CanvasRenderer:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 =======
 --- !u!208 &1186709339
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2056,9 +2047,6 @@ GameObject:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2075,11 +2063,7 @@ NavMeshObstacle:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   m_GameObject: {fileID: 1397243620}
-=======
-  m_GameObject: {fileID: 1164948723}
->>>>>>> Stashed changes
 =======
   m_GameObject: {fileID: 1164948723}
 >>>>>>> Stashed changes
@@ -2105,7 +2089,6 @@ NavMeshObstacle:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 --- !u!1 &1211928308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4171694053024654179, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
@@ -2119,8 +2102,6 @@ GameObject:
 =======
 >>>>>>> Stashed changes
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2151,9 +2132,6 @@ NavMeshObstacle:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2618,11 +2596,8 @@ MonoBehaviour:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   selectButton: {fileID: 232359064}
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2653,9 +2628,6 @@ NavMeshObstacle:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -3042,7 +3014,6 @@ PrefabInstance:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
       addedObject: {fileID: 1397243633}
     - targetCorrespondingSourceObject: {fileID: 3491809727398265321, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       insertIndex: -1
@@ -3078,8 +3049,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 838588981}
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -3123,9 +3092,6 @@ PrefabInstance:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -4271,7 +4237,6 @@ NavMeshObstacle:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
@@ -4327,8 +4292,6 @@ NavMeshObstacle:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b767cce8eafa8da4c944ed7fac9311ac, type: 3}
 =======
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -4409,9 +4372,6 @@ NavMeshObstacle:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -5576,7 +5536,6 @@ SceneRoots:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   - {fileID: 2011754697}
   - {fileID: 275657842}
   - {fileID: 1955196848}
@@ -5591,8 +5550,6 @@ SceneRoots:
 >>>>>>> Stashed changes
 =======
   - {fileID: 579813318}
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
