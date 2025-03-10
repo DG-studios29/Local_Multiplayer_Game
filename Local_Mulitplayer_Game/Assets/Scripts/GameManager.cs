@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     {
         if (gameStarted)
         {
@@ -121,6 +122,111 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("Not enough spawn points for all players!");
             }
         }
+    }
+
+    void RespawnPlayers(List<Transform> points)
+    {
+        // Create a copy of the spawn points to avoid modifying the original list while iterating
+        List<Transform> availablePoints = new List<Transform>(points);
+
+        // Shuffle the available points to randomize the selection order
+        for (int i = 0; i < availablePoints.Count; i++)
+        {
+            Transform temp = availablePoints[i];
+            int randomIndex = Random.Range(i, availablePoints.Count);
+            availablePoints[i] = availablePoints[randomIndex];
+            availablePoints[randomIndex] = temp;
+        }
+
+        // Respawn players at different spawn points
+        int playerIndex = 0;
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (playerIndex < availablePoints.Count)
+            {
+                player.transform.position = availablePoints[playerIndex].position;
+                player.GetComponent<PlayerController>().moveSpeed = 10f; // Faster pace in sudden death
+                playerIndex++;
+            }
+        }
+    }
+
+    public void AddPlayerToCamera(GameObject player, float weight = 1f, float radius = 2f)
+=======
+>>>>>>> Stashed changes
+    {
+        if (gameStarted)
+        {
+            HandleGameTimer();
+        }
+    }
+
+    void HandleGameTimer()
+    {
+        HeroSelectionUI.Instance.Setup(numberOfPlayers);
+<<<<<<< Updated upstream
+=======
+    }
+
+    public void StartGame(List<string> chosenHeroes)
+    {
+        selectedHeroes = chosenHeroes;
+
+        // Fill any missing selections with a default hero
+        for (int i = 0; i < selectedHeroes.Count; i++)
+        {
+            if (string.IsNullOrEmpty(selectedHeroes[i]))
+            {
+                selectedHeroes[i] = "FireMage";
+            }
+        }
+
+        timer = gameDuration;
+        shakeTriggered = false;
+        gameStarted = true;
+        currentSpawnPoints = forestSpawnPoints; // Set spawn points to forest initially
+        SpawnPlayers(currentSpawnPoints);
+    }
+
+    void StartSuddenDeath()
+    {
+        isSuddenDeath = true;
+        timer = suddenDeathDuration;
+        RespawnPlayers(cemeterySpawnPoints); // Use cemetery spawn points for sudden death
+        Debug.Log("Sudden Death Started!");
+        mapChange(); // Change map to cemetery
+    }
+
+    void EndGame()
+    {
+        gameStarted = false; // Stop the timer when the game ends
+        Debug.Log("Game Over!");
+        // Implement game over logic (show results, reset game, etc.)
+    }
+
+    void SpawnPlayers(List<Transform> points)
+    {
+        for (int i = 0; i < numberOfPlayers; i++)
+        {
+            if (i < points.Count)
+            {
+                GameObject player = Instantiate(playerPrefab, points[i].position, Quaternion.identity);
+                player.name = "Player " + (i + 1);
+                AddPlayerToCamera(player, 1f, 2f);
+
+                var controller = player.GetComponent<PlayerController>();
+                controller.moveSpeed = isSuddenDeath ? 10f : 5f; // Speed up during sudden death
+                AssignHeroScript(player, selectedHeroes[i]);
+
+                // Change the player's materials
+                AssignPlayerMaterials(player, i); // Assign materials based on player index
+            }
+            else
+            {
+                Debug.LogWarning("Not enough spawn points for all players!");
+            }
+        }
+>>>>>>> Stashed changes
     }
 
     void RespawnPlayers(List<Transform> points)
