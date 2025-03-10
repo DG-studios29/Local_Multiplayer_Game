@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class HeroManager : MonoBehaviour
 {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -15,6 +16,8 @@ public class HeroManager : MonoBehaviour
     [Header("UI Elements")]
     public Button heroButton;
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
     public string heroName;
     public Button selectButton;
 

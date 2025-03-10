@@ -573,7 +573,6 @@ GameObject:
   - component: {fileID: 238665042}
   - component: {fileID: 238665041}
   - component: {fileID: 238665040}
-  - component: {fileID: 238665045}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -752,6 +751,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -827,6 +827,10 @@ NavMeshObstacle:
 --- !u!208 &293241696
 NavMeshObstacle:
 >>>>>>> Stashed changes
+=======
+--- !u!1001 &275657842
+PrefabInstance:
+>>>>>>> parent of 43e7cd5 (Sudden death)
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
@@ -1063,11 +1067,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1 &359006442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2947729866497104463, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
-  m_PrefabInstance: {fileID: 1397243616}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &383206469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,37 +1532,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536042835}
   m_CullTransparentMesh: 1
---- !u!1 &579813317
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 579813318}
-  m_Layer: 0
-  m_Name: SpawnPointSudden2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &579813318
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579813317}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.9, y: 1, z: 44.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &595933279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1761,7 @@ Transform:
   m_GameObject: {fileID: 985847679}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -1806,6 +1775,9 @@ Transform:
 =======
   m_LocalPosition: {x: 5.2, y: 1, z: 13.9}
 >>>>>>> Stashed changes
+=======
+  m_LocalPosition: {x: -5.06, y: 1, z: 0}
+>>>>>>> parent of 43e7cd5 (Sudden death)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1947,6 +1919,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005593399}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< Updated upstream
@@ -2077,6 +2050,8 @@ NavMeshObstacle:
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of bcc0f00 (Restoring)
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
 --- !u!1 &1213160580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,37 +2381,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263692776}
   m_CullTransparentMesh: 1
---- !u!1 &1272294254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1272294255}
-  m_Layer: 0
-  m_Name: SpawnPointSudden1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1272294255
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272294254}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.5, y: 1, z: 8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1291021229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,6 +2640,7 @@ Transform:
   m_GameObject: {fileID: 1318509369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -2709,6 +2654,9 @@ Transform:
 =======
   m_LocalPosition: {x: 66, y: 1, z: 90.7}
 >>>>>>> Stashed changes
+=======
+  m_LocalPosition: {x: 5.07, y: 1, z: 0}
+>>>>>>> parent of 43e7cd5 (Sudden death)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2850,6 +2798,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330596252}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 --- !u!208 &1389583219
@@ -3188,6 +3137,8 @@ NavMeshObstacle:
   m_Center: {x: -0.147, y: 7.0810003, z: -0.924}
   m_TimeToStationary: 0.5
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
 --- !u!1 &1496441380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4094,21 +4045,8 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 985847680}
   - {fileID: 1318509370}
-  suddenDeathSpawnPoints:
-  - {fileID: 1272294255}
-  - {fileID: 579813318}
   targetGroup: {fileID: 1971385163}
-  cineCamera: {fileID: 238665043}
-  noise: {fileID: 238665045}
-  playerMaterials:
-  - {fileID: 2100000, guid: 8efea93abd03fb84b9d59b0ee429a98c, type: 2}
-  - {fileID: 2100000, guid: ea019199206d3914a8c5188cd135121a, type: 2}
   selectedHeroes: []
-  gameDuration: 20
-  suddenDeathDuration: 20
-  timer: 0
-  forestMap: {fileID: 1211928308}
-  cemeteryMap: {fileID: 359006442}
 --- !u!4 &1662317262
 Transform:
   m_ObjectHideFlags: 0
@@ -5577,8 +5515,8 @@ SceneRoots:
   - {fileID: 623015463}
   - {fileID: 1662317262}
   - {fileID: 985847680}
-  - {fileID: 1272294255}
   - {fileID: 1318509370}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -5589,12 +5527,15 @@ SceneRoots:
 <<<<<<< Updated upstream
 =======
 >>>>>>> parent of bcc0f00 (Restoring)
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
   - {fileID: 2011754697}
   - {fileID: 275657842}
   - {fileID: 1955196848}
   - {fileID: 1671623380}
   - {fileID: 178106257}
   - {fileID: 2138275333}
+<<<<<<< HEAD
 =======
   - {fileID: 579813318}
 >>>>>>> Stashed changes
@@ -5615,5 +5556,7 @@ SceneRoots:
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of bcc0f00 (Restoring)
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
   - {fileID: 1653617227}
   - {fileID: 2112957824}
