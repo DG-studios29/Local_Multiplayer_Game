@@ -534,7 +534,6 @@ GameObject:
   - component: {fileID: 238665042}
   - component: {fileID: 238665041}
   - component: {fileID: 238665040}
-  - component: {fileID: 238665045}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
