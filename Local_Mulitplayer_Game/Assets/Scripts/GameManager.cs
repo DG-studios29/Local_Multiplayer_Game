@@ -3,7 +3,6 @@
 <<<<<<< Updated upstream
 ﻿using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
 using UnityEngine.InputSystem;
 =======
 ﻿using System.Collections;
@@ -26,13 +25,10 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 >>>>>>> parent of 43e7cd5 (Sudden death)
-=======
->>>>>>> main
 using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-<<<<<<< HEAD
     public static GameManager Instance;  // Add singleton instance for easy access
 <<<<<<< HEAD
 =======
@@ -51,10 +47,6 @@ public class GameManager : MonoBehaviour
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of 43e7cd5 (Sudden death)
-=======
-    public static GameManager Instance;
-
->>>>>>> main
     public GameObject playerPrefab;
     public int numberOfPlayers = 2;
     public List<Transform> spawnPoints;
@@ -64,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        Instance = this;  // Singleton setup
     }
 
     private void Start()
@@ -80,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     void ShowHeroSelectionUI()
     {
-        HeroSelectionUI.Instance.Setup(numberOfPlayers);
+        HeroSelectionUI.Instance.Setup(numberOfPlayers);  // No need for callback now
     }
 
 <<<<<<< HEAD
@@ -96,13 +88,10 @@ public class GameManager : MonoBehaviour
     {
         selectedHeroes = chosenHeroes;
 
-        // Fill any missing selections with a default hero
-        for (int i = 0; i < selectedHeroes.Count; i++)
+        // Ensure we have enough heroes selected
+        while (selectedHeroes.Count < numberOfPlayers)
         {
-            if (string.IsNullOrEmpty(selectedHeroes[i]))
-            {
-                selectedHeroes[i] = "FireMage";
-            }
+            selectedHeroes.Add("FireMage"); // Add a default hero if any selection is missing
         }
 
         SpawnPlayers();
@@ -151,9 +140,6 @@ public class GameManager : MonoBehaviour
                 break;
             case "ShadowRogue":
                 player.AddComponent<ShadowRogue>();
-                break;
-            case "EarthGuardian":
-                //player.AddComponent<EarthGuardian>();
                 break;
             default:
                 Debug.LogWarning("Hero not found: " + heroName);

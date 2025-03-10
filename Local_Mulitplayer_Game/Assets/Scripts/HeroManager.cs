@@ -1,9 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HeroManager : MonoBehaviour
 {
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -20,18 +20,11 @@ public class HeroManager : MonoBehaviour
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of 43e7cd5 (Sudden death)
-=======
-    public Button heroButton;
->>>>>>> main
     public string heroName;
+    public Button selectButton;
 
-    public void Initialize()
+    public void Initialize(int playerIndex)
     {
-        heroButton.onClick.AddListener(() => SelectHero());
-    }
-
-    void SelectHero()
-    {
-        HeroSelectionUI.Instance.OnHeroSelected(heroName);
+        selectButton.onClick.AddListener(() => HeroSelectionUI.Instance.OnHeroSelected(playerIndex, heroName));
     }
 }

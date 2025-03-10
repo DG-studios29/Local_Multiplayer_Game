@@ -38,10 +38,7 @@ public class MiniArmySpawner : MonoBehaviour
     {
         if (canSpawn[index])
         {
-            GameObject newArmy = Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
-            EnemyAI spawnedEnemy = newArmy.GetComponent<EnemyAI>();
-            spawnedEnemy.enemyParent = this.gameObject; //parent will be the player that spawned
-
+            Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
             StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime)); // Start cooldown coroutine
 <<<<<<< HEAD
 =======
@@ -82,7 +79,6 @@ public class MiniArmySpawner : MonoBehaviour
         yield return new WaitForSeconds(cooldown); 
         canSpawn[index] = true; // Enable spawning again
 <<<<<<< HEAD
-<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
@@ -101,8 +97,5 @@ public class MiniArmySpawner : MonoBehaviour
 >>>>>>> parent of 43e7cd5 (Sudden death)
 =======
 >>>>>>> parent of 93b5622 (Sudden death)
-=======
-        Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); 
->>>>>>> main
     }
 }
