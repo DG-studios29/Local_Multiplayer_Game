@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class HeroManager : MonoBehaviour
 {
+
+    public Button heroButton;
     public string heroName;
     public Button selectButton;
 

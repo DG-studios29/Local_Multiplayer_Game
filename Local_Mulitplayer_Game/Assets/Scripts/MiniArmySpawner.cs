@@ -7,11 +7,15 @@ public class MiniArmySpawner : MonoBehaviour
     [System.Serializable]
     public class ArmyType // Setup array requirement.
     {
-        public string name; 
-        public GameObject prefab; 
-        public Transform spawnPoint; 
+        public string name;
+        public GameObject prefab;
+        public Transform spawnPoint;
         public float cooldownTime;
     }
+    [Header("Army Type")]
+    public ArmyType[] armyTypes;
+    private bool[] canSpawn;
+
 
     [Header("Army Type")]
     public ArmyType[] armyTypes;
@@ -22,8 +26,9 @@ public class MiniArmySpawner : MonoBehaviour
 
     public ArmyType[] armyTypes; 
     private bool[] canSpawn; 
-(Sudden death)
 
+
+    private MeshRenderer[] playerMeshRenderers;
     private void Start()
     {
         canSpawn = new bool[armyTypes.Length]; // Initialize cooldown tracking array
@@ -31,7 +36,11 @@ public class MiniArmySpawner : MonoBehaviour
         {
             canSpawn[i] = true; // Allow spawning initially
         }
+
+        playerMeshRenderers = GetComponentsInChildren<MeshRenderer>();
     }
+
+
 
 
     public void SetPlayerMaterial(Material playerMaterial)
@@ -43,7 +52,9 @@ public class MiniArmySpawner : MonoBehaviour
         }
     }
 
-(Sudden death)
+
+
+
     public void SpawnArmy(InputAction.CallbackContext context) // Spawns army when  button 1 is pressed.
     {
         if (context.performed)
@@ -57,6 +68,7 @@ public class MiniArmySpawner : MonoBehaviour
     {
         if (canSpawn[index])
         {
+
             Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
             GameObject newArmy = Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
             EnemyAI spawnedEnemy = newArmy.GetComponent<EnemyAI>();
@@ -71,20 +83,27 @@ public class MiniArmySpawner : MonoBehaviour
 
 
 
-(Sudden death)
+            GameObject newArmy = Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
+            EnemyAI spawnedEnemy = newArmy.GetComponent<EnemyAI>();
+            spawnedEnemy.enemyParent = this.gameObject; //parent will be the player that spawned
             StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime)); // Start cooldown coroutine
         }
         else
         {
-            Debug.Log($"{armyTypes[index].name} is on cooldown!"); 
+            Debug.Log($"{armyTypes[index].name} is on cooldown!");
         }
     }
+
 
     private IEnumerator Cooldown(int index, float cooldown) // Handles cooldown timing.
     {
         canSpawn[index] = false; // Disable spawning for this unit type
-        yield return new WaitForSeconds(cooldown); 
+        yield return new WaitForSeconds(cooldown);
         canSpawn[index] = true; // Enable spawning again
+
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
+
+        Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); 
+
     }
 }
