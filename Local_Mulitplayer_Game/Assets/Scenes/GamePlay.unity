@@ -753,6 +753,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
 <<<<<<< Updated upstream
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< HEAD
@@ -762,11 +763,14 @@ Transform:
 <<<<<<< Updated upstream
 =======
 >>>>>>> parent of bcc0f00 (Restoring)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
 --- !u!1001 &275657842
 PrefabInstance:
 =======
 --- !u!114 &238665045
 MonoBehaviour:
+<<<<<<< HEAD
 =======
 --- !u!114 &238665045
 MonoBehaviour:
@@ -791,6 +795,8 @@ MonoBehaviour:
 --- !u!208 &293241696
 NavMeshObstacle:
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1764,11 +1770,11 @@ Transform:
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   m_LocalPosition: {x: -5.06, y: 1, z: 0}
 =======
   m_LocalPosition: {x: 5.2, y: 1, z: 13.9}
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
   m_LocalPosition: {x: 5.2, y: 1, z: 13.9}
 >>>>>>> Stashed changes
@@ -1778,6 +1784,8 @@ Transform:
 =======
   m_LocalPosition: {x: -5.06, y: 1, z: 0}
 >>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2002,10 +2010,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4171694053024654179, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
   m_PrefabInstance: {fileID: 1397243616}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -2643,11 +2654,11 @@ Transform:
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   m_LocalPosition: {x: 5.07, y: 1, z: 0}
 =======
   m_LocalPosition: {x: 66, y: 1, z: 90.7}
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
   m_LocalPosition: {x: 66, y: 1, z: 90.7}
 >>>>>>> Stashed changes
@@ -2657,6 +2668,8 @@ Transform:
 =======
   m_LocalPosition: {x: 5.07, y: 1, z: 0}
 >>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5518,6 +5531,7 @@ SceneRoots:
   - {fileID: 1318509370}
 <<<<<<< HEAD
 <<<<<<< Updated upstream
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< HEAD
@@ -5529,6 +5543,8 @@ SceneRoots:
 >>>>>>> parent of bcc0f00 (Restoring)
 =======
 >>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
   - {fileID: 2011754697}
   - {fileID: 275657842}
   - {fileID: 1955196848}
@@ -5539,6 +5555,7 @@ SceneRoots:
 =======
   - {fileID: 579813318}
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
   - {fileID: 579813318}
 >>>>>>> Stashed changes
@@ -5558,5 +5575,7 @@ SceneRoots:
 >>>>>>> parent of bcc0f00 (Restoring)
 =======
 >>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
   - {fileID: 1653617227}
   - {fileID: 2112957824}

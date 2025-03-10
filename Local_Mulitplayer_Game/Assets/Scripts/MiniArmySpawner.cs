@@ -54,10 +54,13 @@ public class MiniArmySpawner : MonoBehaviour
             }
 
             StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime));
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -78,11 +81,11 @@ public class MiniArmySpawner : MonoBehaviour
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
 =======
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!");
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!");
 >>>>>>> Stashed changes
@@ -92,5 +95,7 @@ public class MiniArmySpawner : MonoBehaviour
 =======
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
 >>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
     }
 }
