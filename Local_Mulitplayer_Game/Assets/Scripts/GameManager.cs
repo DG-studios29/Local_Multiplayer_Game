@@ -1,25 +1,14 @@
-<<<<<<< Updated upstream
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
->>>>>>> Stashed changes
 using Unity.Cinemachine;
-using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-<<<<<<< Updated upstream
     public static GameManager Instance;  // Add singleton instance for easy access
-=======
-    public static GameManager Instance;
-
-    [Header("Player Settings")]
->>>>>>> Stashed changes
     public GameObject playerPrefab;
     public int numberOfPlayers = 2;
+
 
     [Header("Player Materials")]
     public List<Material> playerMaterials; // Add different materials for each player
@@ -34,20 +23,11 @@ public class GameManager : MonoBehaviour
     public CinemachineCamera cineCamera;
     public CinemachineBasicMultiChannelPerlin noise;
 
+    public List<Transform> spawnPoints;
+    public CinemachineTargetGroup targetGroup;
+(Sudden death)
+
     public List<string> selectedHeroes = new List<string>();
-
-    [Header("Game Timers")]
-    public float gameDuration = 300f; // 5 minutes
-    public float suddenDeathDuration = 60f; // 1 minute
-    public float timer;
-    private bool isSuddenDeath = false;
-    private bool gameStarted = false; // To check if the game has started
-
-    [Header("Maps")]
-    public GameObject forestMap;
-    public GameObject cemeteryMap;
-
-    private bool shakeTriggered = false;
 
     private void Awake()
     {
@@ -59,7 +39,7 @@ public class GameManager : MonoBehaviour
         ShowHeroSelectionUI();
     }
 
-    private void Update()
+   private void Update()
     {
         if (gameStarted)
         {
@@ -179,6 +159,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+ (Sudden death)
     public void AddPlayerToCamera(GameObject player, float weight = 1f, float radius = 2f)
     {
         if (targetGroup == null || player == null) return;
@@ -190,7 +171,6 @@ public class GameManager : MonoBehaviour
         HeroSelectionUI.Instance.Setup(numberOfPlayers);  // No need for callback now
     }
 
-<<<<<<< Updated upstream
     public void StartGame(List<string> chosenHeroes)
     {
         selectedHeroes = chosenHeroes;
@@ -223,12 +203,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-=======
->>>>>>> Stashed changes
     void AssignHeroScript(GameObject player, string heroName)
     {
         switch (heroName)
-        { // Assign the hero script the players
+        {
             case "FireMage":
                 player.AddComponent<FireMage>();
                 break;
@@ -243,6 +221,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
 
     void AssignPlayerMaterials(GameObject player, int playerIndex)
     {
@@ -295,4 +274,5 @@ public class GameManager : MonoBehaviour
             currentSpawnPoints = forestSpawnPoints; // Switch spawn points to forest
         }
     }
+ (Sudden death)
 }
