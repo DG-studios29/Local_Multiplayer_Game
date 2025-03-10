@@ -7,9 +7,9 @@ public class MiniArmySpawner : MonoBehaviour
     [System.Serializable]
     public class ArmyType // Setup array requirement.
     {
-        public string name;
-        public GameObject prefab;
-        public Transform spawnPoint;
+        public string name; 
+        public GameObject prefab; 
+        public Transform spawnPoint; 
         public float cooldownTime;
     }
     [Header("Army Type")]
@@ -17,11 +17,8 @@ public class MiniArmySpawner : MonoBehaviour
     private bool[] canSpawn;
 
 
-    [Header("Army Type")]
-    public ArmyType[] armyTypes;
-    private bool[] canSpawn;
-
-    private MeshRenderer[] playerMeshRenderers;
+    public ArmyType[] armyTypes; 
+    private bool[] canSpawn; 
 
 
     public ArmyType[] armyTypes; 
@@ -36,8 +33,6 @@ public class MiniArmySpawner : MonoBehaviour
         {
             canSpawn[i] = true; // Allow spawning initially
         }
-
-        playerMeshRenderers = GetComponentsInChildren<MeshRenderer>();
     }
 
 
@@ -90,15 +85,14 @@ public class MiniArmySpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log($"{armyTypes[index].name} is on cooldown!");
+            Debug.Log($"{armyTypes[index].name} is on cooldown!"); 
         }
     }
-
 
     private IEnumerator Cooldown(int index, float cooldown) // Handles cooldown timing.
     {
         canSpawn[index] = false; // Disable spawning for this unit type
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(cooldown); 
         canSpawn[index] = true; // Enable spawning again
 
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
