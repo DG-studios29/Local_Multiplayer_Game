@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ArmyControls : MonoBehaviour
 {
+    [Header("Army Stats")]
     public float health = 100f;
     public float damage = 30f;
     private Animator animator;

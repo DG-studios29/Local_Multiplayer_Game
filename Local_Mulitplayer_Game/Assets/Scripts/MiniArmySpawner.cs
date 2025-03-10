@@ -7,14 +7,17 @@ public class MiniArmySpawner : MonoBehaviour
     [System.Serializable]
     public class ArmyType // Setup array requirement.
     {
-        public string name; 
-        public GameObject prefab; 
-        public Transform spawnPoint; 
+        public string name;
+        public GameObject prefab;
+        public Transform spawnPoint;
         public float cooldownTime;
     }
 
-    public ArmyType[] armyTypes; 
-    private bool[] canSpawn; 
+    [Header("Army Type")]
+    public ArmyType[] armyTypes;
+    private bool[] canSpawn;
+
+    private MeshRenderer[] playerMeshRenderers;
 
     private void Start()
     {
@@ -23,9 +26,20 @@ public class MiniArmySpawner : MonoBehaviour
         {
             canSpawn[i] = true; // Allow spawning initially
         }
+
+        playerMeshRenderers = GetComponentsInChildren<MeshRenderer>();
     }
 
-    public void SpawnArmy(InputAction.CallbackContext context) // Spawns army when  button 1 is pressed.
+    public void SetPlayerMaterial(Material playerMaterial)
+    {
+        // Apply the material to all mesh renderers
+        foreach (var renderer in playerMeshRenderers)
+        {
+            renderer.material = playerMaterial;
+        }
+    }
+
+    public void SpawnArmy(InputAction.CallbackContext context) // Spawns army when button 1 is pressed.
     {
         if (context.performed)
         {
@@ -38,9 +52,9 @@ public class MiniArmySpawner : MonoBehaviour
     {
         if (canSpawn[index])
         {
+<<<<<<< Updated upstream
             Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
             StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime)); // Start cooldown coroutine
-<<<<<<< HEAD
 =======
             GameObject newArmy = Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
             EnemyAI spawnedEnemy = newArmy.GetComponent<EnemyAI>();
@@ -61,21 +75,19 @@ public class MiniArmySpawner : MonoBehaviour
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
-=======
->>>>>>> parent of 43e7cd5 (Sudden death)
         }
         else
         {
-            Debug.Log($"{armyTypes[index].name} is on cooldown!"); 
+            Debug.Log($"{armyTypes[index].name} is on cooldown!");
         }
     }
+
 
     private IEnumerator Cooldown(int index, float cooldown) // Handles cooldown timing.
     {
         canSpawn[index] = false; // Disable spawning for this unit type
-        yield return new WaitForSeconds(cooldown); 
+        yield return new WaitForSeconds(cooldown);
         canSpawn[index] = true; // Enable spawning again
-<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -89,8 +101,5 @@ public class MiniArmySpawner : MonoBehaviour
 =======
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!");
 >>>>>>> Stashed changes
-=======
-        Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
->>>>>>> parent of 43e7cd5 (Sudden death)
     }
 }
