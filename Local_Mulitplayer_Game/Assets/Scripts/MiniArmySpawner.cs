@@ -68,9 +68,6 @@ public class MiniArmySpawner : MonoBehaviour
             }
 
             StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime));
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
         }
         else
@@ -86,11 +83,7 @@ public class MiniArmySpawner : MonoBehaviour
         yield return new WaitForSeconds(cooldown);
         canSpawn[index] = true; // Enable spawning again
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!"); // Notify cooldown is over
-=======
-        Debug.Log($"{armyTypes[index].name} is ready to spawn again!");
->>>>>>> Stashed changes
 =======
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!");
 >>>>>>> Stashed changes
