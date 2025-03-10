@@ -5,7 +5,10 @@ using UnityEngine.UI;
 public class HeroManager : MonoBehaviour
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     [Header("UI Elements")]
     public Button heroButton;
 >>>>>>> Stashed changes
