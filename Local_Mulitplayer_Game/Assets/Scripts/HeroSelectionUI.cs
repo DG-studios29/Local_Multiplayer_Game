@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HeroSelectionUI : MonoBehaviour
 {
     public static HeroSelectionUI Instance;
-    [Header("UI Elements")]
+
     public GameObject selectionPanel;
     public Button startGameButton;
     public List<HeroManager> heroButtons;

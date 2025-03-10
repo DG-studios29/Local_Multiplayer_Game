@@ -4,11 +4,6 @@ using UnityEngine.UI;
 
 public class HeroManager : MonoBehaviour
 {
-<<<<<<< Updated upstream
-=======
-    [Header("UI Elements")]
-    public Button heroButton;
->>>>>>> Stashed changes
     public string heroName;
     public Button selectButton;
 
