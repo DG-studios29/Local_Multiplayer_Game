@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,12 +13,11 @@ public class GameManager : MonoBehaviour
     public int numberOfPlayers = 2;
 
     [Header("Player Materials")]
-    public List<Material> playerMaterials; // Add different materials for each player
+    public List<Material> playerMaterials;
 
     [Header("Spawn points")]
-    public List<Transform> forestSpawnPoints; // Spawn points for the forest map
-    public List<Transform> cemeterySpawnPoints; // Spawn points for the cemetery map
-    private List<Transform> currentSpawnPoints; // To store the current spawn points based on the map
+    public List<Transform> forestSpawnPoints;
+    private List<Transform> currentSpawnPoints;
 
     [Header("Camera Tracking")]
     public CinemachineTargetGroup targetGroup;
@@ -27,15 +27,12 @@ public class GameManager : MonoBehaviour
     public List<string> selectedHeroes = new List<string>();
 
     [Header("Game Timers")]
-    public float gameDuration = 300f; // 5 minutes
-    public float suddenDeathDuration = 60f; // 1 minute
+    public float gameDuration = 300f;
     public float timer;
-    private bool isSuddenDeath = false;
-    private bool gameStarted = false; // To check if the game has started
+    private bool gameStarted = false;
 
     [Header("Maps")]
     public GameObject forestMap;
-    public GameObject cemeteryMap;
 
     private bool shakeTriggered = false;
 
@@ -62,24 +59,15 @@ public class GameManager : MonoBehaviour
         if (timer > 0)
         {
             timer -= Time.deltaTime;
-
-            // Check if timer has reached halfway
             if (timer <= gameDuration / 2 && !shakeTriggered)
             {
-                TriggerCameraShake(); // Trigger shake when timer reaches halfway
+                TriggerCameraShake();
                 shakeTriggered = true;
             }
         }
         else
         {
-            if (!isSuddenDeath)
-            {
-                StartSuddenDeath();
-            }
-            else
-            {
-                EndGame();
-            }
+            LoadSuddenDeathScene();
         }
     }
 
@@ -98,24 +86,14 @@ public class GameManager : MonoBehaviour
         timer = gameDuration;
         shakeTriggered = false;
         gameStarted = true;
-        currentSpawnPoints = forestSpawnPoints; // Set spawn points to forest initially
+        currentSpawnPoints = forestSpawnPoints;
         SpawnPlayers(currentSpawnPoints);
     }
 
-    void StartSuddenDeath()
+    void LoadSuddenDeathScene()
     {
-        isSuddenDeath = true;
-        timer = suddenDeathDuration;
-        RespawnPlayers(cemeterySpawnPoints); // Use cemetery spawn points for sudden death
-        Debug.Log("Sudden Death Started!");
-        mapChange(); // Change map to cemetery
-    }
-
-    void EndGame()
-    {
-        gameStarted = false; // Stop the timer when the game ends
-        Debug.Log("Game Over!");
-        // Implement game over logic (show results, reset game, etc.)
+        Debug.Log("Loading Sudden Death Scene...");
+        SceneManager.LoadScene("SuddenDeath");
     }
 
     void SpawnPlayers(List<Transform> points)
@@ -129,42 +107,12 @@ public class GameManager : MonoBehaviour
                 AddPlayerToCamera(player, 1f, 2f);
 
                 var controller = player.GetComponent<PlayerController>();
-                controller.moveSpeed = isSuddenDeath ? 10f : 5f; // Speed up during sudden death
                 AssignHeroScript(player, selectedHeroes[i]);
-
-                // Change the player's materials
-                AssignPlayerMaterials(player, i); // Assign materials based on player index
+                AssignPlayerMaterials(player, i);
             }
             else
             {
                 Debug.LogWarning("Not enough spawn points for all players!");
-            }
-        }
-    }
-
-    void RespawnPlayers(List<Transform> points)
-    {
-        // Create a copy of the spawn points to avoid modifying the original list while iterating
-        List<Transform> availablePoints = new List<Transform>(points);
-
-        // Shuffle the available points to randomize the selection order
-        for (int i = 0; i < availablePoints.Count; i++)
-        {
-            Transform temp = availablePoints[i];
-            int randomIndex = Random.Range(i, availablePoints.Count);
-            availablePoints[i] = availablePoints[randomIndex];
-            availablePoints[randomIndex] = temp;
-        }
-
-        // Respawn players at different spawn points
-        int playerIndex = 0;
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            if (playerIndex < availablePoints.Count)
-            {
-                player.transform.position = availablePoints[playerIndex].position;
-                player.GetComponent<PlayerController>().moveSpeed = 10f; // Faster pace in sudden death
-                playerIndex++;
             }
         }
     }
@@ -183,7 +131,7 @@ public class GameManager : MonoBehaviour
     void AssignHeroScript(GameObject player, string heroName)
     {
         switch (heroName)
-        { // Assign the hero script the players
+        {
             case "FireMage":
                 player.AddComponent<FireMage>();
                 break;
@@ -201,13 +149,11 @@ public class GameManager : MonoBehaviour
 
     void AssignPlayerMaterials(GameObject player, int playerIndex)
     {
-        // Ensure there are enough materials for the players
         if (playerMaterials.Count > 0)
         {
             MeshRenderer[] meshRenderers = player.GetComponentsInChildren<MeshRenderer>();
             foreach (var meshRenderer in meshRenderers)
             {
-                // Assign a unique material to each renderer for the player
                 meshRenderer.material = playerMaterials[playerIndex % playerMaterials.Count];
             }
         }
@@ -217,37 +163,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Camera Shake Function
     void TriggerCameraShake()
     {
-        // Set shake amplitude and frequency for the shake effect
         noise.AmplitudeGain = 1f;
         noise.FrequencyGain = 2f;
-
         Invoke("StopCameraShake", 5f);
     }
 
     void StopCameraShake()
     {
-        // Reset 
         noise.AmplitudeGain = 0f;
         noise.FrequencyGain = 0f;
-    }
-
-    public void mapChange()
-    {
-        // Switch the maps 
-        if (isSuddenDeath)
-        {
-            forestMap.SetActive(false);
-            cemeteryMap.SetActive(true);
-            currentSpawnPoints = cemeterySpawnPoints; // Switch spawn points to cemetery
-        }
-        else
-        {
-            forestMap.SetActive(true);
-            cemeteryMap.SetActive(false);
-            currentSpawnPoints = forestSpawnPoints; // Switch spawn points to forest
-        }
     }
 }
