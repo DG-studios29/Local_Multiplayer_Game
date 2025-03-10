@@ -1,11 +1,60 @@
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ﻿using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
+using UnityEngine.InputSystem;
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+>>>>>>> Stashed changes
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+>>>>>>> Stashed changes
+=======
+﻿using System.Collections.Generic;
+=======
+using Unity.Cinemachine;
+>>>>>>> parent of 93b5622 (Sudden death)
+using UnityEngine;
+using UnityEngine.InputSystem;
+>>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> main
 using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+<<<<<<< HEAD
+    public static GameManager Instance;  // Add singleton instance for easy access
+<<<<<<< HEAD
+=======
     public static GameManager Instance;
 
+    [Header("Player Settings")]
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+    public static GameManager Instance;
+
+>>>>>>> main
     public GameObject playerPrefab;
     public int numberOfPlayers = 2;
     public List<Transform> spawnPoints;
@@ -34,6 +83,15 @@ public class GameManager : MonoBehaviour
         HeroSelectionUI.Instance.Setup(numberOfPlayers);
     }
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
     public void StartGame(List<string> chosenHeroes)
     {
         selectedHeroes = chosenHeroes;
@@ -69,6 +127,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> parent of 43e7cd5 (Sudden death)
+=======
+>>>>>>> parent of 93b5622 (Sudden death)
     void AssignHeroScript(GameObject player, string heroName)
     {
         switch (heroName)
