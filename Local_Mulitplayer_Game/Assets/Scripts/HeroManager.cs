@@ -7,14 +7,12 @@ public class HeroManager : MonoBehaviour
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
->>>>>>> parent of 93b5622 (Sudden death)
+>>>>>>> Stashed changes
     [Header("UI Elements")]
     public Button heroButton;
 >>>>>>> Stashed changes

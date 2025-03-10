@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,6 @@ using UnityEngine.InputSystem;
 ﻿using System.Collections;
 using System.Collections.Generic;
 >>>>>>> Stashed changes
-<<<<<<< HEAD
 =======
 ﻿using System.Collections;
 using System.Collections.Generic;
@@ -19,9 +19,6 @@ using System.Collections.Generic;
 >>>>>>> Stashed changes
 =======
 ﻿using System.Collections.Generic;
-=======
-using Unity.Cinemachine;
->>>>>>> parent of 93b5622 (Sudden death)
 using UnityEngine;
 using UnityEngine.InputSystem;
 >>>>>>> parent of 43e7cd5 (Sudden death)
@@ -35,13 +32,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [Header("Player Settings")]
-<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
-=======
->>>>>>> parent of 93b5622 (Sudden death)
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -77,13 +71,10 @@ public class GameManager : MonoBehaviour
 
 <<<<<<< HEAD
 <<<<<<< Updated upstream
-<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
 >>>>>>> parent of 43e7cd5 (Sudden death)
-=======
->>>>>>> parent of 93b5622 (Sudden death)
     public void StartGame(List<string> chosenHeroes)
     {
         selectedHeroes = chosenHeroes;
@@ -119,15 +110,12 @@ public class GameManager : MonoBehaviour
 <<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
-<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
 >>>>>>> parent of 43e7cd5 (Sudden death)
-=======
->>>>>>> parent of 93b5622 (Sudden death)
     void AssignHeroScript(GameObject player, string heroName)
     {
         switch (heroName)
