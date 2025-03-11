@@ -255,11 +255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37606240}
   m_CullTransparentMesh: 1
---- !u!1 &70470439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2947729866497104463, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
-  m_PrefabInstance: {fileID: 1397243616}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &167116229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 909570254718705261, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
@@ -1363,6 +1358,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536042835}
   m_CullTransparentMesh: 1
+--- !u!1 &578220296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7128293031300821699, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+  m_PrefabInstance: {fileID: 1397243616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &578220298
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578220296}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &595933279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2649,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7465105461116233261, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1676381439}
+    - targetCorrespondingSourceObject: {fileID: 7128293031300821699, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 578220298}
   m_SourcePrefab: {fileID: 100100000, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
 --- !u!1 &1397243617 stripped
 GameObject:
@@ -3732,18 +3751,13 @@ MonoBehaviour:
   forestSpawnPoints:
   - {fileID: 985847680}
   - {fileID: 1318509370}
-  cemeterySpawnPoints:
-  - {fileID: 1288663393}
-  - {fileID: 2111491044}
   targetGroup: {fileID: 1971385163}
   cineCamera: {fileID: 238665043}
   noise: {fileID: 238665045}
   selectedHeroes: []
   gameDuration: 50
-  suddenDeathDuration: 60
   timer: 0
   forestMap: {fileID: 310519775}
-  cemeteryMap: {fileID: 70470439}
 --- !u!1 &1676381437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7465105461116233261, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
