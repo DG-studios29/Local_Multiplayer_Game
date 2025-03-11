@@ -7,6 +7,7 @@ public class HeroSelectionUI : MonoBehaviour
     public static HeroSelectionUI Instance;
 
     public GameObject selectionPanel;
+    public GameObject playerUICanvas;
     public Button startGameButton;
     public List<HeroManager> heroButtons;
 
@@ -16,6 +17,9 @@ public class HeroSelectionUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        playerUICanvas.SetActive(false);
+
     }
 
     public void Setup(int numberOfPlayers)
@@ -72,5 +76,7 @@ public class HeroSelectionUI : MonoBehaviour
     {
         selectionPanel.SetActive(false);
         GameManager.Instance.StartGame(new List<string>(chosenHeroes.Values));
+
+        playerUICanvas.SetActive(true);
     }
 }
