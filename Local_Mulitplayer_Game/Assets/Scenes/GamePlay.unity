@@ -255,6 +255,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37606240}
   m_CullTransparentMesh: 1
+--- !u!1 &70470439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2947729866497104463, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+  m_PrefabInstance: {fileID: 1397243616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &167116229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 909570254718705261, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
@@ -3727,13 +3732,18 @@ MonoBehaviour:
   forestSpawnPoints:
   - {fileID: 985847680}
   - {fileID: 1318509370}
+  cemeterySpawnPoints:
+  - {fileID: 1288663393}
+  - {fileID: 2111491044}
   targetGroup: {fileID: 1971385163}
   cineCamera: {fileID: 238665043}
   noise: {fileID: 238665045}
   selectedHeroes: []
-  gameDuration: 20
+  gameDuration: 50
+  suddenDeathDuration: 60
   timer: 0
   forestMap: {fileID: 310519775}
+  cemeteryMap: {fileID: 70470439}
 --- !u!1 &1676381437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7465105461116233261, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}

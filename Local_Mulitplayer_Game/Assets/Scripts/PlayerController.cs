@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f; 
+    public float moveSpeed = 10f; 
     public bool isWalking = true;
     private Animator animator;
 

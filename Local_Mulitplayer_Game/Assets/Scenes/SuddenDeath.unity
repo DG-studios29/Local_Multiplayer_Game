@@ -917,18 +917,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2947729866497104463, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4171694053024654179, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5234633604259742062, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6503978554538158333, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503978554538158333, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503978554538158333, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.87
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6503978554538521821, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+    - {fileID: 6503978554538521819, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1130932571897977635, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
@@ -1138,7 +1152,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 14bd7752d1df8354ab2d3ee13ab37971, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b0fda5a0955bc71429672da0296654d5, type: 2}
   m_BuildHeightMesh: 0
 --- !u!208 &1004312049
 NavMeshObstacle:
@@ -1265,13 +1279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe25b373a18b0648af464442b1b396f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 3093234706080368204, guid: bc24a6d4477f0b941ad691821e07abbd, type: 3}
-  numberOfPlayers: 2
-  suddenDeathSpawnPoints:
-  - {fileID: 570632693}
-  - {fileID: 32679741}
-  targetGroup: {fileID: 626284052}
   suddenDeathDuration: 60
+  suddenDeathTimer: 0
 --- !u!4 &1583325357
 Transform:
   m_ObjectHideFlags: 0

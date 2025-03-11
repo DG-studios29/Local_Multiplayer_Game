@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     void LoadSuddenDeathScene()
     {
         Debug.Log("Loading Sudden Death Scene...");
-        SceneManager.LoadScene("SuddenDeath");
+        //SceneManager.LoadScene("SuddenDeath");
     }
 
     void SpawnPlayers(List<Transform> points)
