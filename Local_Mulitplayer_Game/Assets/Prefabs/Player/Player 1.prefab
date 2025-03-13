@@ -182,9 +182,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2926983489562070621}
   - component: {fileID: 1688786014060664745}
+  - component: {fileID: 4990804375180201557}
+  - component: {fileID: 6400584567564955390}
   - component: {fileID: 8658154429024464363}
   - component: {fileID: 8778512651663580339}
-  - component: {fileID: 4990804375180201557}
   - component: {fileID: 7167261492642769155}
   - component: {fileID: 2800242413094262655}
   m_Layer: 0
@@ -224,8 +225,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc261aec29c2ac4da426d7695ca9e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 10
   isWalking: 0
+--- !u!114 &4990804375180201557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093234706080368204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7232e29bf4ce7d145a0f4ed7e16b32fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armyTypes:
+  - name: Mini
+    prefab: {fileID: 2951857971312674443, guid: 4633e81a5f433d4499db7069c9c273e3, type: 3}
+    spawnPoint: {fileID: 110679916624571947}
+    cooldownTime: 5
+--- !u!114 &6400584567564955390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093234706080368204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363f7988d41cdbf40bd50b29c7a0d10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8658154429024464363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,23 +361,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4990804375180201557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3093234706080368204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7232e29bf4ce7d145a0f4ed7e16b32fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  armyTypes:
-  - name: Mini
-    prefab: {fileID: 2951857971312674443, guid: 4633e81a5f433d4499db7069c9c273e3, type: 3}
-    spawnPoint: {fileID: 110679916624571947}
-    cooldownTime: 5
 --- !u!136 &7167261492642769155
 CapsuleCollider:
   m_ObjectHideFlags: 0

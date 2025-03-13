@@ -51,5 +51,16 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            GetComponent<PlayerHealth>().TakeDamage(10);
+        }
 
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GetComponent<PlayerHealth>().Heal(10);
+        }
+    }
 }

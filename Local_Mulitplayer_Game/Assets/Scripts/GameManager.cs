@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +35,14 @@ public class GameManager : MonoBehaviour
 
     [Header("Maps")]
     public GameObject forestMap;
+
+    [Header("Player UI")]
+    public Slider player1HealthSlider;
+    public TMP_Text player1HealthText;
+    public Slider player2HealthSlider;
+    public TMP_Text player2HealthText; 
+    public TextMeshProUGUI player1NameText;
+    public TextMeshProUGUI player2NameText;
 
     private bool shakeTriggered = false;
 
@@ -95,6 +105,25 @@ public class GameManager : MonoBehaviour
         Debug.Log("Loading Sudden Death Scene...");
         //SceneManager.LoadScene("SuddenDeath");
     }
+    public void SetupPlayerUI(GameObject player, string playerName)
+    {
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+
+        if (player.name == "Player 1")
+        {
+            playerHealth.healthSlider = player1HealthSlider;
+            playerHealth.healthText = player1HealthText;
+            player1NameText.text = playerName; // Set Player 1's name
+        }
+        else if (player.name == "Player 2")
+        {
+            playerHealth.healthSlider = player2HealthSlider;
+            playerHealth.healthText = player2HealthText;
+            player2NameText.text = playerName; // Set Player 2's name
+        }
+
+        playerHealth.UpdateHealthUI();
+    }
 
     void SpawnPlayers(List<Transform> points)
     {
@@ -104,11 +133,13 @@ public class GameManager : MonoBehaviour
             {
                 GameObject player = Instantiate(playerPrefab, points[i].position, Quaternion.identity);
                 player.name = "Player " + (i + 1);
-                AddPlayerToCamera(player, 1f, 2f);
 
-                var controller = player.GetComponent<PlayerController>();
+                AddPlayerToCamera(player, 1f, 2f);
                 AssignHeroScript(player, selectedHeroes[i]);
                 AssignPlayerMaterials(player, i);
+                string playerName = "Player " + (i + 1);
+                // Setup health UI based on player name
+                GameManager.Instance.SetupPlayerUI(player, playerName);
             }
             else
             {
@@ -116,6 +147,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+
 
     public void AddPlayerToCamera(GameObject player, float weight = 1f, float radius = 2f)
     {
