@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
             foreach (var meshRenderer in meshRenderers)
             {
                 meshRenderer.material = playerMaterials[playerIndex % playerMaterials.Count];
+                
             }
         }
         else
