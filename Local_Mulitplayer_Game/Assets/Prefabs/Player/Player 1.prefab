@@ -299,6 +299,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 623ccb4b-7384-44af-9be5-d999d6aba50c
     m_ActionName: 'Player/SpawnArmyController[/DualShock4GamepadHID/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1688786014060664745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPunch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c2334b81-c2f8-4800-bce8-8fc42c6cf785
+    m_ActionName: 'Player/Melee[/Keyboard/space,/SZ-MYPOWER DS4 Wired Controller/trigger]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
