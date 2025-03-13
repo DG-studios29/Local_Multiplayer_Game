@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnPunch(InputAction.CallbackContext context)
+    {
+        Debug.Log("Called Punch");
+        animator.SetTrigger("Punch");
+    }
+
     // Make the player move
     private void FixedUpdate()
     {
@@ -51,5 +57,17 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void Update()
+    {
+        // Testing player Health 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            GetComponent<PlayerHealth>().TakeDamage(10);
+        }
 
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GetComponent<PlayerHealth>().Heal(10);
+        }
+    }
 }

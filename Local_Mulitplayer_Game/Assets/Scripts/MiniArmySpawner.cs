@@ -27,6 +27,8 @@ public class MiniArmySpawner : MonoBehaviour
         }
 
         playerMeshRenderers = GetComponentsInChildren<MeshRenderer>();
+
+        
     }
 
     public void SetPlayerMaterial(Material playerMaterial)
@@ -71,6 +73,9 @@ public class MiniArmySpawner : MonoBehaviour
 
     private IEnumerator Cooldown(int index, float cooldown) // Handles cooldown timing.
     {
+        //debug purposes
+        cooldown = 0.5f;
+
         canSpawn[index] = false; // Disable spawning for this unit type
         yield return new WaitForSeconds(cooldown);
         canSpawn[index] = true; // Enable spawning again

@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour
         ItemObject.findEnemies += AddToEnemyList;
 
         EnemyAI.onEnemySpawn += AddToMyTargetList;
-        EnemyAI.onEnemyDeath -= RemoveFromMyTargetList;
+        EnemyAI.onEnemyDeath += RemoveFromMyTargetList;
 
         EnemyAI.findEnemyTargets += AddToMyTargetList;
     }
@@ -281,12 +281,17 @@ public class EnemyAI : MonoBehaviour
             foreach (GameObject target in targetList)
             {
                 //Missisng reference error
-                var distance = Vector3.Distance(transform.position, target.transform.position);
-                if (distance < nearestDistance)
+                //maybe remove from the list then destroy
+                if (target != null)
                 {
-                    nearestDistance = distance;
-                    nearestTarget = target;
+                    var distance = Vector3.Distance(transform.position, target.transform.position);
+                    if (distance < nearestDistance)
+                    {
+                        nearestDistance = distance;
+                        nearestTarget = target;
+                    }
                 }
+           
             }
         }
 
