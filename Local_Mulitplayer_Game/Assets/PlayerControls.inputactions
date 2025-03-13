@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Melee",
+                    "type": "Button",
+                    "id": "c2334b81-c2f8-4800-bce8-8fc42c6cf785",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -102,6 +111,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b15aae80-06fa-47f0-875b-9dacd845e023",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2735957d-ac0e-4b4a-9345-86dcef8d25a4",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -114,11 +134,55 @@
                 {
                     "name": "",
                     "id": "8fc3706a-43a5-4515-925a-ddb9250158d3",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "SpawnArmyController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7cede092-4f5e-4505-85f1-3f52a58af981",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "SpawnArmyController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a1bb90c-9844-4920-8f22-7e4ce3b1ad08",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02c226b5-e4b1-4308-996b-501c482e3619",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8f502cf-c143-4dee-a1cd-1560ee5e5412",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

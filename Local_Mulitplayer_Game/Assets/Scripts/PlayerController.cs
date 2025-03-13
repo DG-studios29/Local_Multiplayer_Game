@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnPunch(InputAction.CallbackContext context)
+    {
+        Debug.Log("Called Punch");
+        animator.SetTrigger("Punch");
+    }
+
     // Make the player move
     private void FixedUpdate()
     {
