@@ -711,8 +711,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 2
+  AmplitudeGain: 0
+  FrequencyGain: 0
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &310519775 stripped
 GameObject:
@@ -4838,7 +4838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3093234706080368204, guid: bc24a6d4477f0b941ad691821e07abbd, type: 3}
-  numberOfPlayers: 2
+  numberOfPlayers: 3
   playerMaterials:
   - {fileID: 2100000, guid: 8efea93abd03fb84b9d59b0ee429a98c, type: 2}
   - {fileID: 2100000, guid: ea019199206d3914a8c5188cd135121a, type: 2}

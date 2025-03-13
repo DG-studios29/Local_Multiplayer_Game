@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        // Testing player Health 
         if (Input.GetKeyDown(KeyCode.H))
         {
             GetComponent<PlayerHealth>().TakeDamage(10);
