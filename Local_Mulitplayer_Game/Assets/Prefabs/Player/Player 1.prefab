@@ -256,6 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363f7988d41cdbf40bd50b29c7a0d10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!114 &8658154429024464363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +350,7 @@ MonoBehaviour:
     m_ActionId: c2334b81-c2f8-4800-bce8-8fc42c6cf785
     m_ActionName: 'Player/Melee[/Keyboard/space,/SZ-MYPOWER DS4 Wired Controller/trigger]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

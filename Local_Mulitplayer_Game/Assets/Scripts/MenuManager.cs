@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour 
+public class MenuManager : MonoBehaviour
 {
 
+    private void Start()
+    {
+        
+    }
     public void PlayScene()
     {
-
+        
         SceneManager.LoadScene("GamePlay");
-
+        
     }
 
     public void ControlsScene()

@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Called Punch");
         animator.SetTrigger("Punch");
+        GetComponent<PlayerHealth>().TakeDamage(10);
     }
 
     // Make the player move
@@ -59,15 +60,15 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        // Testing player Health 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            GetComponent<PlayerHealth>().TakeDamage(10);
-        }
+        //// Testing player Health 
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    GetComponent<PlayerHealth>().TakeDamage(10);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            GetComponent<PlayerHealth>().Heal(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    GetComponent<PlayerHealth>().Heal(10);
+        //}
     }
 }
