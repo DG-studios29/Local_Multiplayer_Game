@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             if (string.IsNullOrEmpty(selectedHeroes[i]))
             {
-                selectedHeroes[i] = "FireMage"; // Default hero if none chosen
+                selectedHeroes[i] = "Blazeheart"; // Default hero if none chosen
             }
         }
 
@@ -220,6 +220,7 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Player index out of range in AssignPlayerMaterials!");
         }
     }
+
     Material GetMaterialForHero(string heroName)
     {
         switch (heroName)
