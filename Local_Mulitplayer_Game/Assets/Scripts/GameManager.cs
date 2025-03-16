@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
                 AddPlayerToCamera(player, 1f, 2f);
 
                 AssignHeroScript(player, selectedHeroes[i]);
+
+                RevealPlayerBase.instance.players.Add(player.transform);
             }
             else
             {
