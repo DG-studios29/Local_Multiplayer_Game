@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
 
     void AssignPlayerMaterials(GameObject player, int playerIndex)
     {
+        // Add hero-specific material based on selection
         if (selectedHeroes.Count > playerIndex)
         {
             string heroName = selectedHeroes[playerIndex];
