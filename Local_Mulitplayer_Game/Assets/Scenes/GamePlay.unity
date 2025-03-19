@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroButton: {fileID: 1993576964}
-  heroName: EarthGuardian
+  heroName: Stoneward
 --- !u!1 &613163397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,7 +3046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroButton: {fileID: 232359064}
-  heroName: IceWarrior
+  heroName: Frost
 --- !u!1 &1312822302
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,7 +3398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroButton: {fileID: 1263692778}
-  heroName: FireMage
+  heroName: Blazeheart
 --- !u!1 &1318509369
 GameObject:
   m_ObjectHideFlags: 0
@@ -5144,7 +5144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroButton: {fileID: 1213160582}
-  heroName: ShadowRogue
+  heroName: Nightshade
 --- !u!1 &1812419985
 GameObject:
   m_ObjectHideFlags: 0
