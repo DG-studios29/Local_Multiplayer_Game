@@ -7,7 +7,12 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 10f; 
     public bool isWalking = true;
+
+  
+    public bool isPunchR = false;
+
     private Animator animator;
+    
 
     private Rigidbody rb; 
     private Vector2 movementInput; 
@@ -17,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>(); 
+     
+
         animator = GetComponent<Animator>();
     }
 
@@ -29,9 +36,41 @@ public class PlayerController : MonoBehaviour
 
     public void OnPunch(InputAction.CallbackContext context)
     {
-        Debug.Log("Called Punch");
-        animator.SetTrigger("Punch");
+        if (context.performed)
+        {
+
+            Debug.Log("Called Punch");
+
+
+            //ConfigureClip
+            //TogglePunch();
+
+
+            animator.SetTrigger("Punch");
+
+            
+
+            //anim.Anim
+        }
+       
     }
+
+    void TogglePunch()
+    {
+        if (!isPunchR)
+        {
+            animator.SetBool("isPunchR", false);
+            isPunchR = true;
+        }
+        else
+        {
+            animator.SetBool("isPunchR",true);
+            isPunchR = false;
+        }
+    }
+
+
+
 
     // Make the player move
     private void FixedUpdate()

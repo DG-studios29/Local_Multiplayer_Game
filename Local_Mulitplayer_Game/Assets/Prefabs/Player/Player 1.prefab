@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5065291628822275886}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!33 &8623399353774475787
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5065291628822275886}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: 0}
 --- !u!33 &764846045452478973
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 8778512651663580339}
   - component: {fileID: 7167261492642769155}
   - component: {fileID: 2800242413094262655}
+  - component: {fileID: 3161459081724691482}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -256,6 +257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363f7988d41cdbf40bd50b29c7a0d10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!114 &8658154429024464363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +427,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3161459081724691482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093234706080368204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53aee0be88c9f8d4195d17f237741551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3408003879747189824
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +622,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5065291628822275886}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!33 &8839716082467581728
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -780,7 +797,7 @@ Transform:
   - {fileID: 6538335083889275780}
   - {fileID: 6855878737866646455}
   m_Father: {fileID: 4131539653792030132}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
 --- !u!33 &4946480540840626064
 MeshFilter:
   m_ObjectHideFlags: 0
