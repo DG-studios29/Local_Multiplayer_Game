@@ -11,6 +11,8 @@ public class ItemObject : MonoBehaviour
     protected float s_timerSinceAttack = 0f;
     protected float s_attackRate;
 
+    public float Damage => damage;
+
     private Transform playerOrigin; //starting postion
     public List<GameObject> enemyTargets;
 

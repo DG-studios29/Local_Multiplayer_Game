@@ -16,6 +16,7 @@ public class ItemRotate : ItemObject
     {
 
         base.Start();
+        innerRadius = radius * 0; //within spheres, take damage
 
         //rotationPivot = new GameObject("RotationPivot");
         pivotInstance = Instantiate(rotationPivot, new Vector3(transform.position.x,transform.position.y +1,transform.position.z), Quaternion.identity,transform); // or just create a transform that sits where we want on the player
@@ -41,23 +42,27 @@ public class ItemRotate : ItemObject
         //base.DoAttack();
         //will deal area damage within that radius by attack rate
 
-        if (s_timerSinceAttack > s_attackRate)
+
+        //sort of works but will do damage on projectile collisions instead
+ /*       if (s_timerSinceAttack > s_attackRate)
         {
 
             foreach (GameObject target in enemyTargets)
             {
-                var tempDistance = Vector3.Distance(gameObject.transform.position, target.transform.position);
-
-
-                if(tempDistance <= radius && tempDistance >= innerRadius)
+                if (target != null)
                 {
-                    //target.GetComponent<EnemyAI>().TakeDamage(damage);
+                    var tempDistance = Vector3.Distance(gameObject.transform.position, target.transform.position);
+
+
+                    if (tempDistance <= radius && tempDistance >= innerRadius)
+                    {
+                        target.GetComponent<EnemyAI>().TakeDamage(damage);
+                    }
+
                 }
-
-
             }
 
-        }
+        }*/
 
 
     }

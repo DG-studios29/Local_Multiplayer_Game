@@ -32,11 +32,11 @@ public class AutoAttack : MonoBehaviour
         ItemHolder();  // initialising the item slots
 
         // will fix this to make it cleaner, and place it in a function for it to be dynamic
-        itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
-        Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
+        //itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
+        //Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
 
         itemHolder.Add(basicRevolve.GetComponent<ItemObject>());
-        Instantiate(itemHolder[1].itemData.objectInstance,this.transform.position, Quaternion.identity, this.transform);
+        Instantiate(itemHolder[0].itemData.objectInstance,this.transform.position, Quaternion.identity, this.transform);
 
     }
 
