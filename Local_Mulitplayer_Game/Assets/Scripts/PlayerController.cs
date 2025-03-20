@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
 
             //ConfigureClip
-            //TogglePunch();
+            TogglePunch();
 
 
             animator.SetTrigger("Punch");
