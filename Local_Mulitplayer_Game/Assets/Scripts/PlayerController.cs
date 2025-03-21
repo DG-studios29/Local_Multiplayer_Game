@@ -9,14 +9,19 @@ public class PlayerController : MonoBehaviour
     public bool isWalking = true;
 
 
-    public bool isPunchR = false;
+    //public bool isPunchR = false;
 
     private Animator animator;
+    public Animator Animator => animator;
 
 
     private Rigidbody rb;
     private Vector2 movementInput;
 
+
+    //Gonna store all this stuff in a Player Punches script after merge
+    private PlayerPunches playerPunches;
+/*
     //Punching
     [SerializeField] private float punchRadius;
     [SerializeField] private float punchDistance;
@@ -29,6 +34,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timePushed;
     [SerializeField] private float distancePushed;
 
+    //Punch Control - Anti-Spam cooldown
+    private float punchCooldown = 0.25f; //animation time
+    private float lastPunchTimer = 0.25f; 
+
+    //Punch Control - Critical-Hit Holding
+*/
+
+   
+
 
     private void Awake()
     {
@@ -36,6 +50,8 @@ public class PlayerController : MonoBehaviour
      
 
         animator = GetComponent<Animator>();
+
+        playerPunches = GetComponent<PlayerPunches>();
 
     }
 
@@ -50,6 +66,19 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+
+
+            playerPunches.PunchCall();
+
+
+
+         /*   if(lastPunchTimer < punchCooldown)
+            {
+                //we wont punch if cooldown has not passed
+                return;
+            }
+
+            lastPunchTimer = 0;
 
             Debug.Log("Called Punch");
 
@@ -82,14 +111,14 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
-            
+            */
 
             //anim.Anim
         }
        
     }
 
-    void TogglePunch()
+/*    void TogglePunch()
     {
         if (!isPunchR)
         {
@@ -102,7 +131,7 @@ public class PlayerController : MonoBehaviour
             isPunchR = false;
         }
     }
-
+*/
 
 
 
@@ -132,6 +161,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        //lastPunchTimer += Time.deltaTime;
+
         // Testing player Health 
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -145,11 +176,11 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnDrawGizmos()
+ /*   private void OnDrawGizmos()
     {
         Vector3 GizmoPos = transform.position + new Vector3(0, 1, 0);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(GizmoPos + transform.forward * punchDistance,punchRadius);
-    }
+    }*/
 }

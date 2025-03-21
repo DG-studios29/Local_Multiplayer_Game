@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 1688786014060664745}
   - component: {fileID: 4990804375180201557}
   - component: {fileID: 6400584567564955390}
+  - component: {fileID: 6656558463176133183}
   - component: {fileID: 8658154429024464363}
   - component: {fileID: 8778512651663580339}
   - component: {fileID: 7167261492642769155}
@@ -227,14 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   isWalking: 0
-  isPunchR: 0
-  punchRadius: 1
-  punchDistance: 3.2
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  timePushed: 0.25
-  distancePushed: 2
 --- !u!114 &4990804375180201557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +261,27 @@ MonoBehaviour:
   currentHealth: 0
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
+--- !u!114 &6656558463176133183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093234706080368204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd145f57d7f97947b255c4d4fac15b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPunchR: 0
+  punchDamage: 1
+  punchRadius: 1
+  punchDistance: 3.3
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  timePushed: 0.2
+  distancePushed: 1
 --- !u!114 &8658154429024464363
 MonoBehaviour:
   m_ObjectHideFlags: 0
