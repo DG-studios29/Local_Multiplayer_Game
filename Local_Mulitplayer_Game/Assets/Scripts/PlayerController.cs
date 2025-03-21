@@ -5,18 +5,29 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 10f; 
+    public float moveSpeed = 10f;
     public bool isWalking = true;
 
-  
+
     public bool isPunchR = false;
 
     private Animator animator;
-    
 
-    private Rigidbody rb; 
-    private Vector2 movementInput; 
 
+    private Rigidbody rb;
+    private Vector2 movementInput;
+
+    //Punching
+    [SerializeField] private float punchRadius;
+    [SerializeField] private float punchDistance;
+    [SerializeField] private LayerMask playerMask;
+    Vector3 punchPosition;
+    private RaycastHit hit;
+
+    //Punch Force
+    private float punchForce;
+    [SerializeField] private float timePushed;
+    [SerializeField] private float distancePushed;
 
 
     private void Awake()
@@ -25,6 +36,7 @@ public class PlayerController : MonoBehaviour
      
 
         animator = GetComponent<Animator>();
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -44,10 +56,32 @@ public class PlayerController : MonoBehaviour
 
             //ConfigureClip
             TogglePunch();
-
+            
 
             animator.SetTrigger("Punch");
 
+            punchPosition = transform.position + new Vector3(0,1,0);
+
+            if(Physics.SphereCast(punchPosition, punchRadius, transform.forward,out hit, 3f, playerMask))
+            {
+                if (hit.collider.gameObject.CompareTag("Player"))
+                {
+                    var target = hit.collider.gameObject;
+                    var targetHealth = target.GetComponent<PlayerHealth>();
+                    targetHealth.TakeDamage(10); //set it to what we need
+                    
+                    PlayerController targetControl = target.GetComponent<PlayerController>();
+                    targetControl.animator.SetTrigger("Hit");
+
+
+                    punchForce = distancePushed / timePushed;
+                    Vector3 velocity = punchForce * hit.rigidbody.mass * transform.forward;
+
+                    
+                    hit.rigidbody.AddForce(velocity,ForceMode.Impulse);
+                }
+
+            }
             
 
             //anim.Anim
@@ -108,5 +142,14 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<PlayerHealth>().Heal(10);
         }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Vector3 GizmoPos = transform.position + new Vector3(0, 1, 0);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(GizmoPos + transform.forward * punchDistance,punchRadius);
     }
 }

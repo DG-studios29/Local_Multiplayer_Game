@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6538335083889275780}
   - component: {fileID: 8623399353774475787}
   - component: {fileID: 4226553419978379954}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arm-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6855878737866646455}
   - component: {fileID: 764846045452478973}
   - component: {fileID: 8618102562201231233}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,8 +188,7 @@ GameObject:
   - component: {fileID: 8778512651663580339}
   - component: {fileID: 7167261492642769155}
   - component: {fileID: 2800242413094262655}
-  - component: {fileID: 3161459081724691482}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -228,6 +227,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   isWalking: 0
+  isPunchR: 0
+  punchRadius: 1
+  punchDistance: 3.2
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  timePushed: 0.25
+  distancePushed: 2
 --- !u!114 &4990804375180201557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,18 +434,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3161459081724691482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3093234706080368204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53aee0be88c9f8d4195d17f237741551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3408003879747189824
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +445,7 @@ GameObject:
   - component: {fileID: 8202886420498445819}
   - component: {fileID: 7520201861517698824}
   - component: {fileID: 1720603221191385129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: leg-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 110679916624571947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4131539653792030132}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +596,7 @@ GameObject:
   - component: {fileID: 3945809780182569100}
   - component: {fileID: 8839716082467581728}
   - component: {fileID: 1587279768205233142}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arm-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +682,7 @@ GameObject:
   - component: {fileID: 5158697226589266416}
   - component: {fileID: 9160648571248009963}
   - component: {fileID: 6663365966360365204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: leg-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,7 +768,7 @@ GameObject:
   - component: {fileID: 5065291628822275886}
   - component: {fileID: 4946480540840626064}
   - component: {fileID: 4566298623857074165}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,6 +897,10 @@ PrefabInstance:
     - target: {fileID: 6889060643873704330, guid: 618ef773d943d94459e226265c5df73a, type: 3}
       propertyPath: m_Name
       value: AutoAttackingObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889060643873704330, guid: 618ef773d943d94459e226265c5df73a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
