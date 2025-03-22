@@ -108,6 +108,16 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        //
+        if(rb.linearVelocity.y < 0)
+        {
+            Physics.gravity = new Vector3(0, -45.62f, 0);
+        }
+        else
+        {
+            Physics.gravity = new Vector3(0, -9.81f, 0);
+        }
+
     }
     private void Update()
     {
