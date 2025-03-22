@@ -66,13 +66,10 @@ public class PlayerController : MonoBehaviour
     {
         if (context.canceled)
         {
-
+            //cancelled on release 
 
             playerPunches.PunchCall();
 
-
-
-         
         }
        
     }
