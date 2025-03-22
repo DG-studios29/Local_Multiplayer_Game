@@ -10,6 +10,7 @@ public class PlayerPunches : MonoBehaviour
     //Punching
     public bool isPunchR = false;
     [SerializeField] private float punchDamage;
+    [SerializeField] private float unscaledMAXDamage;
 
     [SerializeField] private float punchRadius;
     [SerializeField] private float punchDistance;
@@ -27,6 +28,11 @@ public class PlayerPunches : MonoBehaviour
     private float lastPunchTimer = 0.25f;
 
     //Punch Control - Critical-Hit Holding
+    private bool chargeHolding = false;
+    private float chargeHoldTimer = 0f;
+    [SerializeField] private float maxChargeTime = 2.75f;
+    private float chargeVal;
+
 
 
 
@@ -46,6 +52,9 @@ public class PlayerPunches : MonoBehaviour
     void Update()
     {
         lastPunchTimer += Time.deltaTime;
+        
+        ChargeUpdate();
+
     }
 
 
@@ -57,7 +66,15 @@ public class PlayerPunches : MonoBehaviour
             return;
         }
 
+        //saves the time the charge was held for
+        ChargeSavedPower(); 
+        chargeHolding = false;
+        chargeHoldTimer = 0f;
+
         lastPunchTimer = 0;
+
+        AnimatorChargeClear();
+
 
         Debug.Log("Called Punch");
 
@@ -65,8 +82,10 @@ public class PlayerPunches : MonoBehaviour
         //ConfigureClip
         TogglePunch();
 
-
+        
         animator.SetTrigger("Punch");
+        
+        
 
         punchPosition = transform.position + new Vector3(0, 1, 0);
 
@@ -74,23 +93,71 @@ public class PlayerPunches : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
+                //recognize the player that got punched
                 GameObject target = hit.collider.gameObject;
                 PlayerHealth targetHealth = target.GetComponent<PlayerHealth>();
-
-                targetHealth.TakeDamage((int)punchDamage); 
-
                 PlayerController targetControl = target.GetComponent<PlayerController>();
-                targetControl.Animator.SetTrigger("Hit");
 
 
-                punchForce = distancePushed / timePushed;
-                Vector3 velocity = punchForce * hit.rigidbody.mass * transform.forward;
 
+                //determine damage based on charge
+                if (chargeVal <= 0.3)
+                {
+                    
+                    //perform animation 
+                    targetControl.Animator.SetTrigger("Hit");
 
-                hit.rigidbody.AddForce(velocity, ForceMode.Impulse);
+                    //apply forces
+                    punchForce = distancePushed / timePushed;
+                    Vector3 nVelocity = punchForce * hit.rigidbody.mass * transform.forward;
+                    hit.rigidbody.AddForce(nVelocity, ForceMode.Impulse);
+
+                    //normal punch
+                    targetHealth.TakeDamage((int)punchDamage);
+
+                    //chargeVal = 0;
+
+                }
+                else if (chargeVal > 0.3 && chargeVal <= 0.8)
+                {
+                    //perform animation 
+                    targetControl.Animator.SetTrigger("Hit");
+
+                    //apply forces
+                    punchForce = distancePushed / timePushed;
+                    Vector3 nVelocity = punchForce * hit.rigidbody.mass * transform.forward;
+                    hit.rigidbody.AddForce(nVelocity, ForceMode.Impulse);
+
+                    //nice damage
+                    if (chargeVal > 0.6) chargeVal = 0.5f;
+                    float niceDMG = unscaledMAXDamage * chargeVal;
+                    targetHealth.TakeDamage((int)niceDMG);
+                }
+                else
+                {
+                    
+                    //perform animation
+                    targetControl = target.GetComponent<PlayerController>();
+                    targetControl.Animator.SetTrigger("CriticalHit");
+
+                    //apply forces
+                    punchForce = distancePushed / timePushed;
+                    Vector3 criticalVelocity = punchForce * hit.rigidbody.mass * (transform.forward + transform.up);
+                    hit.rigidbody.AddForce(criticalVelocity, ForceMode.Impulse);
+
+                    //critical hit
+                    float crit = unscaledMAXDamage;
+                    targetHealth.TakeDamage((int)crit);
+
+                }
+
+                
+              
             }
 
         }
+
+        //AnimatorChargeClear();
 
     }
 
@@ -110,6 +177,51 @@ public class PlayerPunches : MonoBehaviour
         }
     }
 
+
+    public void ChargingCall(bool meleeBtnStatus)
+    {
+        chargeHolding = meleeBtnStatus;
+        //ChargeSavedPower();
+
+    }
+
+   
+
+
+    private void ChargeUpdate()
+    {
+        if (chargeHolding && (lastPunchTimer > punchCooldown))
+        {
+            chargeHoldTimer += Time.deltaTime;
+          
+            
+            ChargeSavedPower();
+            
+        }
+        else
+        {
+           //chargeHoldTimer = 0;
+           AnimatorChargeClear();
+        }
+
+    }
+
+    private void ChargeSavedPower()
+    {
+        Debug.Log("ChargingUp");
+        chargeVal = chargeHoldTimer / maxChargeTime;
+        if(chargeVal > 1) chargeVal = 1;
+        animator.SetFloat("Charge", chargeVal, 0.05f, Time.deltaTime);
+        
+        
+    }
+
+    public void AnimatorChargeClear()
+    {
+        Debug.Log("Clear");
+        chargeVal = 0;
+        animator.SetFloat("Charge", chargeVal, 0.05f, Time.deltaTime);
+    }
 
 
     private void OnDrawGizmos()

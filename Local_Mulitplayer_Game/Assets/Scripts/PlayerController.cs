@@ -64,11 +64,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnPunch(InputAction.CallbackContext context)
     {
+
+        if (context.performed)
+        {
+            playerPunches.ChargingCall(true);
+        }
+
         if (context.canceled)
         {
             //cancelled on release 
-
+            //cancel charge
+            
             playerPunches.PunchCall();
+            //playerPunches.AnimatorChargeClear();
 
         }
        
