@@ -119,9 +119,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Melee"",
+                    ""name"": ""Melee1"",
                     ""type"": ""Button"",
-                    ""id"": ""c2334b81-c2f8-4800-bce8-8fc42c6cf785"",
+                    ""id"": ""a2817905-5e33-429b-ad3e-7d809cc582a7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -241,34 +241,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8a1bb90c-9844-4920-8f22-7e4ce3b1ad08"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Melee"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""02c226b5-e4b1-4308-996b-501c482e3619"",
+                    ""id"": ""b43a08a1-95b4-4d8b-b343-9e63a27f78bb"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Melee"",
+                    ""action"": ""Melee1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d8f502cf-c143-4dee-a1cd-1560ee5e5412"",
-                    ""path"": ""<HID::SZ-MYPOWER DS4 Wired Controller>/trigger"",
+                    ""id"": ""07b9683c-a48d-4488-8f96-6a0c1cc667d2"",
+                    ""path"": ""<Joystick>/trigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
-                    ""action"": ""Melee"",
+                    ""action"": ""Melee1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bc4f30e-9685-45c9-97eb-307081cf2b46"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Melee1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -354,7 +354,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_SpawnArmy = m_Player.FindAction("SpawnArmy", throwIfNotFound: true);
         m_Player_SpawnArmyController = m_Player.FindAction("SpawnArmyController", throwIfNotFound: true);
-        m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
+        m_Player_Melee1 = m_Player.FindAction("Melee1", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -438,7 +438,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_SpawnArmy;
     private readonly InputAction m_Player_SpawnArmyController;
-    private readonly InputAction m_Player_Melee;
+    private readonly InputAction m_Player_Melee1;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -463,9 +463,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @SpawnArmyController => m_Wrapper.m_Player_SpawnArmyController;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Melee".
+        /// Provides access to the underlying input action "Player/Melee1".
         /// </summary>
-        public InputAction @Melee => m_Wrapper.m_Player_Melee;
+        public InputAction @Melee1 => m_Wrapper.m_Player_Melee1;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -501,9 +501,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SpawnArmyController.started += instance.OnSpawnArmyController;
             @SpawnArmyController.performed += instance.OnSpawnArmyController;
             @SpawnArmyController.canceled += instance.OnSpawnArmyController;
-            @Melee.started += instance.OnMelee;
-            @Melee.performed += instance.OnMelee;
-            @Melee.canceled += instance.OnMelee;
+            @Melee1.started += instance.OnMelee1;
+            @Melee1.performed += instance.OnMelee1;
+            @Melee1.canceled += instance.OnMelee1;
         }
 
         /// <summary>
@@ -524,9 +524,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SpawnArmyController.started -= instance.OnSpawnArmyController;
             @SpawnArmyController.performed -= instance.OnSpawnArmyController;
             @SpawnArmyController.canceled -= instance.OnSpawnArmyController;
-            @Melee.started -= instance.OnMelee;
-            @Melee.performed -= instance.OnMelee;
-            @Melee.canceled -= instance.OnMelee;
+            @Melee1.started -= instance.OnMelee1;
+            @Melee1.performed -= instance.OnMelee1;
+            @Melee1.canceled -= instance.OnMelee1;
         }
 
         /// <summary>
@@ -667,11 +667,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSpawnArmyController(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Melee" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Melee1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMelee(InputAction.CallbackContext context);
+        void OnMelee1(InputAction.CallbackContext context);
     }
 }

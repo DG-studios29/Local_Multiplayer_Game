@@ -369,8 +369,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: c2334b81-c2f8-4800-bce8-8fc42c6cf785
-    m_ActionName: 'Player/Melee[/Keyboard/space,/SZ-MYPOWER DS4 Wired Controller/trigger]'
+    m_ActionId: a2817905-5e33-429b-ad3e-7d809cc582a7
+    m_ActionName: 'Player/Melee1[/SZ-MYPOWER DS4 Wired Controller/trigger,/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
