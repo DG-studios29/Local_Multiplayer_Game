@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f; 
+    public float moveSpeed = 10f; 
     public bool isWalking = true;
     private Animator animator;
 
@@ -24,6 +25,13 @@ public class PlayerController : MonoBehaviour
 
         movementInput = context.ReadValue<Vector2>(); 
 
+    }
+
+    public void OnPunch(InputAction.CallbackContext context)
+    {
+        Debug.Log("Called Punch");
+        animator.SetTrigger("Punch");
+        GetComponent<PlayerHealth>().TakeDamage(10);
     }
 
     // Make the player move
@@ -50,5 +58,17 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void Update()
+    {
+        //// Testing player Health 
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    GetComponent<PlayerHealth>().TakeDamage(10);
+        //}
 
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    GetComponent<PlayerHealth>().Heal(10);
+        //}
+    }
 }
