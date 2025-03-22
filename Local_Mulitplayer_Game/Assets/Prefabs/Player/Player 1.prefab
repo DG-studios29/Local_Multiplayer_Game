@@ -283,7 +283,7 @@ MonoBehaviour:
     m_Bits: 64
   timePushed: 0.2
   distancePushed: 1
-  maxChargeTime: 2.75
+  maxChargeTime: 1.25
 --- !u!114 &8658154429024464363
 MonoBehaviour:
   m_ObjectHideFlags: 0

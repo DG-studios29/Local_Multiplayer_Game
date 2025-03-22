@@ -32,6 +32,8 @@ public class PlayerPunches : MonoBehaviour
     private float chargeHoldTimer = 0f;
     [SerializeField] private float maxChargeTime = 2.75f;
     private float chargeVal;
+    bool resetAnimation = false;
+    private float dmgCalc;
 
 
 
@@ -63,17 +65,19 @@ public class PlayerPunches : MonoBehaviour
         if (lastPunchTimer < punchCooldown)
         {
             //we wont punch if cooldown has not passed
+            
             return;
         }
 
         //saves the time the charge was held for
-        ChargeSavedPower(); 
+        //ChargeSavedPower(); 
         chargeHolding = false;
         chargeHoldTimer = 0f;
 
         lastPunchTimer = 0;
+       
 
-        AnimatorChargeClear();
+        //AnimatorChargeClear();
 
 
         Debug.Log("Called Punch");
@@ -141,7 +145,7 @@ public class PlayerPunches : MonoBehaviour
                     targetControl.Animator.SetTrigger("CriticalHit");
 
                     //apply forces
-                    punchForce = distancePushed / timePushed;
+                    punchForce = distancePushed * 2f / timePushed;
                     Vector3 criticalVelocity = punchForce * hit.rigidbody.mass * (transform.forward + transform.up);
                     hit.rigidbody.AddForce(criticalVelocity, ForceMode.Impulse);
 
@@ -156,6 +160,8 @@ public class PlayerPunches : MonoBehaviour
             }
 
         }
+
+        //resetAnimation = true;
 
         //AnimatorChargeClear();
 
@@ -198,10 +204,11 @@ public class PlayerPunches : MonoBehaviour
             ChargeSavedPower();
             
         }
-        else
+        else 
         {
            //chargeHoldTimer = 0;
            AnimatorChargeClear();
+           resetAnimation = false;
         }
 
     }
@@ -211,6 +218,8 @@ public class PlayerPunches : MonoBehaviour
         Debug.Log("ChargingUp");
         chargeVal = chargeHoldTimer / maxChargeTime;
         if(chargeVal > 1) chargeVal = 1;
+        dmgCalc = chargeVal;
+
         animator.SetFloat("Charge", chargeVal, 0.05f, Time.deltaTime);
         
         
@@ -219,6 +228,7 @@ public class PlayerPunches : MonoBehaviour
     public void AnimatorChargeClear()
     {
         Debug.Log("Clear");
+        dmgCalc = chargeVal;
         chargeVal = 0;
         animator.SetFloat("Charge", chargeVal, 0.05f, Time.deltaTime);
     }
