@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPunch(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.canceled)
         {
 
 
@@ -72,66 +72,11 @@ public class PlayerController : MonoBehaviour
 
 
 
-         /*   if(lastPunchTimer < punchCooldown)
-            {
-                //we wont punch if cooldown has not passed
-                return;
-            }
-
-            lastPunchTimer = 0;
-
-            Debug.Log("Called Punch");
-
-
-            //ConfigureClip
-            TogglePunch();
-            
-
-            animator.SetTrigger("Punch");
-
-            punchPosition = transform.position + new Vector3(0,1,0);
-
-            if(Physics.SphereCast(punchPosition, punchRadius, transform.forward,out hit, 3f, playerMask))
-            {
-                if (hit.collider.gameObject.CompareTag("Player"))
-                {
-                    var target = hit.collider.gameObject;
-                    var targetHealth = target.GetComponent<PlayerHealth>();
-                    targetHealth.TakeDamage(10); //set it to what we need
-                    
-                    PlayerController targetControl = target.GetComponent<PlayerController>();
-                    targetControl.animator.SetTrigger("Hit");
-
-
-                    punchForce = distancePushed / timePushed;
-                    Vector3 velocity = punchForce * hit.rigidbody.mass * transform.forward;
-
-                    
-                    hit.rigidbody.AddForce(velocity,ForceMode.Impulse);
-                }
-
-            }
-            */
-
-            //anim.Anim
+         
         }
        
     }
 
-/*    void TogglePunch()
-    {
-        if (!isPunchR)
-        {
-            animator.SetBool("isPunchR", false);
-            isPunchR = true;
-        }
-        else
-        {
-            animator.SetBool("isPunchR",true);
-            isPunchR = false;
-        }
-    }
-*/
 
 
 
