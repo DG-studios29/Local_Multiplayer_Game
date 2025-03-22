@@ -21,27 +21,7 @@ public class PlayerController : MonoBehaviour
 
     //Gonna store all this stuff in a Player Punches script after merge
     private PlayerPunches playerPunches;
-/*
-    //Punching
-    [SerializeField] private float punchRadius;
-    [SerializeField] private float punchDistance;
-    [SerializeField] private LayerMask playerMask;
-    Vector3 punchPosition;
-    private RaycastHit hit;
 
-    //Punch Force
-    private float punchForce;
-    [SerializeField] private float timePushed;
-    [SerializeField] private float distancePushed;
-
-    //Punch Control - Anti-Spam cooldown
-    private float punchCooldown = 0.25f; //animation time
-    private float lastPunchTimer = 0.25f; 
-
-    //Punch Control - Critical-Hit Holding
-*/
-
-   
 
 
     private void Awake()

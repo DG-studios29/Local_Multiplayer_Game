@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6861445081996442198, guid: 1f18d29abd64ba8438da250737c5a239, type: 3}
+  m_Motion: {fileID: -3419257869308726280, guid: 1f18d29abd64ba8438da250737c5a239, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -108,7 +108,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Army
+  m_Name: Army Tank
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isDead
