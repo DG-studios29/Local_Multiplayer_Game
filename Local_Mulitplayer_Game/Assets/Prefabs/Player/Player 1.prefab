@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armyTypes:
   - name: Mini
-    prefab: {fileID: 2951857971312674443, guid: 2850d011f71697140a0a507b2e9958be, type: 3}
+    prefab: {fileID: 2951857971312674443, guid: 5cab7ae0f1bb330478e31830d79dc8ef, type: 3}
     spawnPoint: {fileID: 110679916624571947}
     cooldownTime: 5
 --- !u!114 &6400584567564955390
