@@ -18,3 +18,4 @@ MonoBehaviour:
   targetPlayerRange: 15
   openRange: 100
   attackRange: 3
+  attackRate: 1
