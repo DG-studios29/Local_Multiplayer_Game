@@ -12,6 +12,8 @@ public class ArmyControls : MonoBehaviour
     private bool isDead = false;
 
     [SerializeField]private Material hurtMaterial;
+    [SerializeField] private float hurtTime = 0.25f;
+    bool alreadyHurting = false;
     private Material baseMaterial;
     private MeshRenderer[] partyMeshRenderers;
 
@@ -38,22 +40,26 @@ public class ArmyControls : MonoBehaviour
     public void ShowDamage()
     {
         //start like a coroutine that changes materials and what not
+        if(!alreadyHurting)
         StartCoroutine(MatChange());
     }
 
     IEnumerator MatChange()
     {
+        alreadyHurting = true;
         foreach(var party in partyMeshRenderers)
         {
             party.material = hurtMaterial;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(hurtTime);
 
         foreach (var party in partyMeshRenderers)
         {
             party.material = baseMaterial;
         }
+
+        alreadyHurting=false;
         
     }
 

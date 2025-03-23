@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
     protected float openRange;
 
     protected float attackRange;
-    protected float attackCooldown = 1f;
+    protected float attackCooldown;
     protected float time_sinceAttack = 0f;
 
     [SerializeField] protected GameObject nearestTarget;
@@ -144,7 +144,7 @@ public class EnemyAI : MonoBehaviour
         openRange = enemyData.OpenRange;
         attackRange = enemyData.AttackRange;
 
-        attackCooldown = 1f;
+        attackCooldown = enemyData.AttackRate;
     }
 
 

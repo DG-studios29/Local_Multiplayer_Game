@@ -159,6 +159,25 @@ public class PlayerPunches : MonoBehaviour
               
             }
 
+            else if (hit.collider.gameObject.CompareTag("Army"))
+            {
+                //recognize the player that got punched
+                GameObject target = hit.collider.gameObject;
+                EnemyAI targetHealth = target.GetComponent<EnemyAI>();
+
+
+
+                //punches on armies are ineffective, save for crits
+                if (chargeVal <= 0.8f)
+                    { 
+                        //targetHealth.TakeDamage(1f);
+                    }
+                else
+                    { 
+                        targetHealth.TakeDamage(5f);
+                    }
+            }
+
         }
 
         //resetAnimation = true;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1862520768320932376}
   - component: {fileID: 433039083409873491}
   - component: {fileID: 6165284053284807629}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: -3582010027564952512}
   - component: {fileID: 7642080828163612796}
   - component: {fileID: -4465971285142238766}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ArmyTanks
   m_TagString: Army
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 2911642204233919961}
   - component: {fileID: 7708889536112061053}
   - component: {fileID: 7311507938031666153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1344211348090163322}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FigurinesCentering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 3071854513335284714}
   - component: {fileID: 7711586331677338866}
   - component: {fileID: 1421171051396692724}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 2052675898684087931}
   - component: {fileID: 6233522579905772422}
   - component: {fileID: 8800693691835965617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9103085297415745903}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 6690387515055862306}
   - component: {fileID: 5123211517711729348}
   - component: {fileID: 3033134801538328202}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg-right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 6080327566822716443}
   - component: {fileID: 4276517214637553144}
   - component: {fileID: 8621382302420825093}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +694,7 @@ GameObject:
   - component: {fileID: 23762708552319004}
   - component: {fileID: 3156223423238894547}
   - component: {fileID: 4699866464413409248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: figurine-cube-detailed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,6 +756,7 @@ MonoBehaviour:
   damagePerSecond: 10
   armyCollider: {fileID: 7642080828163612796}
   hurtMaterial: {fileID: 2100000, guid: 452e9989bc28b8445b6186ce05987e83, type: 2}
+  hurtTime: 0.3
 --- !u!1001 &7545189258861665555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -823,6 +824,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 36c586f8cad1a6945a1be815cd69cd79, type: 3}
       propertyPath: m_Name
       value: weapon-sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 36c586f8cad1a6945a1be815cd69cd79, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
