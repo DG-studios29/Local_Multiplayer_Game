@@ -173,26 +173,38 @@ public class GameManager : MonoBehaviour
 
     void AssignHeroScript(GameObject player, string heroName)
     {
-        // Add hero-specific components based on selection
+        HeroBase hero = null;
+        HeroAbility abilityData = Resources.Load<HeroAbility>($"Abilities/{heroName}");
+
         switch (heroName)
         {
             case "Blazeheart":
-                player.AddComponent<Blazeheart>();
+                hero = player.AddComponent<Blazeheart>();
                 break;
             case "Frost":
-                player.AddComponent<Frost>();
+                hero = player.AddComponent<Frost>();
                 break;
             case "Nightshade":
-                player.AddComponent<Nightshade>();
+                hero = player.AddComponent<Nightshade>();
                 break;
             case "Stonewarden":
-                player.AddComponent<Stonewarden>();
+                hero = player.AddComponent<Stonewarden>();
                 break;
             default:
                 Debug.LogWarning("Hero not found: " + heroName);
-                break;
+                return;
+        }
+
+        if (hero != null && abilityData != null)
+        {
+            hero.abilities = abilityData;
+        }
+        else
+        {
+            Debug.LogError($"Failed to assign abilities to {heroName}");
         }
     }
+
 
     void AssignPlayerMaterials(GameObject player, int playerIndex)
     {

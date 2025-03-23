@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private Rigidbody rb; 
-    private Vector2 movementInput; 
+    private Vector2 movementInput;
 
 
 
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
 
-        movementInput = context.ReadValue<Vector2>(); 
+        movementInput = context.ReadValue<Vector2>();
 
     }
 
@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Called Punch");
         animator.SetTrigger("Punch");
     }
+
+   
 
     // Make the player move
     private void FixedUpdate()

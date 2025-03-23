@@ -1,53 +1,80 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.AI;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
-    public int maxHealth = 100; // Max health a player can have
-    public int currentHealth;   // Player's current health
+    public int maxHealth = 100;
+    public int currentHealth;
 
     [Header("UI Elements")]
-    public Slider healthSlider; // UI slider to show health visually
-    public TMP_Text healthText; // Text element to show exact health values
+    public Slider healthSlider;
+    public TMP_Text healthText;
 
+    private bool isFrozen;
+    private float freezeDuration;
     private void Awake()
     {
-        currentHealth = maxHealth; // Initialize health to max at start
-        UpdateHealthUI();          // Update the UI to reflect the initial health
+        currentHealth = maxHealth;
+        UpdateHealthUI();
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;                        // Reduce health by damage amount
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Clamp health within valid range
-        UpdateHealthUI();                              // Refresh UI
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthUI(); // 🔹 Ensure UI updates every time damage is taken
+
+        Debug.Log($"{gameObject.name} took {damage} damage. Current Health: {currentHealth}");
 
         if (currentHealth <= 0)
         {
-            Die(); // Handle player death
+            Die();
         }
     }
 
     public void Heal(int amount)
     {
-        currentHealth += amount;                       // Increase health by heal amount
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Clamp health within valid range
-        UpdateHealthUI();                              // Refresh UI
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthUI();
     }
 
     public void UpdateHealthUI()
     {
         if (healthSlider != null)
-            healthSlider.value = (float)currentHealth / maxHealth; // Update slider value
+            healthSlider.value = (float)currentHealth / maxHealth; // 🔹 Ensure slider updates
 
         if (healthText != null)
-            healthText.text = currentHealth + " / " + maxHealth;  // Update health text
+            healthText.text = $"{currentHealth} / {maxHealth}"; // 🔹 Ensure text updates
     }
 
     void Die()
     {
-        Debug.Log(gameObject.name + " has died!"); // Log the player death
+        Debug.Log(gameObject.name + " has died!");
+        // 🔹 You can add respawn logic or player death effects here
+    }
+
+    public void Freeze(float duration)
+    {
+        if (isFrozen) return; // Prevent freezing if already frozen
+        isFrozen = true;
+        freezeDuration = duration;
+        // Apply freezing logic, e.g., stop movement or apply a slowdown effect
+        // For example, disable movement:
+        //GetComponent<NavMeshAgent>().isStopped = true;
+
+        StartCoroutine(FreezeDuration());
+    }
+
+    private IEnumerator FreezeDuration()
+    {
+        yield return new WaitForSeconds(freezeDuration);
+        // After the freeze duration ends, re-enable movement
+        //GetComponent<NavMeshAgent>().isStopped = false;
+        isFrozen = false;
     }
 }
