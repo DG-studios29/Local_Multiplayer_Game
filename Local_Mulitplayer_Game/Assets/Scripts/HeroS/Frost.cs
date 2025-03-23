@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
-
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Frost : HeroBase
 {
     private int casterID;
@@ -55,8 +56,8 @@ public class Frost : HeroBase
             Debug.LogError("Ice Spikes prefab is missing! Assign it in the HeroAbility scriptable object.");
             yield break;
         }
-
-        GameObject spike = Instantiate(abilities.ability2.projectilePrefab, transform.position, Quaternion.identity);
+        Vector3 spawnPosition = transform.position + transform.forward * 2; // Spawn in front of the player, 2 units away
+        GameObject spike = Instantiate(abilities.ability2.projectilePrefab, spawnPosition, Quaternion.identity);
         Projectile projScript = spike.GetComponent<Projectile>();
 
         if (projScript != null)
@@ -114,6 +115,7 @@ public class Frost : HeroBase
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.None;
+            rb.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }

@@ -429,11 +429,10 @@ public class EnemyAI : MonoBehaviour
 
     public void Freeze(float duration)
     {
-        if (isFrozen) return; // Prevent freezing if already frozen
+        if (isFrozen) return; 
         isFrozen = true;
         freezeDuration = duration;
-        // Apply freezing logic, e.g., stop movement or apply a slowdown effect
-        // For example, disable movement:
+        // Apply freezing logic, e.g., stop movement 
         GetComponent<NavMeshAgent>().isStopped = true;
 
         StartCoroutine(FreezeDuration());

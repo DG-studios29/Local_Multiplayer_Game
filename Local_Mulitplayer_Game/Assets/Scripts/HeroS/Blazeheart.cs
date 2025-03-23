@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Blazeheart : HeroBase
 {
     private int casterID;
@@ -48,47 +49,42 @@ public class Blazeheart : HeroBase
         }
     }
 
-   
+
     private IEnumerator FireBurst()
     {
-        float duration = 0.5f; 
+        float duration = 0.5f;
         float radius = 5f;
         float pushForce = 10f;
 
         if (abilities.ability2.projectilePrefab == null)
         {
-            Debug.LogError("Fire Burst prefab is missing! Assign it in the HeroAbility scriptable object.");
+            Debug.LogError("Fire Burst prefab is missing!");
             yield break;
         }
 
-        // Spawn Fire Burst effect 
         GameObject fireBurst = Instantiate(abilities.ability2.projectilePrefab, transform.position, Quaternion.identity);
         fireBurst.transform.localScale = Vector3.zero;
 
-        casterID = gameObject.GetInstanceID(); 
+        casterID = gameObject.GetInstanceID();
 
         float timer = 0f;
         while (timer < duration)
         {
             if (fireBurst == null) yield break;
 
-            // Expand the Fire Burst effect
             fireBurst.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * radius, timer / duration);
 
             Collider[] hitEnemies = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider enemy in hitEnemies)
             {
-                
                 if (enemy.gameObject.GetInstanceID() == casterID)
                     continue;
 
                 if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
                 {
-                    // Apply damage
                     enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)abilities.ability2.damage);
                     enemy.GetComponent<EnemyAI>()?.TakeDamage((int)abilities.ability2.damage);
 
-                    // Apply knockback effect
                     Rigidbody rb = enemy.GetComponent<Rigidbody>();
                     if (rb != null)
                     {
@@ -105,11 +101,12 @@ public class Blazeheart : HeroBase
         Destroy(fireBurst);
     }
 
+
     private IEnumerator Firestorm()
     {
         float duration = 10f;
-        float radius = 5f;
-        float enemyDetectionRadius = 5f;
+        float radius = 10f;
+        float enemyDetectionRadius = 10f;
 
         for (int i = 0; i < 5; i++)
         {
@@ -137,13 +134,13 @@ public class Blazeheart : HeroBase
                 {
                     // Move the fireball towards the enemy
                     Vector3 direction = (targetEnemy.position - spawnPos).normalized;
-                    rb.linearVelocity = direction * 5f; 
+                    rb.linearVelocity = direction * 10f; 
                 }
                 else
                 {
                     // Move the fireball towards the edge of the radius
                     Vector3 direction = (spawnPos - transform.position).normalized;
-                    rb.linearVelocity = direction * 3f; 
+                    rb.linearVelocity = direction * 10f; 
                 }
             }
 

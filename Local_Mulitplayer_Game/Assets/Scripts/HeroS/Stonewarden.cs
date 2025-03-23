@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
-
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Stonewarden : HeroBase
 {
     private int casterID;
@@ -53,17 +54,21 @@ public class Stonewarden : HeroBase
 
     private IEnumerator RockFall()
     {
-        
         float fallDuration = 1f;
         float rockRadius = 5f;
         float damage = abilities.ability2.damage;
 
-        // Find the nearest enemy to target
+        // Ensure the projectile prefab is assigned
+        if (abilities.ability2.projectilePrefab == null)
+        {
+            Debug.LogError("Rock Fall projectile prefab is missing.");
+            yield break;
+        }
+
         Collider[] enemies = Physics.OverlapSphere(transform.position, rockRadius);
         GameObject targetEnemy = null;
         float minDistance = Mathf.Infinity;
 
-        // Find the closest enemy within the rock radius
         foreach (Collider enemy in enemies)
         {
             if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
@@ -77,45 +82,45 @@ public class Stonewarden : HeroBase
             }
         }
 
-        
         if (targetEnemy == null) yield break;
 
-        // Calculate the direction from the caster to the enemy
-        Vector3 fallDirection = (targetEnemy.transform.position - transform.position).normalized;
-
-       
+        // Calculate fall direction towards the target enemy
         Vector3 fallPosition = transform.position + new Vector3(Random.Range(-rockRadius, rockRadius), 10f, Random.Range(-rockRadius, rockRadius));
+        GameObject rock = Instantiate(abilities.ability2.projectilePrefab, fallPosition, Quaternion.identity);
+        if (rock == null) yield break;  // Exit if the rock has been destroyed
+        // Ensure Rigidbody or movement logic for the rock
+        Rigidbody rockRb = rock.GetComponent<Rigidbody>();
+        if (rockRb != null)
+        {
+            Vector3 direction = (targetEnemy.transform.position - rock.transform.position).normalized;
+            rockRb.linearVelocity = direction * 10f; // Or use another method to control movement
+        }
 
-      
-        GameObject rockPrefab = abilities.ability2.projectilePrefab;
-        GameObject rock = Instantiate(rockPrefab, fallPosition, Quaternion.identity);
-
-        // rock falling towards the target enemy
+        // Wait for the rock to fall and deal damage
         float timer = 0f;
         while (timer < fallDuration)
         {
+            if (rock == null) break;  // Exit if the rock has been destroyed
             rock.transform.position = Vector3.Lerp(fallPosition, targetEnemy.transform.position, timer / fallDuration);
             timer += Time.deltaTime;
             yield return null;
         }
 
-       
+        if (rock == null) yield break;  // If the rock is destroyed, exit early
+
         Collider[] hitEnemies = Physics.OverlapSphere(rock.transform.position, rockRadius);
         foreach (Collider enemy in hitEnemies)
         {
             if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
             {
-                
                 if (enemy.gameObject.GetInstanceID() == gameObject.GetInstanceID())
                     continue;
 
-                
                 enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)damage);
                 enemy.GetComponent<EnemyAI>()?.TakeDamage((int)damage);
             }
         }
 
-        
         Destroy(rock);
         Debug.Log("Rock Fall hit the enemy!");
     }

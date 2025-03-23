@@ -63,9 +63,6 @@ public class PlayerHealth : MonoBehaviour
         if (isFrozen) return; // Prevent freezing if already frozen
         isFrozen = true;
         freezeDuration = duration;
-        // Apply freezing logic, e.g., stop movement or apply a slowdown effect
-        // For example, disable movement:
-        //GetComponent<NavMeshAgent>().isStopped = true;
 
         StartCoroutine(FreezeDuration());
     }
@@ -73,8 +70,6 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator FreezeDuration()
     {
         yield return new WaitForSeconds(freezeDuration);
-        // After the freeze duration ends, re-enable movement
-        //GetComponent<NavMeshAgent>().isStopped = false;
         isFrozen = false;
     }
 }

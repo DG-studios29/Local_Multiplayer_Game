@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Nightshade : HeroBase
 {
     private int casterID; 

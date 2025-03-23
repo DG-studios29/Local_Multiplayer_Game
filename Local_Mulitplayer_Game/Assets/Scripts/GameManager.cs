@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PlayerPrefs.html
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;

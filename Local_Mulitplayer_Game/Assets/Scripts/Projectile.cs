@@ -3,13 +3,13 @@
 public class Projectile : MonoBehaviour
 {
     public int damage;
-    private GameObject shooter; // Track who fired this projectile
+    private GameObject shooter;
 
-    // Set damage through the HeroAbility when the projectile is spawned
+    
     public void Initialize(GameObject owner, int damageAmount)
     {
         shooter = owner;
-        damage = damageAmount; // Set the damage based on the ability
+        damage = damageAmount; 
     }
 
     public void SetShooter(GameObject owner)
@@ -26,11 +26,11 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(damage);
             collision.gameObject.GetComponent<EnemyAI>()?.TakeDamage(damage);
-            Destroy(gameObject); // Destroy on impact
+            Destroy(gameObject); 
         }
         else
         {
-            Destroy(gameObject, 5f); // Destroy after 5s if no impact
+            Destroy(gameObject, 5f); 
         }
     }
 }
