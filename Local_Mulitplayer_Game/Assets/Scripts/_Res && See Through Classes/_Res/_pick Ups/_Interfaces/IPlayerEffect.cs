@@ -5,6 +5,11 @@ using UnityEngine;
 public interface IPlayerEffect
 {
     #region Interface
-    void ActivateSpeedBoost(float duration, float speedMultiplier);
+    void ActivateSpeedBoost(float duration, float speedMultiplier, GameObject trailEffect);
+
+    void ActivateShield(float duration);
+    void GiveHealth(float health);
+
+    void RefillAbilityBar(float energy);
     #endregion
 }

@@ -12,7 +12,7 @@ public class SpeedBoost : PickUpsBase
     [SerializeField] private float duration = 5f;
     [SerializeField] private float speedBoost = 10f;
     [SerializeField] private GameObject pickUpEffect;
-
+    [SerializeField] private GameObject trailEffect;
     #endregion
 
     #region Overridden Methods
@@ -21,11 +21,14 @@ public class SpeedBoost : PickUpsBase
     {
         if(pickUpEffect)
         {
-            Instantiate(pickUpEffect, transform.position, Quaternion.identity);
+            GameObject pEffect = Instantiate(pickUpEffect, transform.position, Quaternion.identity);
+            Destroy(pEffect, 1f);
         }
 
         IPlayerEffect playerEffect = player.GetComponent<IPlayerEffect>();
-        if (playerEffect!= null) playerEffect.ActivateSpeedBoost(duration, speedBoost);
+
+        if (playerEffect!= null) playerEffect.ActivateSpeedBoost(duration, speedBoost, trailEffect);
+
         Destroy(gameObject, 0.01f);
     }
 

@@ -122,5 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
-  speedBoost: 10
+  speedBoost: 5
   pickUpEffect: {fileID: 0}
+  trailEffect: {fileID: 6068192576198646257, guid: df0e133a80d1e1044be5067d381af379, type: 3}

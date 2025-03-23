@@ -8,9 +8,17 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
     public float moveSpeed = 5f;
     public bool isWalking = true;
     private Animator animator;
-    private float dur = 0;
+
     private Rigidbody rb;
     private Vector2 movementInput;
+    [SerializeField] private LayerMask objectsToCheckAgainst; //for collision detection
+
+    #region Pickup Variables
+
+    private float dur = 0;
+    bool hasTrail = false;
+
+    #endregion 
 
     private void Awake()
     {
@@ -33,8 +41,16 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         isWalking = moveDirection.magnitude > 0.1f;
         if (isWalking)
         {
-            // Move the player based on the movement input, speed, and fixed time step
-            rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+            if(!CollidingWithObstacle())
+            {
+                // Move the player based on the movement input, speed, and fixed time step
+                rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
+
 
             // Rotate the player to face the movement direction
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
@@ -50,21 +66,40 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
 
     }
 
+    private bool CollidingWithObstacle()
+    {
+        return Physics.Raycast(transform.position + new Vector3(0,.7f, 0), transform.forward, out RaycastHit hitInfo, .5f, objectsToCheckAgainst)? true: false;
+    }
 
-    public void ActivateSpeedBoost(float duration, float speedMultiplier)
+    #region Interface / Pickups
+
+    public void ActivateSpeedBoost(float duration, float speedMultiplier, GameObject trailEffect)
     {
         moveSpeed += speedMultiplier;
         dur += duration;
+        
+        if(!hasTrail)
+        {
+            GameObject trail = Instantiate(trailEffect);
 
-        StartCoroutine(SpeedBoostEffect(dur));
+            trailEffect = null;
+            hasTrail = true;
+
+            trail.transform.SetParent(transform);
+            trail.transform.localPosition = new Vector3(0, .01f, 0);
+
+            StartCoroutine(SpeedBoostEffect(dur, trail));
+        }
     }
 
-    private IEnumerator SpeedBoostEffect(float duration)
+    private IEnumerator SpeedBoostEffect(float duration, GameObject trail)
     {
         yield return StartCoroutine(CountHelper(duration));
 
         moveSpeed = 10f;
         dur = 0;
+        Destroy(trail);
+        hasTrail = false;
     }
 
     private IEnumerator CountHelper(float dur)
@@ -76,4 +111,20 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
             yield return null;
         }
     }
+
+    public void ActivateShield(float duration)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void GiveHealth(float health)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RefillAbilityBar(float energy)
+    {
+        throw new System.NotImplementedException();
+    }
+    #endregion
 }
