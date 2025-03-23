@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1336633950713442011}
   - component: {fileID: 1905853290165408421}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AutoAttackingObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,5 +47,5 @@ MonoBehaviour:
   playerTag: Player
   itemHolder: []
   itemSize: 8
-  basicAutoBB: {fileID: 189975902129390228, guid: e0650f72d35bb5e4aa7cf60abd8e787f, type: 3}
-  basicRevolve: {fileID: 6585421304354862384, guid: f72a2b35ffaba0249871cee625e01c57, type: 3}
+  autoShootObject: {fileID: 0}
+  revolverObject: {fileID: 6585421304354862384, guid: f72a2b35ffaba0249871cee625e01c57, type: 3}

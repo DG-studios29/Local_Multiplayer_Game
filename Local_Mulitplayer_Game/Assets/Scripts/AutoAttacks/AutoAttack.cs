@@ -12,8 +12,8 @@ public class AutoAttack : MonoBehaviour
     public List<ItemObject> itemHolder;
     public int itemSize;
 
-    public GameObject basicAutoBB;
-    public GameObject basicRevolve;
+    public GameObject autoShootObject;
+    public GameObject revolverObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,11 +32,18 @@ public class AutoAttack : MonoBehaviour
         ItemHolder();  // initialising the item slots
 
         // will fix this to make it cleaner, and place it in a function for it to be dynamic
-        itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
-        Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
+        //itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
+        //Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
 
-        itemHolder.Add(basicRevolve.GetComponent<ItemObject>());
-        Instantiate(itemHolder[1].itemData.objectInstance,this.transform.position, Quaternion.identity, this.transform);
+        itemHolder.Add(revolverObject.GetComponent<ItemObject>());
+
+        foreach(ItemObject item in itemHolder)
+        {
+            //Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
+            Instantiate(item.itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
+
+        }
+        
 
     }
 

@@ -5,19 +5,34 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 10f; 
+    public float moveSpeed = 10f;
     public bool isWalking = true;
-    private Animator animator;
 
-    private Rigidbody rb; 
+
+    //public bool isPunchR = false;
+
+    private Animator animator;
+    public Animator Animator => animator;
+
+
+    private Rigidbody rb;
     private Vector2 movementInput;
+
+
+    //Gonna store all this stuff in a Player Punches script after merge
+    private PlayerPunches playerPunches;
 
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>(); 
+     
+
         animator = GetComponent<Animator>();
+
+        playerPunches = GetComponent<PlayerPunches>();
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -29,12 +44,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnPunch(InputAction.CallbackContext context)
     {
-        Debug.Log("Called Punch");
-        animator.SetTrigger("Punch");
-        GetComponent<PlayerHealth>().TakeDamage(10);
+
+        if (context.performed)
+        {
+            playerPunches.ChargingCall(true);
+        }
+
+        if (context.canceled)
+        {
+            //cancelled on release 
+            //cancel charge
+            
+            playerPunches.PunchCall();
+            //playerPunches.AnimatorChargeClear();
+
+        }
+       
     }
 
-   
+
+
 
     // Make the player move
     private void FixedUpdate()
@@ -59,6 +88,16 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        //
+        if(rb.linearVelocity.y < 0)
+        {
+            Physics.gravity = new Vector3(0, -45.62f, 0);
+        }
+        else
+        {
+            Physics.gravity = new Vector3(0, -9.81f, 0);
+        }
+
     }
     private void Update()
     {
@@ -73,4 +112,13 @@ public class PlayerController : MonoBehaviour
         //    GetComponent<PlayerHealth>().Heal(10);
         //}
     }
+
+
+ /*   private void OnDrawGizmos()
+    {
+        Vector3 GizmoPos = transform.position + new Vector3(0, 1, 0);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(GizmoPos + transform.forward * punchDistance,punchRadius);
+    }*/
 }

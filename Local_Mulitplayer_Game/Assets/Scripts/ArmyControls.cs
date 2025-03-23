@@ -11,15 +11,56 @@ public class ArmyControls : MonoBehaviour
 
     private bool isDead = false;
 
+    [SerializeField]private Material hurtMaterial;
+    [SerializeField] private float hurtTime = 0.25f;
+    bool alreadyHurting = false;
+    private Material baseMaterial;
+    private MeshRenderer[] partyMeshRenderers;
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        partyMeshRenderers = GetComponentsInChildren<MeshRenderer>();
+        baseMaterial = partyMeshRenderers[0].material;
     }
 
     private void Update()
     {
         //TakeDamage(damagePerSecond * Time.deltaTime);
         //Debug.Log($"Health is now {health}.");
+    }
+
+    public void AnimateAttack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    public void ShowDamage()
+    {
+        //start like a coroutine that changes materials and what not
+        if(!alreadyHurting)
+        StartCoroutine(MatChange());
+    }
+
+    IEnumerator MatChange()
+    {
+        alreadyHurting = true;
+        foreach(var party in partyMeshRenderers)
+        {
+            party.material = hurtMaterial;
+        }
+
+        yield return new WaitForSeconds(hurtTime);
+
+        foreach (var party in partyMeshRenderers)
+        {
+            party.material = baseMaterial;
+        }
+
+        alreadyHurting=false;
+        
     }
 
     // Take damage
@@ -35,6 +76,7 @@ public class ArmyControls : MonoBehaviour
             onDeath();
         }
     }
+
 
     public void onDeath()
     {

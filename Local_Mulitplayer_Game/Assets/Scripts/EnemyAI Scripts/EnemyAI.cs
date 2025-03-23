@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
     protected float openRange;
 
     protected float attackRange;
-    protected float attackCooldown = 1f;
+    protected float attackCooldown;
     protected float time_sinceAttack = 0f;
 
     [SerializeField] protected GameObject nearestTarget;
@@ -41,8 +41,10 @@ public class EnemyAI : MonoBehaviour
 
     private string playerTag = "Player";
 
+    //Feedback on K.I.D.S
+    protected ArmyControls[] armyControls;
 
-
+    
 
     private void OnEnable()
     {
@@ -86,7 +88,7 @@ public class EnemyAI : MonoBehaviour
 
         findEnemyTargets?.Invoke(this); // find all enemy targets that exist elsewhere
 
-
+        armyControls = GetComponentsInChildren<ArmyControls>(); // smooth way to control our armies        
 
     }
 
@@ -123,7 +125,12 @@ public class EnemyAI : MonoBehaviour
         health -= hp;
         Debug.Log($"Enemy {gameObject.name} took {hp} damage! Current HP: {health}");
 
-        if (health <= 0)
+        foreach(ArmyControls party in armyControls)
+        {
+            party.ShowDamage();
+        }
+
+        if(health <= 0)
         {
             onEnemyDeath?.Invoke(this.gameObject);
             EnemyDestroy();
@@ -140,7 +147,7 @@ public class EnemyAI : MonoBehaviour
         openRange = enemyData.OpenRange;
         attackRange = enemyData.AttackRange;
 
-        attackCooldown = 1f;
+        attackCooldown = enemyData.AttackRate;
     }
 
 
@@ -384,12 +391,18 @@ public class EnemyAI : MonoBehaviour
         {
             if (nearestDistance < nearestPlayerDistance && nearestDistance < attackRange)
             {
+
+                CascadeAnimation();
+
                 nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage); //deal damage when in attack range
                 time_sinceAttack = 0; //sets the cooldown for this function's condition
             }
             else if (nearestPlayerDistance < nearestDistance && nearestPlayerDistance < attackRange)
             {
-                //player take damage
+                CascadeAnimation();
+
+                //player takes damage
+                nearestPlayerTarget.GetComponent<PlayerHealth>().TakeDamage((int)damage);
                 time_sinceAttack = 0;
             }
         }
@@ -398,7 +411,10 @@ public class EnemyAI : MonoBehaviour
         {
             if (nearestPlayerDistance < attackRange)
             {
+                CascadeAnimation();
+
                 //player to take damage
+                nearestPlayerTarget.GetComponent<PlayerHealth>().TakeDamage((int)damage);
                 time_sinceAttack = 0;
             }
         }
@@ -406,11 +422,21 @@ public class EnemyAI : MonoBehaviour
         {
             if (nearestDistance < attackRange)
             {
+                CascadeAnimation();
+
                 nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage);
                 time_sinceAttack = 0;
             }
         }
 
+    }
+
+    protected void CascadeAnimation()
+    {
+        foreach (ArmyControls party in armyControls)
+        {
+            party.AnimateAttack();
+        }
     }
 
     private void OnDrawGizmos()
