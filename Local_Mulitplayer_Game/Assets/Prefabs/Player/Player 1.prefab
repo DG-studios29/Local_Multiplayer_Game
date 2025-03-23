@@ -212,6 +212,7 @@ Transform:
   - {fileID: 4131539653792030132}
   - {fileID: 110679916624571947}
   - {fileID: 2832066775513268427}
+  - {fileID: 6480534651021282838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1688786014060664745
@@ -228,6 +229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   isWalking: 0
+  objectsToCheckAgainst:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &4990804375180201557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +246,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armyTypes:
   - name: Mini
+    prefab: {fileID: 2951857971312674443, guid: 4633e81a5f433d4499db7069c9c273e3, type: 3}
+    spawnPoint: {fileID: 110679916624571947}
+    cooldownTime: 5
+  - name: Tank
     prefab: {fileID: 2951857971312674443, guid: 5cab7ae0f1bb330478e31830d79dc8ef, type: 3}
+    spawnPoint: {fileID: 110679916624571947}
+    cooldownTime: 5
+  - name: Demons
+    prefab: {fileID: 2951857971312674443, guid: 2850d011f71697140a0a507b2e9958be, type: 3}
     spawnPoint: {fileID: 110679916624571947}
     cooldownTime: 5
 --- !u!114 &6400584567564955390
@@ -371,8 +383,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: a2817905-5e33-429b-ad3e-7d809cc582a7
-    m_ActionName: 'Player/Melee1[/SZ-MYPOWER DS4 Wired Controller/trigger,/Mouse/leftButton]'
+    m_ActionId: 01c5c9be-4be1-4bc8-847a-8309be96eee5
+    m_ActionName: 'Player/Punch[/Mouse/leftButton,/DualShock4GamepadHID/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a3946e9a-1639-4bac-9729-baa000fefb89
+    m_ActionName: 'Player/Ability1[/Keyboard/tab,/DualShock4GamepadHID/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 40eebfe9-c66f-4040-8b27-aaef83d7384a
+    m_ActionName: 'Player/Ability2[/Keyboard/q,/DualShock4GamepadHID/rightShoulder]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1365769a-b56f-4a2a-8ddd-1157c9e7b0f3
+    m_ActionName: 'Player/Ultimate[/Keyboard/e,/DualShock4GamepadHID/rightTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -563,6 +587,37 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.37, z: 0.798}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2926983489562070621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4742957218830955432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6480534651021282838}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6480534651021282838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742957218830955432}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.003996174, y: 0.47702655, z: -0.0067224903}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2926983489562070621}

@@ -33,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Melee1",
+                    "name": "Punch",
                     "type": "Button",
-                    "id": "a2817905-5e33-429b-ad3e-7d809cc582a7",
+                    "id": "01c5c9be-4be1-4bc8-847a-8309be96eee5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -44,7 +44,7 @@
                 {
                     "name": "Ability1",
                     "type": "Button",
-                    "id": "3e7ecb3d-d6bf-43a7-8e98-c4ea8e865f8e",
+                    "id": "a3946e9a-1639-4bac-9729-baa000fefb89",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -53,7 +53,7 @@
                 {
                     "name": "Ability2",
                     "type": "Button",
-                    "id": "e0887a9d-f8b0-4b26-9c31-0729c3d4905d",
+                    "id": "40eebfe9-c66f-4040-8b27-aaef83d7384a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -62,7 +62,7 @@
                 {
                     "name": "Ultimate",
                     "type": "Button",
-                    "id": "5b0b47fc-61cc-4dfc-ab07-43466a5496ab",
+                    "id": "1365769a-b56f-4a2a-8ddd-1157c9e7b0f3",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -138,17 +138,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b15aae80-06fa-47f0-875b-9dacd845e023",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Joystick",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2735957d-ac0e-4b4a-9345-86dcef8d25a4",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -161,62 +150,51 @@
                 {
                     "name": "",
                     "id": "8fc3706a-43a5-4515-925a-ddb9250158d3",
-                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/button2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Joystick",
-                    "action": "SpawnArmyController",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7cede092-4f5e-4505-85f1-3f52a58af981",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
+                    "groups": "",
                     "action": "SpawnArmyController",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b43a08a1-95b4-4d8b-b343-9e63a27f78bb",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Melee1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "07b9683c-a48d-4488-8f96-6a0c1cc667d2",
-                    "path": "<Joystick>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Joystick",
-                    "action": "Melee1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5bc4f30e-9685-45c9-97eb-307081cf2b46",
+                    "id": "8e0c6527-4a46-412d-86e6-fb84446bd128",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Melee1",
+                    "action": "Punch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "026869d8-0ba6-45cc-9859-59d74dde7d41",
-                    "path": "<Keyboard>/q",
+                    "id": "c8dbcb2f-c748-4c08-867b-97384c206f78",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Punch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48822492-ac59-4d96-965a-355c8fd8985b",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "Punch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "617b9bbd-95f2-4d8b-9511-412f3b3301a3",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -226,7 +204,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f7c12437-aa50-41c0-800e-14981add5ec7",
+                    "id": "f3dcc699-86fc-4fed-8dbd-81efde09d464",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
@@ -237,8 +215,8 @@
                 },
                 {
                     "name": "",
-                    "id": "4d7c09b7-9067-4947-a61e-e8ae7d1b0838",
-                    "path": "<Keyboard>/e",
+                    "id": "3df7197b-8ea3-4484-81dd-3067455741fc",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -248,8 +226,8 @@
                 },
                 {
                     "name": "",
-                    "id": "cf74f57a-9862-4b75-b90d-e8be24f0ef4e",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "c234266d-7dbd-4460-917b-9563cf3630e9",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -259,8 +237,8 @@
                 },
                 {
                     "name": "",
-                    "id": "3f291da4-9c4c-4398-bd7d-00e3cec5fdb8",
-                    "path": "<Keyboard>/r",
+                    "id": "99c0562c-5fd9-4bb9-8278-a94dbe46d767",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -270,7 +248,7 @@
                 },
                 {
                     "name": "",
-                    "id": "de76ec1c-c2e0-4c0f-a273-24ee979391cd",
+                    "id": "004140fd-2594-4654-ab8c-21ee1b9afcdf",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",

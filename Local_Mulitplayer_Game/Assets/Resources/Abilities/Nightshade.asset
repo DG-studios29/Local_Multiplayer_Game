@@ -15,7 +15,7 @@ MonoBehaviour:
   heroName: Nightshade
   ability1:
     abilityName: Shadeball
-    projectilePrefab: {fileID: 3302372391171628307, guid: 9d0c7907ce5c9fa4cbc5344b51b0053b, type: 3}
+    projectilePrefab: {fileID: 3302372391171628307, guid: 317e0c2fa3fc24843817c07e2ec1c062, type: 3}
     cooldown: 5
     damage: 5
   ability2:

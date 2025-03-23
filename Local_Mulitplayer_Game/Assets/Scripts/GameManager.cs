@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            LoadSuddenDeathScene(); // Load sudden death when timer hits zero
+            //LoadSuddenDeathScene(); // Load sudden death when timer hits zero
         }
     }
 
@@ -100,20 +100,20 @@ public class GameManager : MonoBehaviour
         SpawnPlayers(currentSpawnPoints); // Spawn the players
     }
 
-    void LoadSuddenDeathScene()
-    {
-        Debug.Log("Loading Sudden Death Scene...");
+    //void LoadSuddenDeathScene()
+    //{
+    //    Debug.Log("Loading Sudden Death Scene...");
 
-        PlayerData.ClearData();
+    //    PlayerData.ClearData();
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (var player in players)
-        {
-            PlayerData.SavePlayerStats(player);
-        }
+    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+    //    foreach (var player in players)
+    //    {
+    //        PlayerData.SavePlayerStats(player);
+    //    }
 
-        SceneManager.LoadScene("SuddenDeath");
-    }
+    //    SceneManager.LoadScene("SuddenDeath");
+    //}
 
 
     public void SetupPlayerUI(GameObject player, string playerName)
@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour
                 AssignPlayerMaterials(player, i); // Assign player materials
                 string playerName = "Player " + (i + 1);
                 GameManager.Instance.SetupPlayerUI(player, playerName); // Setup UI
+                RevealPlayerBase.instance.players.Add(player.transform);
             }
             else
             {

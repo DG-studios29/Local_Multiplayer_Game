@@ -9,7 +9,7 @@ public abstract class HeroBase : MonoBehaviour
     public HeroAbility abilities;
     private PlayerInput playerInput;
     private Transform projectileSpawnPoint;
-    private float projectileSpeed = 10f;
+    private float projectileSpeed = 20f;
 
     public float ability1CooldownTimer = 0f;
     public float ability2CooldownTimer = 0f;

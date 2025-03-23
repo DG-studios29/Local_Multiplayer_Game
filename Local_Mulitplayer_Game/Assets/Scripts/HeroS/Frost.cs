@@ -114,8 +114,8 @@ public class Frost : HeroBase
         yield return new WaitForSeconds(duration);
         if (rb != null)
         {
-            rb.constraints = RigidbodyConstraints.None;
-            rb.transform.rotation = Quaternion.Euler(0, 0, 0);
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            
         }
     }
 }

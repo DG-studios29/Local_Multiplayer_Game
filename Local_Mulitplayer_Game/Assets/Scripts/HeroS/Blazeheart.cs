@@ -23,7 +23,7 @@ public class Blazeheart : HeroBase
     {
         if (ability2CooldownTimer <= 0f)
         {
-            Debug.Log("🔥 Blazeheart uses Fire Burst!");
+            Debug.Log("Blazeheart uses Fire Burst!");
             StartCoroutine(FireBurst());
             ability2CooldownTimer = abilities.ability2.cooldown; 
             StartCoroutine(CooldownCoroutine(2));
@@ -38,7 +38,7 @@ public class Blazeheart : HeroBase
     {
         if (ultimateCooldownTimer <= 0f)
         {
-            Debug.Log("🔥🔥 Blazeheart unleashes Firestorm!");
+            Debug.Log("Blazeheart unleashes Firestorm!");
             StartCoroutine(Firestorm());
             ultimateCooldownTimer = abilities.ultimate.cooldown; 
             StartCoroutine(CooldownCoroutine(3));
