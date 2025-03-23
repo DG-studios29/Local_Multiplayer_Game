@@ -1,17 +1,15 @@
+<<<<<<< Wandile-Branch-2
 using System.Collections;
+=======
+using System;
+>>>>>>> main
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IPlayerEffect
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-    public bool isWalking = true;
-    private Animator animator;
 
-    private Rigidbody rb;
-    private Vector2 movementInput;
-    [SerializeField] private LayerMask objectsToCheckAgainst; //for collision detection
 
     #region Pickup Variables
 
@@ -32,6 +30,15 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         movementInput = context.ReadValue<Vector2>();
 
     }
+
+    public void OnPunch(InputAction.CallbackContext context)
+    {
+        Debug.Log("Called Punch");
+        animator.SetTrigger("Punch");
+        GetComponent<PlayerHealth>().TakeDamage(10);
+    }
+
+   
 
     // Make the player move
     private void FixedUpdate()
@@ -65,7 +72,15 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
 
 
     }
+    private void Update()
+    {
+        //// Testing player Health 
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    GetComponent<PlayerHealth>().TakeDamage(10);
+    }
 
+<<<<<<< Wandile-Branch-2
     private bool CollidingWithObstacle()
     {
         return Physics.Raycast(transform.position + new Vector3(0,.7f, 0), transform.forward, out RaycastHit hitInfo, .5f, objectsToCheckAgainst)? true: false;
@@ -127,4 +142,11 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         throw new System.NotImplementedException();
     }
     #endregion
+=======
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    GetComponent<PlayerHealth>().Heal(10);
+        //}
+    }
+>>>>>>> main
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Collections;
 
 
 public class EnemyAI : MonoBehaviour
@@ -19,7 +20,7 @@ public class EnemyAI : MonoBehaviour
 
     public static event Action<EnemyAI> findEnemyTargets; //will add all existing enemy types
 
-    [SerializeField]protected float health;
+    [SerializeField] protected float health;
     protected float damage;
     protected float speed;
     protected float targetPlayerRange;
@@ -32,14 +33,15 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] protected GameObject nearestTarget;
     protected float nearestDistance;
 
-    [SerializeField]protected GameObject nearestPlayerTarget;
+    [SerializeField] protected GameObject nearestPlayerTarget;
     protected float nearestPlayerDistance;
 
-
+    private bool isFrozen;
+    private float freezeDuration;
 
     private string playerTag = "Player";
 
-    
+
 
 
     private void OnEnable()
@@ -47,7 +49,7 @@ public class EnemyAI : MonoBehaviour
         ItemObject.findEnemies += AddToEnemyList;
 
         EnemyAI.onEnemySpawn += AddToMyTargetList;
-        EnemyAI.onEnemyDeath -= RemoveFromMyTargetList;
+        EnemyAI.onEnemyDeath += RemoveFromMyTargetList;
 
         EnemyAI.findEnemyTargets += AddToMyTargetList;
     }
@@ -73,7 +75,7 @@ public class EnemyAI : MonoBehaviour
 
         time_sinceAttack = 0f;
 
-        if(enemyParent == null)
+        if (enemyParent == null)
         {
             RandomizeParent(); //will randomize its parent
         }
@@ -83,8 +85,8 @@ public class EnemyAI : MonoBehaviour
         onEnemySpawn?.Invoke(this.gameObject); // alert all listeners that this enemy is spawned
 
         findEnemyTargets?.Invoke(this); // find all enemy targets that exist elsewhere
-        
-        
+
+
 
     }
 
@@ -102,7 +104,7 @@ public class EnemyAI : MonoBehaviour
 
         DoTargetChase();
 
-        if(time_sinceAttack > attackCooldown)
+        if (time_sinceAttack > attackCooldown)
         {
             DoAttack();
         }
@@ -112,15 +114,16 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void EnemyDestroy()
     {
-       
+
         Destroy(gameObject, 0.1f);
     }
 
     public void TakeDamage(float hp)
     {
         health -= hp;
+        Debug.Log($"Enemy {gameObject.name} took {hp} damage! Current HP: {health}");
 
-        if(health <= 0)
+        if (health <= 0)
         {
             onEnemyDeath?.Invoke(this.gameObject);
             EnemyDestroy();
@@ -147,8 +150,8 @@ public class EnemyAI : MonoBehaviour
 
         foreach (GameObject parent in gameObjects)
         {
-            if(parent != enemyParent)  //dont add your own parent
-            playerTargetList.Add(parent);
+            if (parent != enemyParent)  //dont add your own parent
+                playerTargetList.Add(parent);
         }
     }
 
@@ -159,7 +162,7 @@ public class EnemyAI : MonoBehaviour
 
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(playerTag);
 
-        foreach(GameObject parent in gameObjects)
+        foreach (GameObject parent in gameObjects)
         {
             adopters.Add(parent);
         }
@@ -215,7 +218,7 @@ public class EnemyAI : MonoBehaviour
                     {
                         alreadyTargeting = true; //no duplicates
                     }
-               
+
                 }
 
                 if (!alreadyTargeting) targetList.Add(enemy);  // if we dont find it in out list, we are not already targetting. hence why we add
@@ -227,7 +230,7 @@ public class EnemyAI : MonoBehaviour
                 nearestDistance = Vector3.Distance(transform.position, targetList[0].transform.position); //first element will be used as nearest
                 nearestTarget = targetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
             }
-            
+
         }
         else
         {
@@ -272,8 +275,8 @@ public class EnemyAI : MonoBehaviour
             {
                 nearestDistance = Vector3.Distance(transform.position, targetList[0].transform.position); //first element will be used as nearest
             }
-                nearestTarget = targetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
-            
+            nearestTarget = targetList[0];  // to avoid a case where nearest target does not end up getting set and thus remains null
+
 
         }
         else
@@ -281,12 +284,17 @@ public class EnemyAI : MonoBehaviour
             foreach (GameObject target in targetList)
             {
                 //Missisng reference error
-                var distance = Vector3.Distance(transform.position, target.transform.position);
-                if (distance < nearestDistance)
+                //maybe remove from the list then destroy
+                if (target != null)
                 {
-                    nearestDistance = distance;
-                    nearestTarget = target;
+                    var distance = Vector3.Distance(transform.position, target.transform.position);
+                    if (distance < nearestDistance)
+                    {
+                        nearestDistance = distance;
+                        nearestTarget = target;
+                    }
                 }
+
             }
         }
 
@@ -360,7 +368,7 @@ public class EnemyAI : MonoBehaviour
             navAgent.SetDestination(nearestTarget.transform.position);
         }
 
-        if(nearestTarget == null && nearestPlayerTarget == null)
+        if (nearestTarget == null && nearestPlayerTarget == null)
         {
             navAgent.SetDestination(this.transform.position);
         }
@@ -372,14 +380,14 @@ public class EnemyAI : MonoBehaviour
     protected virtual void DoAttack()
     {
 
-        if(nearestTarget != null && nearestPlayerTarget != null)
+        if (nearestTarget != null && nearestPlayerTarget != null)
         {
-            if(nearestDistance < nearestPlayerDistance && nearestDistance < attackRange)
+            if (nearestDistance < nearestPlayerDistance && nearestDistance < attackRange)
             {
                 nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage); //deal damage when in attack range
                 time_sinceAttack = 0; //sets the cooldown for this function's condition
             }
-            else if(nearestPlayerDistance < nearestDistance && nearestPlayerDistance < attackRange)
+            else if (nearestPlayerDistance < nearestDistance && nearestPlayerDistance < attackRange)
             {
                 //player take damage
                 time_sinceAttack = 0;
@@ -388,15 +396,15 @@ public class EnemyAI : MonoBehaviour
 
         else if (nearestTarget == null && nearestPlayerTarget != null)
         {
-            if(nearestPlayerDistance < attackRange)
+            if (nearestPlayerDistance < attackRange)
             {
                 //player to take damage
                 time_sinceAttack = 0;
             }
         }
-        else if(nearestTarget != null && nearestPlayerTarget == null)
+        else if (nearestTarget != null && nearestPlayerTarget == null)
         {
-            if(nearestDistance < attackRange)
+            if (nearestDistance < attackRange)
             {
                 nearestTarget.GetComponent<EnemyAI>().TakeDamage(damage);
                 time_sinceAttack = 0;
@@ -408,15 +416,33 @@ public class EnemyAI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,attackRange);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position,targetPlayerRange);
+        Gizmos.DrawWireSphere(transform.position, targetPlayerRange);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position,openRange);
+        Gizmos.DrawWireSphere(transform.position, openRange);
 
 
     }
 
+    public void Freeze(float duration)
+    {
+        if (isFrozen) return; 
+        isFrozen = true;
+        freezeDuration = duration;
+        // Apply freezing logic, e.g., stop movement 
+        GetComponent<NavMeshAgent>().isStopped = true;
+
+        StartCoroutine(FreezeDuration());
+    }
+
+    private IEnumerator FreezeDuration()
+    {
+        yield return new WaitForSeconds(freezeDuration);
+        // After the freeze duration ends, re-enable movement
+        GetComponent<NavMeshAgent>().isStopped = false;
+        isFrozen = false;
+    }
 }
