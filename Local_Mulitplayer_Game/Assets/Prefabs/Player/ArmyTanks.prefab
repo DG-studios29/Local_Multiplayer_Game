@@ -755,6 +755,7 @@ MonoBehaviour:
   damage: 30
   damagePerSecond: 10
   armyCollider: {fileID: 7642080828163612796}
+  hurtMaterial: {fileID: 2100000, guid: 452e9989bc28b8445b6186ce05987e83, type: 2}
 --- !u!1001 &7545189258861665555
 PrefabInstance:
   m_ObjectHideFlags: 0

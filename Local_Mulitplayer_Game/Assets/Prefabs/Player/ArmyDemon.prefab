@@ -419,6 +419,7 @@ MonoBehaviour:
   damage: 30
   damagePerSecond: 10
   armyCollider: {fileID: 7642080828163612796}
+  hurtMaterial: {fileID: 2100000, guid: 452e9989bc28b8445b6186ce05987e83, type: 2}
 --- !u!1 &956352361027156504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,6 +1302,7 @@ MonoBehaviour:
   damage: 30
   damagePerSecond: 10
   armyCollider: {fileID: 7642080828163612796}
+  hurtMaterial: {fileID: 2100000, guid: 452e9989bc28b8445b6186ce05987e83, type: 2}
 --- !u!1 &5318225963650526238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1582,7 @@ MonoBehaviour:
   damage: 30
   damagePerSecond: 10
   armyCollider: {fileID: 7642080828163612796}
+  hurtMaterial: {fileID: 2100000, guid: 452e9989bc28b8445b6186ce05987e83, type: 2}
 --- !u!1 &6213214721189374717
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,6 +2639,7 @@ MonoBehaviour:
   damage: 30
   damagePerSecond: 10
   armyCollider: {fileID: 7642080828163612796}
+  hurtMaterial: {fileID: 2100000, guid: 452e9989bc28b8445b6186ce05987e83, type: 2}
 --- !u!1001 &543327638101028291
 PrefabInstance:
   m_ObjectHideFlags: 0
