@@ -147,7 +147,11 @@ public class GameManager : MonoBehaviour
                 GameObject player = Instantiate(playerPrefab, points[i].position, Quaternion.identity);
                 player.name = "Player " + (i + 1);
 
-
+                AddPlayerToCamera(player, 1f, 2f); // Add player to camera tracking
+                AssignHeroScript(player, selectedHeroes[i]); // Attach hero script
+                AssignPlayerMaterials(player, i); // Assign player materials
+                string playerName = "Player " + (i + 1);
+                GameManager.Instance.SetupPlayerUI(player, playerName); // Setup UI
             }
             else
             {
