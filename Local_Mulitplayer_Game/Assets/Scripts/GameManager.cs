@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PlayerPrefs.html
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             if (string.IsNullOrEmpty(selectedHeroes[i]))
             {
-                selectedHeroes[i] = "FireMage"; // Default hero if none chosen
+                selectedHeroes[i] = "Blazeheart"; // Default hero if none chosen
             }
         }
 
@@ -173,29 +173,42 @@ public class GameManager : MonoBehaviour
 
     void AssignHeroScript(GameObject player, string heroName)
     {
-        // Add hero-specific components based on selection
+        HeroBase hero = null;
+        HeroAbility abilityData = Resources.Load<HeroAbility>($"Abilities/{heroName}");
+
         switch (heroName)
         {
             case "Blazeheart":
-                player.AddComponent<Blazeheart>();
+                hero = player.AddComponent<Blazeheart>();
                 break;
             case "Frost":
-                player.AddComponent<Frost>();
+                hero = player.AddComponent<Frost>();
                 break;
             case "Nightshade":
-                player.AddComponent<Nightshade>();
+                hero = player.AddComponent<Nightshade>();
                 break;
             case "Stonewarden":
-                player.AddComponent<Stonewarden>();
+                hero = player.AddComponent<Stonewarden>();
                 break;
             default:
                 Debug.LogWarning("Hero not found: " + heroName);
-                break;
+                return;
+        }
+
+        if (hero != null && abilityData != null)
+        {
+            hero.abilities = abilityData;
+        }
+        else
+        {
+            Debug.LogError($"Failed to assign abilities to {heroName}");
         }
     }
 
+
     void AssignPlayerMaterials(GameObject player, int playerIndex)
     {
+        // Add hero-specific material based on selection
         if (selectedHeroes.Count > playerIndex)
         {
             string heroName = selectedHeroes[playerIndex];
@@ -220,6 +233,7 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Player index out of range in AssignPlayerMaterials!");
         }
     }
+
     Material GetMaterialForHero(string heroName)
     {
         switch (heroName)

@@ -172,6 +172,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3015232024895687796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4450866769629443032}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4450866769629443032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3015232024895687796}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.003996174, y: 0.685, z: 0.388}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2926983489562070621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3093234706080368204
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +242,7 @@ Transform:
   - {fileID: 4131539653792030132}
   - {fileID: 110679916624571947}
   - {fileID: 2832066775513268427}
+  - {fileID: 4450866769629443032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1688786014060664745
@@ -243,7 +275,7 @@ MonoBehaviour:
   - name: Mini
     prefab: {fileID: 2951857971312674443, guid: 4633e81a5f433d4499db7069c9c273e3, type: 3}
     spawnPoint: {fileID: 110679916624571947}
-    cooldownTime: 5
+    cooldownTime: 1
 --- !u!114 &6400584567564955390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +381,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c2334b81-c2f8-4800-bce8-8fc42c6cf785
     m_ActionName: 'Player/Melee[/Keyboard/space,/SZ-MYPOWER DS4 Wired Controller/trigger]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1688786014060664745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAbility1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3e7ecb3d-d6bf-43a7-8e98-c4ea8e865f8e
+    m_ActionName: 'Player/Ability1[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
