@@ -18,20 +18,17 @@ MonoBehaviour:
     projectilePrefab: {fileID: 3302372391171628307, guid: 317e0c2fa3fc24843817c07e2ec1c062, type: 3}
     cooldown: 5
     damage: 5
-    icon: {fileID: 21300000, guid: 68bea5f3e0ebc4345a8927e3c602ab00, type: 3}
+    icon: {fileID: 21300000, guid: 4553ac607ac0264469b54124e7444fc1, type: 3}
   ability2:
     abilityName: Shades
     projectilePrefab: {fileID: 391511041649616911, guid: f9f4e7ca9bebc91499af544b17a6c922, type: 3}
     cooldown: 10
     damage: 10
-    icon: {fileID: 21300000, guid: 46a1e527a524ee445994f92c7622f034, type: 3}
+    icon: {fileID: 21300000, guid: a88ffd98ac95cfb4e8dce52561358065, type: 3}
   ultimate:
     abilityName: Vortex
     projectilePrefab: {fileID: 7302212964624594422, guid: 9490023427edba94699c501a1c973b23, type: 3}
     cooldown: 20
     damage: 20
-
+    icon: {fileID: 21300000, guid: f544d66294ae8464f928773dcfdf18c6, type: 3}
   itemRevolve: {fileID: 11400000, guid: af7414e0d8aa49042b0dcf776426a41c, type: 2}
-
-    icon: {fileID: 21300000, guid: 86c5550b9831d0743be7b73b0fe1a8cf, type: 3}
-
