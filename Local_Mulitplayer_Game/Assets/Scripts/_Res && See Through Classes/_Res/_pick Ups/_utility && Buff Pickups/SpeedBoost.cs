@@ -25,9 +25,14 @@ public class SpeedBoost : PickUpsBase
             Destroy(pEffect, 1f);
         }
 
-        IPlayerEffect playerEffect = player.GetComponent<IPlayerEffect>();
-
-        if (playerEffect!= null) playerEffect.ActivateSpeedBoost(duration, speedBoost, trailEffect);
+        IPlayerEffect[] playerEffect = player.GetComponents<IPlayerEffect>();
+        if (playerEffect.Length > 0)
+        {
+            foreach (var effect in playerEffect)
+            {
+                effect.ActivateSpeedBoost(duration, speedBoost, trailEffect);
+            }
+        }
 
         Destroy(gameObject, 0.01f);
     }
