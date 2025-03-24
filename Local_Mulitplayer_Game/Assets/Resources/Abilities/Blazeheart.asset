@@ -28,3 +28,4 @@ MonoBehaviour:
     projectilePrefab: {fileID: 4992560401494183607, guid: 4ee1d140a1cc71f40ac3606d234c2ecf, type: 3}
     cooldown: 20
     damage: 20
+  itemRevolve: {fileID: 11400000, guid: 08ed9a8593a90a747ae946ef6da2e19d, type: 2}
