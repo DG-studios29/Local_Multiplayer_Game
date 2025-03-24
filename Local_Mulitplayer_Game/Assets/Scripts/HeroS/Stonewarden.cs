@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
@@ -58,7 +59,6 @@ public class Stonewarden : HeroBase
         float rockRadius = 5f;
         float damage = abilities.ability2.damage;
 
-        // Ensure the projectile prefab is assigned
         if (abilities.ability2.projectilePrefab == null)
         {
             Debug.LogError("Rock Fall projectile prefab is missing.");
@@ -84,29 +84,27 @@ public class Stonewarden : HeroBase
 
         if (targetEnemy == null) yield break;
 
-        // Calculate fall direction towards the target enemy
-        Vector3 fallPosition = transform.position + new Vector3(Random.Range(-rockRadius, rockRadius), 10f, Random.Range(-rockRadius, rockRadius));
+        // Spawn the rock **above** the target enemy
+        Vector3 fallPosition = targetEnemy.transform.position + Vector3.up * 10f; // 10 units above
         GameObject rock = Instantiate(abilities.ability2.projectilePrefab, fallPosition, Quaternion.identity);
-        if (rock == null) yield break;  // Exit if the rock has been destroyed
-        // Ensure Rigidbody or movement logic for the rock
+
+        if (rock == null) yield break;
+
         Rigidbody rockRb = rock.GetComponent<Rigidbody>();
         if (rockRb != null)
         {
-            Vector3 direction = (targetEnemy.transform.position - rock.transform.position).normalized;
-            rockRb.linearVelocity = direction * 10f; // Or use another method to control movement
+            rockRb.linearVelocity = Vector3.down * 20f; // Make it fall quickly
         }
 
-        // Wait for the rock to fall and deal damage
         float timer = 0f;
         while (timer < fallDuration)
         {
-            if (rock == null) break;  // Exit if the rock has been destroyed
-            rock.transform.position = Vector3.Lerp(fallPosition, targetEnemy.transform.position, timer / fallDuration);
+            if (rock == null) break;  // Exit if the rock is destroyed
             timer += Time.deltaTime;
             yield return null;
         }
 
-        if (rock == null) yield break;  // If the rock is destroyed, exit early
+        if (rock == null) yield break;
 
         Collider[] hitEnemies = Physics.OverlapSphere(rock.transform.position, rockRadius);
         foreach (Collider enemy in hitEnemies)
@@ -126,27 +124,40 @@ public class Stonewarden : HeroBase
     }
 
 
+
     private IEnumerator Earthquake()
     {
-        
         float quakeDuration = 3f;
         float quakeRadius = 7f;
         float pushForce = 10f;
 
-        // Starts in the direction the player is facing
-        Vector3 quakeDirection = transform.forward;  
-        Vector3 quakeStartPosition = transform.position + quakeDirection * 3f;  
+        // Start in the direction the player is facing
+        Vector3 quakeDirection = transform.forward;
+        Vector3 quakeStartPosition = transform.position + quakeDirection * 3f;
 
+        // Create the visual effect if you have one
+        if (abilities.ultimate.projectilePrefab != null)
+        {
+            GameObject quakeEffect = Instantiate(abilities.ultimate.projectilePrefab, quakeStartPosition, Quaternion.identity);
+            Destroy(quakeEffect, quakeDuration);
+        }
+
+        // Track hit enemies to avoid multiple damage applications
+        HashSet<int> hitEnemiesSet = new HashSet<int>();
+
+        // Apply damage and pushback **only once per enemy**
         Collider[] hitEnemies = Physics.OverlapSphere(quakeStartPosition, quakeRadius);
         foreach (Collider enemy in hitEnemies)
         {
+            int enemyID = enemy.gameObject.GetInstanceID();
+            if (enemyID == gameObject.GetInstanceID() || hitEnemiesSet.Contains(enemyID))
+                continue; // Skip self and already hit enemies
+
             if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
             {
-                
-                if (enemy.gameObject.GetInstanceID() == gameObject.GetInstanceID())
-                    continue;
+                hitEnemiesSet.Add(enemyID); // Mark as hit
 
-                
+                // Apply damage
                 enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)abilities.ultimate.damage);
                 enemy.GetComponent<EnemyAI>()?.TakeDamage((int)abilities.ultimate.damage);
 
@@ -160,7 +171,8 @@ public class Stonewarden : HeroBase
             }
         }
 
-        
         yield return new WaitForSeconds(quakeDuration);
     }
+
+
 }

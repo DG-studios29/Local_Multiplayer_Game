@@ -62,15 +62,21 @@ public abstract class HeroBase : MonoBehaviour
             return;
         }
 
+        // Ensure the projectile spawns in front of the player
+        Vector3 spawnPosition = projectileSpawnPoint.position + transform.forward * 1f; // 1f is the offset to spawn in front of the player, adjust as needed
+
         // Instantiate the projectile and initialize it with the correct damage
-        GameObject projectile = Instantiate(ability.projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(ability.projectilePrefab, spawnPosition, Quaternion.identity);
 
         // Get the Rigidbody component to apply velocity
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            // Set the velocity to move the projectile forward (use a direction, e.g., forward)
-            rb.linearVelocity = transform.forward * projectileSpeed; // Adjust the speed (10f) as necessary
+            // Get the direction of the player (either the facing direction or velocity direction)
+            Vector3 direction = transform.forward;
+
+            // Apply the velocity to the projectile
+            rb.linearVelocity = direction * projectileSpeed; // Apply the speed to the direction
         }
 
         // Initialize the projectile with the shooter and damage
@@ -81,9 +87,10 @@ public abstract class HeroBase : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
-        UpdateCooldowns(); // Update cooldown timers each frame
+        UpdateCooldowns(); 
 
         // Handle the visuals for the ability icons and cooldown text
         UpdateAbilityUI(ability1CooldownTimer, ability1Icon, ability1CooldownText);
@@ -113,12 +120,20 @@ public abstract class HeroBase : MonoBehaviour
             // Ability is on cooldown
             abilityIcon.color = Color.gray; // Change the icon color to gray
             cooldownText.gameObject.SetActive(true); // Show the cooldown text
-            cooldownText.text = cooldownTimer.ToString(); // Update the cooldown timer text
+            cooldownText.text = cooldownTimer.ToString("F0"); // Update the cooldown timer text
         }
         else
         {
             // Ability is ready
             abilityIcon.color = originalAbility1Color; // Reset icon color to original
+            cooldownText.gameObject.SetActive(false); // Hide the cooldown text
+
+            // Ability is ready
+            abilityIcon.color = originalAbility2Color; // Reset icon color to original
+            cooldownText.gameObject.SetActive(false); // Hide the cooldown text
+
+            // Ability is ready
+            abilityIcon.color = originalUltimateColor; // Reset icon color to original
             cooldownText.gameObject.SetActive(false); // Hide the cooldown text
         }
     }

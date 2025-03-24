@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
@@ -86,18 +86,29 @@ public class Frost : HeroBase
         float freezeDuration = 10f;
         float radius = 6f;
 
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, radius);
+        // Spawn IceAge effect in front of the player
+        Vector3 iceAgeSpawnPosition = transform.position + transform.forward * 2f; // Adjust as needed
+        GameObject iceEffect = Instantiate(abilities.ultimate.projectilePrefab, iceAgeSpawnPosition, Quaternion.identity);
+
+        // Optionally keep the effect stationary
+        Rigidbody iceRb = iceEffect.GetComponent<Rigidbody>();
+        if (iceRb != null)
+        {
+            iceRb.linearVelocity = Vector3.zero;
+        }
+
+        // Apply freezing effect to enemies in range
+        Collider[] hitEnemies = Physics.OverlapSphere(iceAgeSpawnPosition, radius);
         foreach (Collider enemy in hitEnemies)
         {
             if (enemy.gameObject != gameObject)
             {
-                Debug.Log($"?? Freezing {enemy.name}");
-
+                Debug.Log($"❄ Freezing {enemy.name}");
 
                 enemy.GetComponent<PlayerHealth>()?.TakeDamage(abilities.ultimate.damage);
                 enemy.GetComponent<EnemyAI>()?.TakeDamage(abilities.ultimate.damage);
 
-                // Apply freeze effect 
+                // Freeze the enemy by disabling movement
                 Rigidbody rb = enemy.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
@@ -107,7 +118,10 @@ public class Frost : HeroBase
             }
         }
 
-        yield return null;
+        yield return new WaitForSeconds(freezeDuration);
+
+        // Destroy the ice effect after freeze duration
+        Destroy(iceEffect);
     }
 
     private IEnumerator UnfreezeAfterDelay(Rigidbody rb, float duration)

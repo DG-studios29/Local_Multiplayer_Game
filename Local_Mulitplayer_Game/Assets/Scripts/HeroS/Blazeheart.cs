@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Blazeheart : HeroBase
@@ -56,7 +57,7 @@ public class Blazeheart : HeroBase
     {
         float duration = 0.5f;
         float radius = 5f;
-        float pushForce = 10f;
+        float pushForce = 5f;
 
         if (abilities.ability2.projectilePrefab == null)
         {
@@ -64,10 +65,13 @@ public class Blazeheart : HeroBase
             yield break;
         }
 
-        GameObject fireBurst = Instantiate(abilities.ability2.projectilePrefab, transform.position, Quaternion.identity);
+        // Spawn FireBurst in front of the player
+        Vector3 spawnPosition = transform.position + transform.forward * 2f;
+        GameObject fireBurst = Instantiate(abilities.ability2.projectilePrefab, spawnPosition, Quaternion.identity);
         fireBurst.transform.localScale = Vector3.zero;
 
         casterID = gameObject.GetInstanceID();
+        HashSet<int> hitEnemiesSet = new HashSet<int>(); // Track hit enemies
 
         float timer = 0f;
         while (timer < duration)
@@ -76,21 +80,26 @@ public class Blazeheart : HeroBase
 
             fireBurst.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * radius, timer / duration);
 
-            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, radius);
+            Collider[] hitEnemies = Physics.OverlapSphere(spawnPosition, radius);
             foreach (Collider enemy in hitEnemies)
             {
-                if (enemy.gameObject.GetInstanceID() == casterID)
-                    continue;
+                int enemyID = enemy.gameObject.GetInstanceID();
+                if (enemyID == casterID || hitEnemiesSet.Contains(enemyID))
+                    continue; // Skip if it's the caster or already hit
 
                 if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
                 {
+                    hitEnemiesSet.Add(enemyID); // Mark as hit
+
+                    // Apply damage
                     enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)abilities.ability2.damage);
                     enemy.GetComponent<EnemyAI>()?.TakeDamage((int)abilities.ability2.damage);
 
+                    // Apply knockback
                     Rigidbody rb = enemy.GetComponent<Rigidbody>();
                     if (rb != null)
                     {
-                        Vector3 knockbackDirection = (enemy.transform.position - transform.position).normalized;
+                        Vector3 knockbackDirection = (enemy.transform.position - spawnPosition).normalized;
                         rb.AddForce(knockbackDirection * pushForce, ForceMode.Impulse);
                     }
                 }
@@ -102,6 +111,8 @@ public class Blazeheart : HeroBase
 
         Destroy(fireBurst);
     }
+
+
 
 
     private IEnumerator Firestorm()
