@@ -5,65 +5,91 @@ using UnityEngine.InputSystem;
 public class MiniArmySpawner : MonoBehaviour
 {
     [System.Serializable]
-    public class ArmyType // Setup array requirement.
+    public class ArmyType
     {
         public string name;
         public GameObject prefab;
         public Transform spawnPoint;
         public float cooldownTime;
     }
+
     [Header("Army Type")]
     public ArmyType[] armyTypes;
     private bool[] canSpawn;
 
+    private int selectedArmyIndex = 0; // Tracks the currently selected army
     private MeshRenderer[] playerMeshRenderers;
 
     private void Start()
     {
-        canSpawn = new bool[armyTypes.Length]; // Initialize cooldown tracking array
+        canSpawn = new bool[armyTypes.Length];
         for (int i = 0; i < canSpawn.Length; i++)
         {
-            canSpawn[i] = true; // Allow spawning initially
+            canSpawn[i] = true;
         }
 
         playerMeshRenderers = GetComponentsInChildren<MeshRenderer>();
-
-        
     }
 
     public void SetPlayerMaterial(Material playerMaterial)
     {
-        // Apply the material to all mesh renderers
         foreach (var renderer in playerMeshRenderers)
         {
             renderer.material = playerMaterial;
         }
     }
-    public void SpawnArmy(InputAction.CallbackContext context) // Spawns army when  button 1 is pressed.
+
+    // Switching army type using arrow keys (left/right on controller)
+    public void SwitchArmy(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            int armyIndex = Mathf.Clamp((int)context.ReadValue<float>(), 0, armyTypes.Length - 1); // Ensure index is within range
-            TrySpawn(armyIndex);
+            float input = context.ReadValue<float>();
+
+            if (input > 0) // Right arrow or D-Pad Right
+            {
+                selectedArmyIndex = (selectedArmyIndex + 1) % armyTypes.Length;
+            }
+            else if (input < 0) // Left arrow or D-Pad Left
+            {
+                selectedArmyIndex = (selectedArmyIndex - 1 + armyTypes.Length) % armyTypes.Length;
+            }
+
+            Debug.Log($"Selected Army: {armyTypes[selectedArmyIndex].name}");
         }
     }
 
-    private void TrySpawn(int index) // Checks if spawn is possible.
+    // Spawn army using controller (X button)
+    public void SpawnSelectedArmy(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            TrySpawn(selectedArmyIndex);
+        }
+    }
+
+    // Spawn army directly using number keys (1,2,3)
+  
+    public void SpawnArmyByKey1(InputAction.CallbackContext context) { if (context.performed) TrySpawn(0); }
+    public void SpawnArmyByKey2(InputAction.CallbackContext context) { if (context.performed) TrySpawn(1); }
+    public void SpawnArmyByKey3(InputAction.CallbackContext context) { if (context.performed) TrySpawn(2); }
+
+
+    private void TrySpawn(int index)
     {
         if (canSpawn[index])
         {
-            GameObject newArmy = Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity); // Spawn the unit
+            GameObject newArmy = Instantiate(armyTypes[index].prefab, armyTypes[index].spawnPoint.position, Quaternion.identity);
             EnemyAI spawnedEnemy = newArmy.GetComponent<EnemyAI>();
-            spawnedEnemy.enemyParent = this.gameObject; // Set parent as the player that spawned
+            spawnedEnemy.enemyParent = this.gameObject;
 
-            // Apply the player's material to all mesh renderers in the army prefab
             MeshRenderer[] armyMeshRenderers = newArmy.GetComponentsInChildren<MeshRenderer>();
             foreach (var renderer in armyMeshRenderers)
             {
-                renderer.material = playerMeshRenderers[0].material; // Apply the player's material to each mesh renderer in the army
+                renderer.material = playerMeshRenderers[0].material;
             }
 
-            StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime)); // Start cooldown coroutine
+            StartCoroutine(Cooldown(index, armyTypes[index].cooldownTime));
         }
         else
         {
@@ -71,14 +97,13 @@ public class MiniArmySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator Cooldown(int index, float cooldown) // Handles cooldown timing.
+    private IEnumerator Cooldown(int index, float cooldown)
     {
-        //debug purposes
         cooldown = 0.5f;
 
-        canSpawn[index] = false; // Disable spawning for this unit type
+        canSpawn[index] = false;
         yield return new WaitForSeconds(cooldown);
-        canSpawn[index] = true; // Enable spawning again
+        canSpawn[index] = true;
         Debug.Log($"{armyTypes[index].name} is ready to spawn again!");
     }
 }

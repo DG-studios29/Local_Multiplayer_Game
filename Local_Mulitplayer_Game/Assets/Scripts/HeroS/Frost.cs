@@ -5,6 +5,7 @@ using System.Collections;
 public class Frost : HeroBase
 {
     private int casterID;
+   
     protected override void UseAbility1()
     {
         if (ability1CooldownTimer <= 0f)
@@ -65,7 +66,7 @@ public class Frost : HeroBase
             projScript.Initialize(gameObject, abilities.ability2.damage);
         }
 
-        
+
         casterID = gameObject.GetInstanceID();
         Collider[] hitEnemies = Physics.OverlapSphere(transform.position, 3f);
         foreach (Collider enemy in hitEnemies)
@@ -88,11 +89,11 @@ public class Frost : HeroBase
         Collider[] hitEnemies = Physics.OverlapSphere(transform.position, radius);
         foreach (Collider enemy in hitEnemies)
         {
-            if (enemy.gameObject != gameObject) 
+            if (enemy.gameObject != gameObject)
             {
                 Debug.Log($"?? Freezing {enemy.name}");
 
-                
+
                 enemy.GetComponent<PlayerHealth>()?.TakeDamage(abilities.ultimate.damage);
                 enemy.GetComponent<EnemyAI>()?.TakeDamage(abilities.ultimate.damage);
 
@@ -115,7 +116,7 @@ public class Frost : HeroBase
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            
+
         }
     }
 }
