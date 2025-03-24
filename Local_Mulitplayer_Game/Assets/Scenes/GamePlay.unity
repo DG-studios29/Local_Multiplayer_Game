@@ -11260,7 +11260,7 @@ MonoBehaviour:
   cineCamera: {fileID: 238665043}
   noise: {fileID: 238665045}
   selectedHeroes: []
-  gameDuration: 20
+  gameDuration: 300
   timer: 0
   selectedMap: Forest
   forestMap: {fileID: 1017930693}
@@ -11288,8 +11288,6 @@ MonoBehaviour:
   gameOverUI: {fileID: 373348913}
   isPlayer1Alive: 1
   isPlayer2Alive: 1
-  player1Health: {fileID: 0}
-  player2Health: {fileID: 0}
 --- !u!1 &1668148624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3827328430994273628, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}

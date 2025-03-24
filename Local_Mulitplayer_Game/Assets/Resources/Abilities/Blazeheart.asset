@@ -21,7 +21,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4bfcd51cdbeb5a14fa5d689e708eee0e, type: 3}
   ability2:
     abilityName: Fire
-    projectilePrefab: {fileID: 5337696728587280819, guid: d5a2277c36ea9eb4787946ae2a9d4da0, type: 3}
+    projectilePrefab: {fileID: 8349905286810399050, guid: 2ca3ea3fe10781c42a680cab059dcb1f, type: 3}
     cooldown: 10
     damage: 10
     icon: {fileID: 21300000, guid: 3dde5f03aa4890a46b5ef064aa2a69c8, type: 3}

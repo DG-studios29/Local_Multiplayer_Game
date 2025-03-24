@@ -53,9 +53,53 @@ public class Nightshade : HeroBase
         }
     }
 
+    private IEnumerator DarkVortex()
+    {
+        float vortexDuration = 5f;
+        float vortexRadius = 10f;
+        float pullForce = 10f;
+
+        // Spawn Dark Vortex projectile in front of the player
+        Vector3 vortexSpawnPosition = transform.position + transform.forward * 2f; // Adjust distance as needed
+        GameObject vortex = Instantiate(abilities.ultimate.projectilePrefab, vortexSpawnPosition, Quaternion.identity);
+
+        // Apply any necessary forces or effects to the vortex
+        Rigidbody rb = vortex.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero; // Vortex should stay still
+        }
+
+        // Damage and pull effect
+        Collider[] hitEnemies = Physics.OverlapSphere(vortexSpawnPosition, vortexRadius);
+        foreach (Collider enemy in hitEnemies)
+        {
+            if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
+            {
+                if (enemy.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                    continue;
+
+                enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)abilities.ultimate.damage);
+                enemy.GetComponent<EnemyAI>()?.TakeDamage((int)abilities.ultimate.damage);
+
+                // Pull enemy toward the vortex
+                Rigidbody enemyRb = enemy.GetComponent<Rigidbody>();
+                if (enemyRb != null)
+                {
+                    Vector3 direction = (vortexSpawnPosition - enemy.transform.position).normalized;
+                    enemyRb.AddForce(direction * pullForce, ForceMode.VelocityChange);
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(vortexDuration);
+
+        // Destroy vortex after duration
+        Destroy(vortex);
+    }
+
     private IEnumerator ShadowDash()
     {
-        // Implement the dash logic here, e.g., move Nightshade quickly across the screen
         float dashSpeed = 10f;
         float dashDuration = 1f;
 
@@ -72,10 +116,26 @@ public class Nightshade : HeroBase
 
         transform.position = dashTarget;
 
-        // Now leave a damage radius at the start of the dash
+        // Spawn Shadow Dash effect behind the player
+        Vector3 dashSpawnPosition = originalPosition - transform.forward * 2f; // Adjust distance as needed
+        GameObject dashEffect = Instantiate(abilities.ability2.projectilePrefab, dashSpawnPosition, Quaternion.identity);
+
+        // Optionally add force or animation
+        Rigidbody rb = dashEffect.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero; // Keep it static
+        }
+
+        // Damage effect
         StartCoroutine(DamageRadius(originalPosition));
+
         Debug.Log("Nightshade completes the Shadow Dash!");
     }
+
+
+
+
 
     private IEnumerator DamageRadius(Vector3 position)
     {
@@ -101,37 +161,6 @@ public class Nightshade : HeroBase
         yield return new WaitForSeconds(duration);
     }
 
-    private IEnumerator DarkVortex()
-    {
-        
-        float vortexDuration = 5f;
-        float vortexRadius = 10f;
-        float pullForce = 10f;
+    
 
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, vortexRadius);
-        foreach (Collider enemy in hitEnemies)
-        {
-            if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
-            {
-                
-                if (enemy.gameObject.GetInstanceID() == gameObject.GetInstanceID())
-                    continue;
-
-               
-                enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)abilities.ultimate.damage);
-                enemy.GetComponent<EnemyAI>()?.TakeDamage((int)abilities.ultimate.damage);
-
-                // Pull enemy 
-                Rigidbody rb = enemy.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    Vector3 direction = (transform.position - enemy.transform.position).normalized;
-                    rb.AddForce(direction * pullForce, ForceMode.VelocityChange);
-                }
-            }
-        }
-
-        
-        yield return new WaitForSeconds(vortexDuration);
-    }
 }

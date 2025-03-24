@@ -69,9 +69,6 @@ public class GameManager : MonoBehaviour
     public bool isPlayer1Alive = true;
     public bool isPlayer2Alive = true;
 
-    // Player health references
-    public PlayerHealth player1Health;
-    public PlayerHealth player2Health;
 
     private bool shakeTriggered = false; // Tracks if camera shake has been triggered
 
