@@ -15,7 +15,7 @@ MonoBehaviour:
   heroName: Frost
   ability1:
     abilityName: Frostball
-    projectilePrefab: {fileID: 5112403345868107898, guid: 6f34ef0d986e9db4199cf75805f79753, type: 3}
+    projectilePrefab: {fileID: 5112403345868107898, guid: 68ebf3fe465519a4eb5746736483159c, type: 3}
     cooldown: 5
     damage: 5
     icon: {fileID: 21300000, guid: ea00386aac86ae641b372884a4bda2e0, type: 3}
