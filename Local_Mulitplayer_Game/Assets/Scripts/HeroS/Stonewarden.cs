@@ -11,8 +11,8 @@ public class Stonewarden : HeroBase
         if (ability1CooldownTimer <= 0f)
         {
             ShootProjectile(abilities.ability1);
-            ability1CooldownTimer = abilities.ability1.cooldown; 
-            StartCoroutine(CooldownCoroutine(1));
+            ability1CooldownTimer = abilities.ability1.cooldown;
+           
         }
         else
         {
@@ -28,7 +28,7 @@ public class Stonewarden : HeroBase
             Debug.Log("Stonewarden calls down a Rock Fall!");
             StartCoroutine(RockFall());
             ability2CooldownTimer = abilities.ability2.cooldown; 
-            StartCoroutine(CooldownCoroutine(2));
+            
         }
         else
         {
@@ -44,7 +44,7 @@ public class Stonewarden : HeroBase
             Debug.Log("Stonewarden causes an Earthquake!");
             StartCoroutine(Earthquake());
             ultimateCooldownTimer = abilities.ultimate.cooldown;
-            StartCoroutine(CooldownCoroutine(3));
+            
         }
         else
         {
