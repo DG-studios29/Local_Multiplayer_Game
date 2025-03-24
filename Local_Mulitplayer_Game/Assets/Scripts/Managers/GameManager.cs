@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI player1NameText;
     public TextMeshProUGUI player2NameText;
 
+    [Header("Player Active Powerups"), Space(10f)]
+    public Image[] playerOnePowerUps = new Image[3];
+    public Image[] playerTwoPowerUps = new Image[3];
+
     [Header("Hero Abilities UI")]
     public Image player1Ability1Icon;
     public TMP_Text player1Ability1CooldownText;

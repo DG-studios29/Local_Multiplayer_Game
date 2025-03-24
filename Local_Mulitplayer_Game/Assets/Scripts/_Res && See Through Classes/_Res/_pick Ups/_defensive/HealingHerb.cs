@@ -24,7 +24,7 @@ public class HealingHerb : PickUpsBase
             }
         }
 
-        Destroy(gameObject, 0.01f);
+        Destroy(gameObject);
     }
 
     #endregion

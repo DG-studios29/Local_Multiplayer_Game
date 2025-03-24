@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 /// <summary>
 /// This class samples, generate and validate positions within a bouding box
@@ -22,21 +23,25 @@ public class ArenaSampler : MonoBehaviour
     #endregion
 
     #region Built-In Methods
-    private void Start()
+    private void OnEnable()
     {
         if (boundingBox)
         {
             GenerateRandomizedPositions();
 
             spawnable = PickupSpawner.instance.GetComponent<ISpawnable>();
+
         }
+
+
     }
+
 
     private void Update()
     {
-        if(boundingBox && generatedPositions.Count > 0)
+        if (boundingBox && generatedPositions.Count > 0)
         {
-            DoWithSampledPositions ();
+            DoWithSampledPositions();
         }
     }
 
@@ -98,7 +103,7 @@ public class ArenaSampler : MonoBehaviour
 
     private void DoWithSampledPositions()
     {
-        if(spawnable!=null) spawnable.DoSpawn(generatedPositions);
+        if (spawnable != null) spawnable.DoSpawn(generatedPositions);
     }
     
     #endregion
