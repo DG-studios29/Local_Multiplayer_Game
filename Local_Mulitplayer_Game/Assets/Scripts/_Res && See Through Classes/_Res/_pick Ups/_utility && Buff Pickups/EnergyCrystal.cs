@@ -15,9 +15,16 @@ public class EnergyCrystal : PickUpsBase
 
     protected override void ApplyEffect(GameObject player)
     {
-        IPlayerEffect playerEffect = player.GetComponent<IPlayerEffect>();
+        IPlayerEffect[] playerEffect = player.GetComponentsInChildren<IPlayerEffect>();
+        if (playerEffect.Length > 0)
+        {
+            foreach (var effect in playerEffect)
+            {
+                effect.RefillAbilityBar(energyFillAmount);
+            }
+        }
 
-        if (playerEffect != null) playerEffect.RefillAbilityBar(energyFillAmount);
+        Destroy(gameObject);
     }
 
     #endregion

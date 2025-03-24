@@ -34,7 +34,7 @@ public class SpeedBoost : PickUpsBase
             }
         }
 
-        Destroy(gameObject, 0.01f);
+        Destroy(gameObject);
     }
 
     #endregion

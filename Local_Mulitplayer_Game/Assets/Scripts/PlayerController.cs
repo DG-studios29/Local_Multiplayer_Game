@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
     bool hasTrail = false;
     Coroutine speedCoroutine;
 
+    public enum IsPlayer { PlayerOne, PlayerTwo }
+    public IsPlayer isPlayer;
+
     #endregion
 
     //public bool isPunchR = false;
@@ -30,7 +33,17 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
     //Gonna store all this stuff in a Player Punches script after merge
     private PlayerPunches playerPunches;
 
+    private void OnEnable()
+    {
+        StartCoroutine(ValidatePlayer());
+    }
 
+    private IEnumerator ValidatePlayer()
+    {
+        yield return new WaitForSeconds(5f);
+        if (gameObject.name == "Player 1") isPlayer = IsPlayer.PlayerOne;
+        if (gameObject.name == "Player 2") isPlayer = IsPlayer.PlayerTwo;
+    }
 
     private void Awake()
     {
@@ -40,7 +53,6 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         animator = GetComponent<Animator>();
 
         playerPunches = GetComponent<PlayerPunches>();
-
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -167,6 +179,17 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         trailEffect.transform.localPosition = new Vector3(0, .01f, 0);
         if (speedCoroutine != null) StopCoroutine(speedCoroutine);
         speedCoroutine = StartCoroutine(SpeedBoostEffect(duration, trailEffect));
+
+        switch (isPlayer)
+        {
+            case IsPlayer.PlayerOne:
+                GameManager.Instance.playerOnePowerUps[2].color = GameManager.Instance.playerOnePowerUps[2].color * 10f;
+                break;
+
+            case IsPlayer.PlayerTwo:
+                GameManager.Instance.playerTwoPowerUps[2].color = GameManager.Instance.playerTwoPowerUps[2].color * 10f;
+                break;
+        }
     }
 
     private IEnumerator SpeedBoostEffect(float duration, GameObject trail)
@@ -181,6 +204,17 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         }
 
         hasTrail = false;
+
+        switch (isPlayer)
+        {
+            case IsPlayer.PlayerOne:
+                GameManager.Instance.playerOnePowerUps[2].color = GameManager.Instance.playerOnePowerUps[2].color * .4f;
+                break;
+
+            case IsPlayer.PlayerTwo:
+                GameManager.Instance.playerTwoPowerUps[2].color = GameManager.Instance.playerTwoPowerUps[2].color * .4f;
+                break;
+        }
     }
 
     private IEnumerator CountHelper(float dur)

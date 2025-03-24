@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class AutoAttack : MonoBehaviour
+public class AutoAttack : MonoBehaviour, IPlayerEffect
 {
     public string playerTag = "Player";  //will latch onto this object's transform
 
@@ -81,5 +81,26 @@ public class AutoAttack : MonoBehaviour
     void Update()
     {
         //transform.position = playerObjOrigin.position;
+    }
+
+    public void ActivateSpeedBoost(float duration, float speedMultiplier, GameObject trailEffect)
+    {
+
+    }
+
+    public void ActivateShield(float duration, GameObject shield)
+    {
+
+    }
+
+    public void GiveHealth(float health)
+    {
+
+    }
+
+    public void RefillAbilityBar(float energy)
+    {
+        TestClear();
+        print("Orb restored");
     }
 }

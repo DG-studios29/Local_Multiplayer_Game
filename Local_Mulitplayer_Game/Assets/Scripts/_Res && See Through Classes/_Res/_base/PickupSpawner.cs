@@ -16,9 +16,9 @@ public class PickupSpawner : MonoBehaviour, ISpawnable
     private int randomPoint, randomPickUp;
     private float randomWaitTime;
     
-    private bool isSpawning = false;
+    public bool isSpawning = false;
 
-    [HideInInspector] public int currentlySpawnedPickUps = 0;
+    public int currentlySpawnedPickUps = 0;
     private int maxSpawnedPickUp = 10;
 
     [SerializeField] private LayerMask filter;
@@ -29,17 +29,27 @@ public class PickupSpawner : MonoBehaviour, ISpawnable
     void Awake()
     {
         if (instance == null) instance = this;
-        else Destroy(gameObject);
+        StartCoroutine(Force());
     }
 
+    private void OnEnable()
+    {
+        isSpawning = false;
+    }
+    private IEnumerator Force()
+    {
+        isSpawning = false;  
+        yield return new WaitForSeconds(10f);
+        isSpawning = false ;
+    }
     #endregion
 
     #region Interface Methods
-
     public void DoSpawn(List<Vector3> positions)
     {
-        if(!isSpawning && currentlySpawnedPickUps < maxSpawnedPickUp)
+        if(!isSpawning && currentlySpawnedPickUps< maxSpawnedPickUp)
         {
+            isSpawning = true;
             StartCoroutine(SpawnIntervals(positions));
         }      
     }
@@ -50,8 +60,7 @@ public class PickupSpawner : MonoBehaviour, ISpawnable
 
     private IEnumerator SpawnIntervals(List<Vector3> positions)
     {
-        isSpawning = true;
-        randomWaitTime = Random.Range(5f, 20f);
+        randomWaitTime = Random.Range(5f, 10);
 
         yield return new WaitForSeconds(randomWaitTime);
 
@@ -72,16 +81,18 @@ public class PickupSpawner : MonoBehaviour, ISpawnable
         if(validatedPositions.Count == 0)
         {
             isSpawning = false;
+            print("bbbbb");
             yield break;    
         }
 
         randomPickUp = Random.Range(0, pickupPrefabs.Length);
         randomPoint = Random.Range(0, validatedPositions.Count);
 
-        HandlePickUpSpawn(randomPickUp, randomPoint, positions);
+        HandlePickUpSpawn(randomPickUp, randomPoint, validatedPositions);
         currentlySpawnedPickUps++;
 
         isSpawning = false;
+        print("bbb");
     }
 
     private bool ValidatePos(Vector3 pos)

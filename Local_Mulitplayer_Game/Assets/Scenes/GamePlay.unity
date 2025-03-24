@@ -2547,6 +2547,14 @@ MonoBehaviour:
   player2HealthText: {fileID: 1660617750}
   player1NameText: {fileID: 703857867}
   player2NameText: {fileID: 32936632}
+  playerOnePowerUps:
+  - {fileID: 1667048544}
+  - {fileID: 1438481682}
+  - {fileID: 1448480689}
+  playerTwoPowerUps:
+  - {fileID: 1126230749}
+  - {fileID: 1795865103}
+  - {fileID: 229496934}
   player1Ability1Icon: {fileID: 1579919479}
   player1Ability1CooldownText: {fileID: 808180144}
   player2Ability1Icon: {fileID: 1194045301}
@@ -2722,6 +2730,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 473864319925089809, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 473864319925089809, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: pickupPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 473864319925089809, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: 'pickupPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5695752269617309096, guid: ba291a4630864934caed1a911c502e21, type: 3}
+    - target: {fileID: 1100790507749018000, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1130932571897977635, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_Name
       value: _Environment
@@ -2766,6 +2790,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1881997434239909392, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881997434239909392, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: pickupPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881997434239909392, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: 'pickupPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5695752269617309096, guid: ba291a4630864934caed1a911c502e21, type: 3}
     - target: {fileID: 2947729866497104463, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2776,11 +2812,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4171694053024654179, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4199082866092349173, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4671112078493524676, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4682672775225662571, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
       propertyPath: cam
@@ -2790,6 +2830,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7527554487710602147, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527554487710602147, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: pickupPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527554487710602147, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
+      propertyPath: 'pickupPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 5695752269617309096, guid: ba291a4630864934caed1a911c502e21, type: 3}
     m_RemovedComponents:
     - {fileID: 5348066385226493087, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
     - {fileID: 2157287291602214091, guid: 1f10a3d0b7a927944a8c7f702d52b046, type: 3}
@@ -6936,7 +6988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1217527731
 AudioSource:
   m_ObjectHideFlags: 0
