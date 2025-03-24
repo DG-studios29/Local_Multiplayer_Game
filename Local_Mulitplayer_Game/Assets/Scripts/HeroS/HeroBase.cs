@@ -18,11 +18,26 @@ public abstract class HeroBase : MonoBehaviour
     public float ability2CooldownTimer = 0f;
     public float ultimateCooldownTimer = 0f;
 
-    public Image abilityIcon;
-    public TextMeshProUGUI cooldownText;
+    public TMP_Text ability1CooldownText;
+    public TMP_Text ability2CooldownText;
+    public TMP_Text ultimateCooldownText;
 
+  
+    public Image ability1Icon;
+    public Image ability2Icon;
+    public Image ultimateIcon;
+
+   
+    private Color originalAbility1Color;
+    private Color originalAbility2Color;
+    private Color originalUltimateColor;
     protected virtual void Start()
     {
+        // Store the original colors of the icons
+        originalAbility1Color = ability1Icon.color;
+        originalAbility2Color = ability2Icon.color;
+        originalUltimateColor = ultimateIcon.color;
+
         playerInput = GetComponent<PlayerInput>();
         playerInput.actions["Ability1"].performed += ctx => UseAbility1();
         playerInput.actions["Ability2"].performed += ctx => UseAbility2();
@@ -66,29 +81,53 @@ public abstract class HeroBase : MonoBehaviour
         }
     }
 
-
-    public IEnumerator CooldownCoroutine(int abilityIndex)
+    private void Update()
     {
-        float cooldownTime = 0f;
+        UpdateCooldowns(); // Update cooldown timers each frame
 
-        // Set the cooldown time based on the ability index
-        if (abilityIndex == 1) cooldownTime = abilities.ability1.cooldown;
-        if (abilityIndex == 2) cooldownTime = abilities.ability2.cooldown;
-        if (abilityIndex == 3) cooldownTime = abilities.ultimate.cooldown;
+        // Handle the visuals for the ability icons and cooldown text
+        UpdateAbilityUI(ability1CooldownTimer, ability1Icon, ability1CooldownText);
+        UpdateAbilityUI(ability2CooldownTimer, ability2Icon, ability2CooldownText);
+        UpdateAbilityUI(ultimateCooldownTimer, ultimateIcon, ultimateCooldownText);
+    }
 
-        // Wait for the cooldown to finish
-        while (cooldownTime > 0f)
+    void UpdateCooldowns()
+    {
+        if (ability1CooldownTimer > 0)
         {
-            cooldownTime -= Time.deltaTime;
-            yield return null;
+            ability1CooldownTimer -= Time.deltaTime;
         }
+        if (ability2CooldownTimer > 0)
+        {
+            ability2CooldownTimer -= Time.deltaTime;
+        }
+        if (ultimateCooldownTimer > 0)
+        {
+            ultimateCooldownTimer -= Time.deltaTime;
+        }
+    }
+    void UpdateAbilityUI(float cooldownTimer, Image abilityIcon, TMP_Text cooldownText)
+    {
+        if (cooldownTimer > 0)
+        {
+            // Ability is on cooldown
+            abilityIcon.color = Color.gray; // Change the icon color to gray
+            cooldownText.gameObject.SetActive(true); // Show the cooldown text
+            cooldownText.text = cooldownTimer.ToString(); // Update the cooldown timer text
+        }
+        else
+        {
+            // Ability is ready
+            abilityIcon.color = originalAbility1Color; // Reset icon color to original
+            cooldownText.gameObject.SetActive(false); // Hide the cooldown text
+        }
+    }
 
-        // Reset the corresponding cooldown timer to 0 after it's done
-        if (abilityIndex == 1) ability1CooldownTimer = 0f;
-        if (abilityIndex == 2) ability2CooldownTimer = 0f;
-        if (abilityIndex == 3) ultimateCooldownTimer = 0f;
-
-        Debug.Log($"Ability {abilityIndex} is ready to use!");
+    public void ResetCooldowns()
+    {
+        ability1CooldownTimer = abilities.ability1.cooldown;
+        ability2CooldownTimer = abilities.ability2.cooldown;
+        ultimateCooldownTimer = abilities.ultimate.cooldown;
     }
 
 }

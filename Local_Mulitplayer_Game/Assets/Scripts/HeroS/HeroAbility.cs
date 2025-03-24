@@ -8,8 +8,8 @@ public class Ability
     public string abilityName;
     public GameObject projectilePrefab;
     public float cooldown;
-    public int damage;   
-
+    public int damage;
+    public Sprite icon;
 }
 
 [CreateAssetMenu(fileName = "NewHeroAbilities", menuName = "Heroes/HeroAbilities")]
