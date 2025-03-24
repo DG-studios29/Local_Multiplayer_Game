@@ -49,6 +49,29 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI player1NameText;
     public TextMeshProUGUI player2NameText;
 
+    [Header("Hero Abilities UI")]
+    public Image player1Ability1Icon;
+    public TMP_Text player1Ability1CooldownText;
+    public Image player2Ability1Icon;
+    public TMP_Text player2Ability1CooldownText;
+    public Image player1Ability2Icon;
+    public TMP_Text player1Ability2CooldownText;
+    public Image player2Ability2Icon;
+    public TMP_Text player2Ability2CooldownText;
+    public Image player1Ability3Icon;
+    public TMP_Text player1Ability3CooldownText;
+    public Image player2Ability3Icon;
+    public TMP_Text player2Ability3CooldownText;
+
+    [Header("Game End Settings")]
+    public TMP_Text endGameText; // To display the end game result (e.g., winner)
+    public GameObject gameOverUI; // UI panel to show the game over screen
+    public bool isPlayer1Alive = true;
+    public bool isPlayer2Alive = true;
+
+    // Player health references
+    public PlayerHealth player1Health;
+    public PlayerHealth player2Health;
 
     private bool shakeTriggered = false; // Tracks if camera shake has been triggered
 
@@ -62,11 +85,14 @@ public class GameManager : MonoBehaviour
         ShowHeroSelectionUI(); // Show hero selection screen when game starts
     }
 
-    private void Update()
+    void Update()
     {
         if (gameStarted)
         {
-            HandleGameTimer(); // Count down the game timer if the match is running
+            HandleGameTimer();
+
+            // Check if players are alive
+            CheckPlayerHealth();
         }
     }
 
@@ -81,11 +107,77 @@ public class GameManager : MonoBehaviour
                 shakeTriggered = true;
             }
         }
-        else
+        
+    }
+
+    void CheckPlayerHealth()
+    {
+        // Check if Player 1 is alive
+        GameObject player1 = GameObject.Find("Player 1");
+        if (player1 != null)
         {
-            //LoadSuddenDeathScene(); // Load sudden death when timer hits zero
+            PlayerHealth player1Health = player1.GetComponent<PlayerHealth>();
+            if (player1Health.currentHealth <= 0 && isPlayer1Alive)
+            {
+                isPlayer1Alive = false;
+                EndGame("Player 2 wins!"); // Player 2 wins if Player 1 dies
+            }
+        }
+
+        // Check if Player 2 is alive
+        GameObject player2 = GameObject.Find("Player 2");
+        if (player2 != null)
+        {
+            PlayerHealth player2Health = player2.GetComponent<PlayerHealth>();
+            if (player2Health.currentHealth <= 0 && isPlayer2Alive)
+            {
+                isPlayer2Alive = false;
+                EndGame("Player 1 wins!"); // Player 1 wins if Player 2 dies
+            }
+        }
+
+        // If both players are alive, check the timer
+        if (timer <= 0)
+        {
+            if (isPlayer1Alive && isPlayer2Alive)
+            {
+                // If both players are alive when time runs out, check health
+                int player1Health = (int)player1.GetComponent<PlayerHealth>().currentHealth;
+                int player2Health = (int)player2.GetComponent<PlayerHealth>().currentHealth;
+                if (player1Health > player2Health)
+                {
+                    EndGame("Player 1 wins!");
+                }
+                else if (player2Health > player1Health)
+                {
+                    EndGame("Player 2 wins!");
+                }
+                else
+                {
+                    EndGame("It's a draw!"); // In case both have the same health
+                }
+            }
         }
     }
+
+    // End the game and display the result
+    void EndGame(string winner)
+    {
+        gameStarted = false;
+
+        // Store the winner's name in PlayerPrefs (or use a singleton for more complex storage)
+        PlayerPrefs.SetString("Winner", winner);
+        PlayerPrefs.Save(); // Ensure the value is saved
+
+        Debug.Log(winner + " is the winner!");
+
+        // Load the Game Over scene
+        SceneManager.LoadScene("GameOver");
+    }
+
+
+
+
 
     public void StartGame(List<string> chosenHeroes)
     {
@@ -134,22 +226,60 @@ public class GameManager : MonoBehaviour
             playerHealth.healthSlider = player1HealthSlider;
             playerHealth.healthText = player1HealthText;
             player1NameText.text = playerName;
-    
+
         }
         else if (player.name == "Player 2")
         {
             playerHealth.healthSlider = player2HealthSlider;
             playerHealth.healthText = player2HealthText;
             player2NameText.text = playerName;
-   
+
         }
 
         playerHealth.UpdateHealthUI(); // Update health UI on start
-     
+
     }
+
+    public void SetupHeroAbilitiesUI(GameObject player)
+    {
+        // Get the HeroBase script from the player to access its abilities
+        HeroBase hero = player.GetComponent<HeroBase>();
+
+        // Check which player is setting up and assign corresponding UI elements
+        if (player.name == "Player 1")
+        {
+            hero.ability1Icon = player1Ability1Icon;
+            hero.ability2Icon = player1Ability2Icon;
+            hero.ultimateIcon = player1Ability3Icon;
+
+            player1Ability1Icon.sprite = hero.abilities.ability1.icon;
+            player1Ability2Icon.sprite = hero.abilities.ability2.icon;
+            player1Ability3Icon.sprite = hero.abilities.ultimate.icon;
+
+            hero.ability1CooldownText = player1Ability1CooldownText;
+            hero.ability2CooldownText = player1Ability2CooldownText;
+            hero.ultimateCooldownText = player1Ability3CooldownText;
+        }
+        else if (player.name == "Player 2")
+        {
+            hero.ability1Icon = player2Ability1Icon;
+            hero.ability2Icon = player2Ability2Icon;
+            hero.ultimateIcon = player2Ability3Icon;
+
+            player2Ability1Icon.sprite = hero.abilities.ability1.icon;
+            player2Ability2Icon.sprite = hero.abilities.ability2.icon;
+            player2Ability3Icon.sprite = hero.abilities.ultimate.icon;
+
+            hero.ability1CooldownText = player2Ability1CooldownText;
+            hero.ability2CooldownText = player2Ability2CooldownText;
+            hero.ultimateCooldownText = player2Ability3CooldownText;
+        }
+    }
+
 
     void SpawnPlayers(List<Transform> points)
     {
+        
         for (int i = 0; i < numberOfPlayers; i++)
         {
             if (i < points.Count)
@@ -157,12 +287,14 @@ public class GameManager : MonoBehaviour
                 // Spawn player at a spawn point
                 GameObject player = Instantiate(playerPrefab, points[i].position, Quaternion.identity);
                 player.name = "Player " + (i + 1);
-
+                // Add the player to the players list
+                
                 AddPlayerToCamera(player, 1f, 2f); // Add player to camera tracking
                 AssignHeroScript(player, selectedHeroes[i]); // Attach hero script
                 AssignPlayerMaterials(player, i); // Assign player materials
                 string playerName = "Player " + (i + 1);
                 GameManager.Instance.SetupPlayerUI(player, playerName); // Setup UI
+                GameManager.Instance.SetupHeroAbilitiesUI(player);
                 RevealPlayerBase.instance.players.Add(player.transform);
             }
             else

@@ -18,13 +18,16 @@ MonoBehaviour:
     projectilePrefab: {fileID: 3302372391171628307, guid: 9d0c7907ce5c9fa4cbc5344b51b0053b, type: 3}
     cooldown: 5
     damage: 5
+    icon: {fileID: 21300000, guid: 4bfcd51cdbeb5a14fa5d689e708eee0e, type: 3}
   ability2:
     abilityName: Fire
     projectilePrefab: {fileID: 5337696728587280819, guid: d5a2277c36ea9eb4787946ae2a9d4da0, type: 3}
     cooldown: 10
     damage: 10
+    icon: {fileID: 21300000, guid: 3dde5f03aa4890a46b5ef064aa2a69c8, type: 3}
   ultimate:
     abilityName: WorldFire
     projectilePrefab: {fileID: 4992560401494183607, guid: 4ee1d140a1cc71f40ac3606d234c2ecf, type: 3}
     cooldown: 20
     damage: 20
+    icon: {fileID: 21300000, guid: 2d75f3d62437b88498c601294831c243, type: 3}
