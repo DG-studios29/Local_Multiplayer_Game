@@ -165,6 +165,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c3535cee-7b1f-41f7-9669-fd5554ea219d",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ec2c88e2-ae59-4841-80d4-ceb7c8088946",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -203,6 +214,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "SpawnSelectedArmy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13a1ff65-5572-4c7c-8a57-e8cfcd1a43f2",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
                     "action": "SpawnSelectedArmy",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -264,6 +286,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f90e1e02-c4b3-421f-bd8e-a67d64a79ed9",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "Ability1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3df7197b-8ea3-4484-81dd-3067455741fc",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -286,6 +319,17 @@
                 },
                 {
                     "name": "",
+                    "id": "771abdbb-2c68-465b-812a-11609438f82b",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "Ability2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "99c0562c-5fd9-4bb9-8278-a94dbe46d767",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -302,6 +346,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "Ultimate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "189c2129-12be-41d3-9748-7482e11b021c",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
                     "action": "Ultimate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -335,6 +390,39 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "SwitchArmy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bef22b2c-51bd-41a6-8e41-c57fa185ab27",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/hat/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "SwitchArmy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e238b483-22f1-4c53-bb8e-d71606e82b27",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/hat/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
+                    "action": "SwitchArmy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9946021-2d39-4766-9009-1e684ab4b546",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/hat/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Joystick",
                     "action": "SwitchArmy",
                     "isComposite": false,
                     "isPartOfComposite": false
