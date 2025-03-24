@@ -4,33 +4,46 @@ using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
-    
-    public GameObject playerWinner1; // Panel for player 1's win
-    public GameObject playerWinner2; // Panel for player 2's win
+    private UINavigation navigation;
+    public GameObject playerWinner1; 
+    public GameObject playerWinner2; 
+    public GameObject draw; 
 
     void Start()
     {
-        // Retrieve the winner's name from PlayerPrefs
+        // Try to find the UINavigation component
+        navigation = Object.FindFirstObjectByType<UINavigation>();
+
+        if (navigation == null)
+        {
+            Debug.LogError("UINavigation not found! Make sure it is in the scene.");
+            return;
+        }
+        
         string winnerName = PlayerPrefs.GetString("Winner", "No winner");
 
-        // Activate the appropriate winner panel based on the winner's name
+        
         if (winnerName == "Player 1 wins!") // Change this condition based on how you set player names
         {
+            navigation.ShowPanel1();
             playerWinner1.SetActive(true);
-            playerWinner2.SetActive(false); // Ensure the other panel is hidden
+            playerWinner2.SetActive(false); 
+
         }
         else if (winnerName == "Player 2 wins!")
         {
-            playerWinner1.SetActive(false); // Ensure player 1's panel is hidden
+            navigation.ShowPanel2();
+            playerWinner1.SetActive(false); 
             playerWinner2.SetActive(true);
         }
         else if (winnerName == "It's a draw!")
         {
+            draw.SetActive(true);
             playerWinner1.SetActive(false);
             playerWinner2.SetActive(false);
         }
 
-        // Optional: Clear the PlayerPrefs entry for the next game
+        
         PlayerPrefs.DeleteKey("Winner");
     }
 }
