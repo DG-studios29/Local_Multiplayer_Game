@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TestRotor",
+                    "type": "Button",
+                    "id": "a6bb069f-ee65-4a47-99bb-2b6f053f4d4d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -424,6 +433,17 @@
                     "processors": "",
                     "groups": ";Joystick",
                     "action": "SwitchArmy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "229c0769-0490-4538-8181-2fe6b068f5cb",
+                    "path": "<HID::SZ-MYPOWER DS4 Wired Controller>/button14",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestRotor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

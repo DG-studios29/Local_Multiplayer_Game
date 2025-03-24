@@ -15,6 +15,8 @@ public class AutoAttack : MonoBehaviour
     public GameObject autoShootObject;
     public GameObject revolverObject;
 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -66,6 +68,14 @@ public class AutoAttack : MonoBehaviour
 
     }
 
+
+
+
+    public void TestClear()
+    {
+        ItemRotate rotateObject = GetComponentInChildren<ItemRotate>();
+        rotateObject.RebuildRotor();
+    }
 
     // Update is called once per frame
     void Update()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ItemRotate : ItemObject
 {
@@ -9,6 +10,8 @@ public class ItemRotate : ItemObject
     public GameObject pivotInstance;
 
     private float innerRadius;
+
+    private float buildTime = 0.28f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,7 +27,7 @@ public class ItemRotate : ItemObject
       
         rotateObject = itemData.projectilePrefab;
 
-        SetUpRotor();
+        StartCoroutine(SetUpRotor());
 
     }
 
@@ -32,6 +35,7 @@ public class ItemRotate : ItemObject
     protected override void Update()
     {
         base.Update();
+        if(pivotInstance != null)
         pivotInstance.transform.Rotate(0, 270 * Time.deltaTime, 0);
     }
 
@@ -68,8 +72,10 @@ public class ItemRotate : ItemObject
     }
 
 
-    private void SetUpRotor()
+    private IEnumerator SetUpRotor()
     {
+       
+
         GameObject pivotInstanceN = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform); // or just create a transform that sits where we want on the player
         GameObject nR = Instantiate(rotateObject, new Vector3(pivotInstanceN.transform.position.x + radius,
                                               pivotInstanceN.transform.position.y,
@@ -78,6 +84,10 @@ public class ItemRotate : ItemObject
             pivotInstanceN.transform);
 
         pivotInstanceN.transform.rotation = Quaternion.Euler(0f,0f,0f);
+        //pivotInstanceN.transform.rotation = pivotInstance.
+        pivotInstanceN.SetActive(false);
+
+
 
         GameObject pivotInstanceS = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform);
         GameObject sR = Instantiate(rotateObject, new Vector3(pivotInstanceS.transform.position.x + radius,
@@ -87,6 +97,8 @@ public class ItemRotate : ItemObject
             pivotInstanceS.transform);
 
         pivotInstanceS.transform.rotation = Quaternion.Euler(0f,180f,0f);
+
+        pivotInstanceS.SetActive(false);
 
 
         GameObject pivotInstanceW = Instantiate(rotationPivot, pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform);
@@ -98,6 +110,8 @@ public class ItemRotate : ItemObject
 
         pivotInstanceW.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 
+        pivotInstanceW.SetActive(false);
+
 
         GameObject pivotInstanceE = Instantiate(rotationPivot,pivotInstance.transform.position, Quaternion.identity, pivotInstance.transform);
         GameObject eR = Instantiate(rotateObject, new Vector3(pivotInstanceE.transform.position.x + radius,
@@ -108,9 +122,35 @@ public class ItemRotate : ItemObject
 
         pivotInstanceE.transform.rotation= Quaternion.Euler(0f,270f, 0f);
 
-      
+        pivotInstanceE.SetActive(false);
+
+        yield return new WaitForSeconds(buildTime);
+
+        pivotInstanceN.SetActive(true);
+
+        yield return new WaitForSeconds(buildTime);
+
+        pivotInstanceW.SetActive(true);
+
+        yield return new WaitForSeconds(buildTime);
+
+        pivotInstanceS.SetActive(true);
+
+        yield return new WaitForSeconds(buildTime);
+
+        pivotInstanceE.SetActive(true);
 
 
     }
+
+    public void RebuildRotor()
+    {
+       //Particle effects would be nice
+       Destroy(pivotInstance);
+       pivotInstance = Instantiate(rotationPivot, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity, transform); // or just create a transform that sits where we want on the player
+       StartCoroutine(SetUpRotor());
+    }
+
+    
 
 }
