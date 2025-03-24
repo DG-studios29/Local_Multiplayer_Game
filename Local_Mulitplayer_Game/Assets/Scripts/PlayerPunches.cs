@@ -251,7 +251,7 @@ public class PlayerPunches : MonoBehaviour
 
     public void AnimatorChargeClear()
     {
-        Debug.Log("Clear");
+        //Debug.Log("Clear");
         dmgCalc = chargeVal;
         chargeVal = 0;
         animator.SetFloat("Charge", chargeVal, 0.05f, Time.deltaTime);

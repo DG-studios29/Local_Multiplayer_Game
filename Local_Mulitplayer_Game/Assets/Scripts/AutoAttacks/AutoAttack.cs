@@ -9,7 +9,7 @@ public class AutoAttack : MonoBehaviour
     //public GameObject playerTestObj;
     //public Transform playerObjOrigin;
 
-    public List<ItemObject> itemHolder;
+    public List<ItemData> itemHolder;
     public int itemSize;
 
     public GameObject autoShootObject;
@@ -35,21 +35,29 @@ public class AutoAttack : MonoBehaviour
         //itemHolder.Add(basicAutoBB.GetComponent<ItemObject>());
         //Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
 
-        itemHolder.Add(revolverObject.GetComponent<ItemObject>());
+        //itemHolder.Add(revolverObject.GetComponent<ItemObject>());
 
-        foreach(ItemObject item in itemHolder)
+     /*   foreach(ItemObject item in itemHolder)
         {
             //Instantiate(itemHolder[0].itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
             Instantiate(item.itemData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
 
-        }
+        }*/
         
 
     }
 
+
+    public void InstantiateRevolver(ItemData revolvingData)
+    {
+        Debug.Log("CAlled on creation");
+        itemHolder.Add(revolvingData);
+        Instantiate(revolvingData.objectInstance, this.transform.position, Quaternion.identity, this.transform);
+    }
+
     public void ItemHolder()
     {
-        itemHolder = new List<ItemObject>(itemSize);
+        itemHolder = new List<ItemData>(itemSize);
 
       /*  for(int i = 0; i < itemSize; i++)
         {

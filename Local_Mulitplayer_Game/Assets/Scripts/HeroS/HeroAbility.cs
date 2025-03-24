@@ -19,5 +19,7 @@ public class HeroAbility : ScriptableObject
     public Ability ability1; // Basic attack (sphere projectile)
     public Ability ability2; // Unique ability
     public Ability ultimate; // Ultimate ability
+
+    public ItemData itemRevolve;
  
 }

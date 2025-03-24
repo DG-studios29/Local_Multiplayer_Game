@@ -101,7 +101,11 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator ShowHurt()
     {
+        
         alreadyHurting = true;
+        yield return new WaitForSeconds(0.1f);
+
+
         ChangeMat(hurtMaterial);
 
         yield return new WaitForSeconds(hurtTime);

@@ -21,6 +21,8 @@ public abstract class HeroBase : MonoBehaviour
     public Image abilityIcon;
     public TextMeshProUGUI cooldownText;
 
+    private AutoAttack autoattack;
+
     protected virtual void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -33,6 +35,9 @@ public abstract class HeroBase : MonoBehaviour
         {
             Debug.LogError($"{gameObject.name} is missing a ProjectileSpawnPoint!");
         }
+
+        autoattack = GetComponentInChildren<AutoAttack>();
+        autoattack.InstantiateRevolver(abilities.itemRevolve);
     }
 
     protected abstract void UseAbility1();
