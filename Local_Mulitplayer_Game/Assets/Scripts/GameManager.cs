@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public float gameDuration = 300f; // Total game time in seconds
     public float timer; // Countdown timer
     private bool gameStarted = false; // Tracks if the game has started
+    public TextMeshProUGUI timerText;
 
     [Header("Maps")]
     public string selectedMap = "Forest"; // Default map
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         if (timer > 0)
         {
             timer -= Time.deltaTime;
+            UpdateTimerUI();
             if (timer <= gameDuration / 2 && !shakeTriggered)
             {
                 TriggerCameraShake(); // Shake the camera halfway through the match
@@ -105,6 +107,13 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+
+    void UpdateTimerUI()
+    {
+        int minutes = Mathf.FloorToInt(timer / 60);
+        int seconds = Mathf.FloorToInt(timer % 60);
+        timerText.text = $"{minutes:00}:{seconds:00}";
     }
 
     void CheckPlayerHealth()
