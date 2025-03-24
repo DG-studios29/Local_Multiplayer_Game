@@ -56,8 +56,9 @@ public class HeroSelectionUI : MonoBehaviour
 
             // Check if all players have chosen
             startGameButton.interactable = AreAllHeroesSelected();
+
         }
-       
+
     }
 
     private bool AreAllHeroesSelected()

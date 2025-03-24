@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics.OverlapSphere.html
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Blazeheart : HeroBase
 {
     private int casterID;
+   
     protected override void UseAbility1()
     {
         if (ability1CooldownTimer <= 0f)
@@ -162,5 +164,5 @@ public class Blazeheart : HeroBase
         Destroy(obj);
     }
 
-
+  
 }
