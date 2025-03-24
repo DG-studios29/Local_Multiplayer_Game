@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotorParent: {fileID: 0}
   projectileHP: 0
+  explosionFX: {fileID: 3583575515489508538, guid: 76c673b2a13582548967a5d080d53b88, type: 3}
 --- !u!1 &6394621072010015543
 GameObject:
   m_ObjectHideFlags: 0
