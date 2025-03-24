@@ -849,7 +849,6 @@ GameObject:
   - component: {fileID: -3582010027564952512}
   - component: {fileID: 7642080828163612796}
   - component: {fileID: -4465971285142238766}
-  - component: {fileID: -8461293052009168329}
   m_Layer: 7
   m_Name: ArmyDemon
   m_TagString: Army
@@ -911,8 +910,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2048254, y: 0.7129319, z: 1.1214327}
-  m_Center: {x: 0.02976939, y: 0.36, z: 0}
+  m_Size: {x: 1.0141449, y: 0.7129319, z: 0.9537528}
+  m_Center: {x: 0.013400555, y: 0.36, z: -0.0021725}
 --- !u!195 &-4465971285142238766
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -931,37 +930,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.7
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &-8461293052009168329
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2951857971312674443}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &3236051382293976877
 GameObject:
   m_ObjectHideFlags: 0

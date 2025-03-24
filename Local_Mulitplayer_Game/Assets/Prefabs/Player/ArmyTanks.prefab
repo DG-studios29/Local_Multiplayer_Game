@@ -160,8 +160,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.927763, y: 2.4955268, z: 1.1923791}
-  m_Center: {x: -0.07606888, y: 1.2512972, z: 0.035473168}
+  m_Size: {x: 1.3791039, y: 1.7723081, z: 0.9934627}
+  m_Center: {x: 0.04657817, y: 0.8896879, z: 0.01605922}
 --- !u!195 &-4465971285142238766
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -208,7 +208,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &3236051382293976877

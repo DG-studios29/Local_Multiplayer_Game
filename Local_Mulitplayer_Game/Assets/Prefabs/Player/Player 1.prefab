@@ -273,6 +273,8 @@ MonoBehaviour:
   currentHealth: 0
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
+  frozenMaterial: {fileID: 2100000, guid: 6e9fd530d089364449f48bc1a9aa5533, type: 2}
+  hurtMaterial: {fileID: 2100000, guid: 452e9989bc28b8445b6186ce05987e83, type: 2}
 --- !u!114 &6656558463176133183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +447,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 25a6fc00-7c68-4a4b-8a3b-4515f80b14c5
     m_ActionName: 'Player/SpawnArmyByKey3[/Keyboard/3]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1688786014060664745}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnClear
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a6bb069f-ee65-4a47-99bb-2b6f053f4d4d
+    m_ActionName: 'Player/TestRotor[/SZ-MYPOWER DS4 Wired Controller/button14]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
