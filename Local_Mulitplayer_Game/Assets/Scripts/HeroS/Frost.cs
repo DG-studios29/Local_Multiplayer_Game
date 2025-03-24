@@ -12,7 +12,7 @@ public class Frost : HeroBase
         {
             ShootProjectile(abilities.ability1);
             ability1CooldownTimer = abilities.ability1.cooldown;
-            StartCoroutine(CooldownCoroutine(1));
+            
         }
         else
         {
@@ -27,7 +27,7 @@ public class Frost : HeroBase
             Debug.Log("?? Frost launches Ice Spikes!");
             StartCoroutine(IceSpikes());
             ability2CooldownTimer = abilities.ability2.cooldown;
-            StartCoroutine(CooldownCoroutine(2));
+            
         }
         else
         {
@@ -42,7 +42,7 @@ public class Frost : HeroBase
             Debug.Log("???? Frost unleashes Ice Age!");
             StartCoroutine(IceAge());
             ultimateCooldownTimer = abilities.ultimate.cooldown;
-            StartCoroutine(CooldownCoroutine(3));
+            
         }
         else
         {

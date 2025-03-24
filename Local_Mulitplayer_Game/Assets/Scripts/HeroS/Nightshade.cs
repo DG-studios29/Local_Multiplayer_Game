@@ -13,7 +13,7 @@ public class Nightshade : HeroBase
         {
             ShootProjectile(abilities.ability1);
             ability1CooldownTimer = abilities.ability1.cooldown; 
-            StartCoroutine(CooldownCoroutine(1));
+            
         }
         else
         {
@@ -29,7 +29,7 @@ public class Nightshade : HeroBase
             Debug.Log("Nightshade dashes through shadows!");
             StartCoroutine(ShadowDash());
             ability2CooldownTimer = abilities.ability2.cooldown;
-            StartCoroutine(CooldownCoroutine(2));
+            
         }
         else
         {
@@ -45,7 +45,7 @@ public class Nightshade : HeroBase
             Debug.Log("Nightshade summons a Dark Vortex!");
             StartCoroutine(DarkVortex());
             ultimateCooldownTimer = abilities.ultimate.cooldown; 
-            StartCoroutine(CooldownCoroutine(3));
+            
         }
         else
         {
