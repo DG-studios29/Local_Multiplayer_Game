@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
 
     #region Pickup Variables
 
-    private float dur = 0;
     bool hasTrail = false;
+    Coroutine speedCoroutine;
 
     #endregion
 
@@ -146,20 +146,17 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
     public void ActivateSpeedBoost(float duration, float speedMultiplier, GameObject trailEffect)
     {
         moveSpeed += speedMultiplier;
-        dur += duration;
 
         if (!hasTrail)
         {
-            GameObject trail = Instantiate(trailEffect);
-
-            trailEffect = null;
+            trailEffect = Instantiate(trailEffect);
             hasTrail = true;
-
-            trail.transform.SetParent(transform);
-            trail.transform.localPosition = new Vector3(0, .01f, 0);
-
-            StartCoroutine(SpeedBoostEffect(dur, trail));
         }
+
+        trailEffect.transform.SetParent(transform);
+        trailEffect.transform.localPosition = new Vector3(0, .01f, 0);
+        if (speedCoroutine != null) StopCoroutine(speedCoroutine);
+        speedCoroutine = StartCoroutine(SpeedBoostEffect(duration, trailEffect));
     }
 
     private IEnumerator SpeedBoostEffect(float duration, GameObject trail)
@@ -167,8 +164,12 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         yield return StartCoroutine(CountHelper(duration));
 
         moveSpeed = 10f;
-        dur = 0;
-        Destroy(trail);
+
+        if(trail!=null)
+        {
+            Destroy(trail);
+        }
+
         hasTrail = false;
     }
 
@@ -182,19 +183,19 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         }
     }
 
-    public void ActivateShield(float duration)
+    public void ActivateShield(float duration, GameObject shield)
     {
-        throw new System.NotImplementedException();
+        //
     }
 
     public void GiveHealth(float health)
     {
-        throw new System.NotImplementedException();
+        //
     }
 
     public void RefillAbilityBar(float energy)
     {
-        throw new System.NotImplementedException();
+        //
     }
     #endregion
 

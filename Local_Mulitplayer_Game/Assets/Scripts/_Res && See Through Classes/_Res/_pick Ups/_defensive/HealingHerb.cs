@@ -7,6 +7,7 @@ public class HealingHerb : PickUpsBase
     #region Custom Variables
 
     [SerializeField] private float healthAmount;
+    [SerializeField] private GameObject pickUpEffect;
 
     #endregion
 
@@ -14,9 +15,16 @@ public class HealingHerb : PickUpsBase
 
     protected override void ApplyEffect(GameObject player)
     {
-        IPlayerEffect playerEffect = player.GetComponent<IPlayerEffect>();
+        IPlayerEffect []playerEffect = player.GetComponents<IPlayerEffect>();
+        if(playerEffect.Length>0)
+        {
+            foreach (var effect in playerEffect)
+            {
+                effect.GiveHealth(healthAmount);
+            }
+        }
 
-        if (playerEffect != null) playerEffect.GiveHealth(healthAmount);
+        Destroy(gameObject, 0.01f);
     }
 
     #endregion

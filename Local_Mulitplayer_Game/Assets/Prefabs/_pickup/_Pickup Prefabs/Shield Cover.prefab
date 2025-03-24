@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 700491010612516646}
   - component: {fileID: 8507047770327837525}
   - component: {fileID: 4141534262957969302}
-  - component: {fileID: 2805515776544479223}
+  - component: {fileID: 8950397280377781225}
   m_Layer: 0
-  m_Name: SpeedBoost
+  m_Name: Shield Cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fac234ac36ac280488772f301d45e12d, type: 2}
+  - {fileID: 2100000, guid: 638234a2c54afb7428a2779407350328, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +109,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2805515776544479223
+--- !u!114 &8950397280377781225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,10 +118,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5695752269617309096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab5139ec7c751c41a2c5772b19e647a, type: 3}
+  m_Script: {fileID: 11500000, guid: edd220db733a566458b7d67c311e82f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 10
-  speedBoost: 5
+  shieldDuration: 10
   pickUpEffect: {fileID: 0}
-  trailEffect: {fileID: 6068192576198646257, guid: df0e133a80d1e1044be5067d381af379, type: 3}
+  shieldBubble: {fileID: 2535177855952225345, guid: 77740d9e95b90f047bd7fef33322a98c, type: 3}

@@ -854,6 +854,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupPrefabs:
   - {fileID: 5695752269617309096, guid: b4b7bf195a73c874393ecb6a25b25859, type: 3}
+  - {fileID: 5695752269617309096, guid: 0d68d67808e75dc4b9deb7433ae754f1, type: 3}
+  - {fileID: 5695752269617309096, guid: bf7dd55110efbbb45bf1d28e0462fbfe, type: 3}
   currentlySpawnedPickUps: 0
   filter:
     serializedVersion: 2
@@ -1049,6 +1051,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupPrefabs:
   - {fileID: 5695752269617309096, guid: b4b7bf195a73c874393ecb6a25b25859, type: 3}
+  - {fileID: 5695752269617309096, guid: 0d68d67808e75dc4b9deb7433ae754f1, type: 3}
+  - {fileID: 5695752269617309096, guid: bf7dd55110efbbb45bf1d28e0462fbfe, type: 3}
   currentlySpawnedPickUps: 0
   filter:
     serializedVersion: 2
@@ -2256,7 +2260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5585375728445808866
 Transform:
   m_ObjectHideFlags: 0
@@ -3097,7 +3101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7940482400686782903
 Transform:
   m_ObjectHideFlags: 0
@@ -6750,6 +6754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupPrefabs:
   - {fileID: 5695752269617309096, guid: b4b7bf195a73c874393ecb6a25b25859, type: 3}
+  - {fileID: 5695752269617309096, guid: 0d68d67808e75dc4b9deb7433ae754f1, type: 3}
+  - {fileID: 5695752269617309096, guid: bf7dd55110efbbb45bf1d28e0462fbfe, type: 3}
   currentlySpawnedPickUps: 0
   filter:
     serializedVersion: 2

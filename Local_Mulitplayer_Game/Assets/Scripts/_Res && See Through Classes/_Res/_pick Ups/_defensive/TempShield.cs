@@ -7,16 +7,24 @@ public class TempShield : PickUpsBase
     #region Custom Variables
 
     [SerializeField] private float shieldDuration;
-
+    [SerializeField] private GameObject pickUpEffect;
+    [SerializeField] private GameObject shieldBubble;
     #endregion
 
     #region Overridden Methods
 
     protected override void ApplyEffect(GameObject player)
     {
-        IPlayerEffect playerEffect = player.GetComponent<IPlayerEffect>();
+        IPlayerEffect[] playerEffect = player.GetComponents<IPlayerEffect>();
+        if (playerEffect.Length > 0)
+        {
+            foreach (var effect in playerEffect)
+            {
+                effect.ActivateShield(shieldDuration, shieldBubble);
+            }
+        }
 
-        if (playerEffect != null) playerEffect.ActivateShield(shieldDuration);
+        Destroy(gameObject, 0.01f);
     }
 
     #endregion
