@@ -12,6 +12,7 @@ public class RotateCollision : MonoBehaviour
     [SerializeField]private float projectileHP;
 
     [SerializeField] private GameObject explosionFX;
+    [SerializeField] private GameObject clashFX;
 
 
     void Start()
@@ -29,13 +30,20 @@ public class RotateCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collision");
+
     }
 
     public void OnRotationCollision()
     {
         projectileHP -= 30;
 
-        if(projectileHP < 0)
+        if (clashFX != null)
+        {
+            GameObject collisionFX = GameObject.Instantiate(clashFX, transform.position, Quaternion.identity);
+            Destroy(collisionFX, 2f);
+        }
+
+        if (projectileHP < 0)
         {
             projectileHP = 0;
 
