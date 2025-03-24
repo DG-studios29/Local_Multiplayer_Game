@@ -38,6 +38,11 @@ public class PlayerPunches : MonoBehaviour
 
     [SerializeField] private GameObject upperCutFX;
 
+    // Audio for punches.
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip punchSound;
+    [SerializeField] private AudioClip hitSound;
+
 
 
 
@@ -52,13 +57,22 @@ public class PlayerPunches : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                Debug.LogError("AudioSource is missing on " + gameObject.name);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         lastPunchTimer += Time.deltaTime;
-        
+
         ChargeUpdate();
 
     }
@@ -69,7 +83,7 @@ public class PlayerPunches : MonoBehaviour
         if (lastPunchTimer < punchCooldown)
         {
             //we wont punch if cooldown has not passed
-            
+
             return;
         }
 
@@ -79,7 +93,7 @@ public class PlayerPunches : MonoBehaviour
         chargeHoldTimer = 0f;
 
         lastPunchTimer = 0;
-       
+
 
         //AnimatorChargeClear();
 
@@ -90,10 +104,16 @@ public class PlayerPunches : MonoBehaviour
         //ConfigureClip
         TogglePunch();
 
-        
+
         animator.SetTrigger("Punch");
-        
-        
+
+        if (audioSource != null && punchSound != null)
+        {
+            audioSource.volume = 0.1f;
+            audioSource.PlayOneShot(punchSound);
+        }
+
+
 
         punchPosition = transform.position + new Vector3(0, 1, 0);
 
@@ -111,7 +131,7 @@ public class PlayerPunches : MonoBehaviour
                 //determine damage based on charge
                 if (chargeVal <= 0.3)
                 {
-                    
+
                     //perform animation 
                     targetControl.Animator.SetTrigger("Hit");
 
@@ -124,6 +144,12 @@ public class PlayerPunches : MonoBehaviour
                     targetHealth.TakeDamage((int)punchDamage);
 
                     //chargeVal = 0;
+
+                    if (audioSource != null && hitSound != null)
+                    {
+                        audioSource.PlayOneShot(hitSound);
+                    }
+
 
                 }
                 else if (chargeVal > 0.3 && chargeVal <= 0.8)
@@ -143,7 +169,7 @@ public class PlayerPunches : MonoBehaviour
                 }
                 else
                 {
-                    
+
                     //perform animation
                     targetControl = target.GetComponent<PlayerController>();
                     targetControl.Animator.SetTrigger("CriticalHit");
@@ -157,7 +183,7 @@ public class PlayerPunches : MonoBehaviour
                     hit.rigidbody.AddForce(criticalVelocity, ForceMode.Impulse);
 
                     //show particle FX
-                    GameObject hypeFX = GameObject.Instantiate(upperCutFX, transform.position + (transform.forward*1.5f), Quaternion.identity);
+                    GameObject hypeFX = GameObject.Instantiate(upperCutFX, transform.position + (transform.forward * 1.5f), Quaternion.identity);
                     Destroy(hypeFX, 3f);
 
                     //critical hit
@@ -166,8 +192,8 @@ public class PlayerPunches : MonoBehaviour
 
                 }
 
-                
-              
+
+
             }
 
             else if (hit.collider.gameObject.CompareTag("Army"))
@@ -224,7 +250,7 @@ public class PlayerPunches : MonoBehaviour
 
     }
 
-   
+
 
 
     private void ChargeUpdate()
@@ -232,16 +258,16 @@ public class PlayerPunches : MonoBehaviour
         if (chargeHolding && (lastPunchTimer > punchCooldown))
         {
             chargeHoldTimer += Time.deltaTime;
-          
-            
+
+
             ChargeSavedPower();
-            
+
         }
-        else 
+        else
         {
-           //chargeHoldTimer = 0;
-           AnimatorChargeClear();
-           resetAnimation = false;
+            //chargeHoldTimer = 0;
+            AnimatorChargeClear();
+            resetAnimation = false;
         }
 
     }
@@ -250,12 +276,12 @@ public class PlayerPunches : MonoBehaviour
     {
         Debug.Log("ChargingUp");
         chargeVal = chargeHoldTimer / maxChargeTime;
-        if(chargeVal > 1) chargeVal = 1;
+        if (chargeVal > 1) chargeVal = 1;
         dmgCalc = chargeVal;
 
         animator.SetFloat("Charge", chargeVal, 0.05f, Time.deltaTime);
-        
-        
+
+
     }
 
     public void AnimatorChargeClear()
