@@ -6,7 +6,7 @@ using System.Collections.Generic;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Blazeheart : HeroBase
 {
-    private int casterID;
+    
    
     protected override void UseAbility1()
     {
@@ -55,7 +55,7 @@ public class Blazeheart : HeroBase
 
     private IEnumerator FireBurst()
     {
-        float duration = 0.5f;
+        float duration = 5f;
         float radius = 5f;
         float pushForce = 5f;
 

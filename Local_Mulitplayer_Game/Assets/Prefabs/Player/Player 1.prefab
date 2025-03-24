@@ -463,6 +463,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a6bb069f-ee65-4a47-99bb-2b6f053f4d4d
     m_ActionName: 'Player/TestRotor[/SZ-MYPOWER DS4 Wired Controller/button14]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 256afd34-85e4-4d10-9dfc-e88b6b077b25
+    m_ActionName: 'UI/Navigate[/DualShock4GamepadHID/leftStick]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d3558a4-d6fa-4a72-8942-7d5fe0170c70
+    m_ActionName: 'UI/Submit[/DualShock4GamepadHID/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 21efaff5-1239-4812-95b9-f695f2de45cd
+    m_ActionName: 'UI/Cancel[/DualShock4GamepadHID/buttonEast]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

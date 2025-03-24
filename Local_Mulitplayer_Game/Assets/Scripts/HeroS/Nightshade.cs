@@ -5,15 +5,15 @@ using UnityEngine.InputSystem;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Nightshade : HeroBase
 {
-    private int casterID; 
+   
 
     protected override void UseAbility1()
     {
         if (ability1CooldownTimer <= 0f)
         {
             ShootProjectile(abilities.ability1);
-            ability1CooldownTimer = abilities.ability1.cooldown; 
-            
+            ability1CooldownTimer = abilities.ability1.cooldown;
+
         }
         else
         {
@@ -29,7 +29,7 @@ public class Nightshade : HeroBase
             Debug.Log("Nightshade dashes through shadows!");
             StartCoroutine(ShadowDash());
             ability2CooldownTimer = abilities.ability2.cooldown;
-            
+
         }
         else
         {
@@ -44,8 +44,8 @@ public class Nightshade : HeroBase
             // Dark Vortex ability
             Debug.Log("Nightshade summons a Dark Vortex!");
             StartCoroutine(DarkVortex());
-            ultimateCooldownTimer = abilities.ultimate.cooldown; 
-            
+            ultimateCooldownTimer = abilities.ultimate.cooldown;
+
         }
         else
         {
@@ -147,20 +147,20 @@ public class Nightshade : HeroBase
         {
             if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
             {
-              
+
                 if (enemy.gameObject.GetInstanceID() == gameObject.GetInstanceID())
                     continue;
 
-                
+
                 enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)abilities.ability2.damage);
                 enemy.GetComponent<EnemyAI>()?.TakeDamage((int)abilities.ability2.damage);
             }
         }
 
-       
+
         yield return new WaitForSeconds(duration);
     }
 
-    
+
 
 }

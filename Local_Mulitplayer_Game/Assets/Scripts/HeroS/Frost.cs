@@ -4,7 +4,7 @@ using System.Collections;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Frost : HeroBase
 {
-    private int casterID;
+    
    
     protected override void UseAbility1()
     {

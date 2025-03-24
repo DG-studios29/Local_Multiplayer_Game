@@ -5,7 +5,7 @@ using UnityEngine;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody.html
 public class Stonewarden : HeroBase
 {
-    private int casterID;
+  
 
     protected override void UseAbility1()
     {
@@ -55,9 +55,13 @@ public class Stonewarden : HeroBase
 
     private IEnumerator RockFall()
     {
-        float fallDuration = 1f;
-        float rockRadius = 5f;
-        float damage = abilities.ability2.damage;
+        float duration = 10f;
+        float radius = 5f;
+        float enemyDetectionRadius = 5f;
+        int numberOfRocks = 3;
+        float spawnHeight = 10f;
+        float fallSpeed = 20f;
+        int damage = abilities.ability2.damage;
 
         if (abilities.ability2.projectilePrefab == null)
         {
@@ -65,64 +69,73 @@ public class Stonewarden : HeroBase
             yield break;
         }
 
-        Collider[] enemies = Physics.OverlapSphere(transform.position, rockRadius);
-        GameObject targetEnemy = null;
-        float minDistance = Mathf.Infinity;
-
-        foreach (Collider enemy in enemies)
+        for (int i = 0; i < numberOfRocks; i++)
         {
-            if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
+            // Spawn rock at random position above the area
+            Vector3 spawnPos = transform.position + new Vector3(Random.Range(-radius, radius), spawnHeight, Random.Range(-radius, radius));
+            GameObject rock = Instantiate(abilities.ability2.projectilePrefab, spawnPos, Quaternion.identity);
+            Rigidbody rb = rock.GetComponent<Rigidbody>();
+
+            if (rb)
             {
-                float distance = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distance < minDistance)
+                // Find the nearest enemy excluding the caster
+                Collider[] hitEnemies = Physics.OverlapSphere(transform.position, enemyDetectionRadius);
+                Transform targetEnemy = null;
+                float minDistance = Mathf.Infinity;
+
+                foreach (var enemy in hitEnemies)
                 {
-                    minDistance = distance;
-                    targetEnemy = enemy.gameObject;
+                    // Exclude the caster from being a target
+                    if (enemy.gameObject.GetInstanceID() == casterID)
+                        continue; // Skip the caster
+
+                    // Only consider enemies or players for targeting
+                    if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
+                    {
+                        float distance = Vector3.Distance(spawnPos, enemy.transform.position);
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            targetEnemy = enemy.transform;
+                        }
+                    }
+                }
+
+                // Move the rock towards the selected enemy or fall down if no target found
+                if (targetEnemy != null)
+                {
+                    Vector3 direction = (targetEnemy.position - spawnPos).normalized;
+                    rb.linearVelocity = direction * fallSpeed;
+                }
+                else
+                {
+                    // Fall straight down if no enemy is found
+                    rb.linearVelocity = Vector3.down * fallSpeed;
                 }
             }
+
+            // Add RockDamage component for collision handling
+            Projectile projScript = rock.AddComponent<Projectile>();
+            if (projScript) projScript.SetShooter(gameObject);
+
+
+            projScript.Initialize(gameObject, abilities.ultimate.damage);
+
+            // Ensure the rock is destroyed after a duration
+            StartCoroutine(DestroyAfterDuration(rock, duration));
+            yield return new WaitForSeconds(0.5f); // Small delay between rock spawns
         }
 
-        if (targetEnemy == null) yield break;
 
-        // Spawn the rock **above** the target enemy
-        Vector3 fallPosition = targetEnemy.transform.position + Vector3.up * 10f; // 10 units above
-        GameObject rock = Instantiate(abilities.ability2.projectilePrefab, fallPosition, Quaternion.identity);
 
-        if (rock == null) yield break;
-
-        Rigidbody rockRb = rock.GetComponent<Rigidbody>();
-        if (rockRb != null)
-        {
-            rockRb.linearVelocity = Vector3.down * 20f; // Make it fall quickly
-        }
-
-        float timer = 0f;
-        while (timer < fallDuration)
-        {
-            if (rock == null) break;  // Exit if the rock is destroyed
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        if (rock == null) yield break;
-
-        Collider[] hitEnemies = Physics.OverlapSphere(rock.transform.position, rockRadius);
-        foreach (Collider enemy in hitEnemies)
-        {
-            if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
-            {
-                if (enemy.gameObject.GetInstanceID() == gameObject.GetInstanceID())
-                    continue;
-
-                enemy.GetComponent<PlayerHealth>()?.TakeDamage((int)damage);
-                enemy.GetComponent<EnemyAI>()?.TakeDamage((int)damage);
-            }
-        }
-
-        Destroy(rock);
-        Debug.Log("Rock Fall hit the enemy!");
     }
 
+
+    private IEnumerator DestroyAfterDuration(GameObject obj, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(obj);
+    }
 
 
     private IEnumerator Earthquake()
@@ -150,8 +163,10 @@ public class Stonewarden : HeroBase
         foreach (Collider enemy in hitEnemies)
         {
             int enemyID = enemy.gameObject.GetInstanceID();
-            if (enemyID == gameObject.GetInstanceID() || hitEnemiesSet.Contains(enemyID))
-                continue; // Skip self and already hit enemies
+   
+            if (enemyID == casterID || hitEnemiesSet.Contains(enemyID))
+                continue; // Skip if it's the caster or already hit
+           
 
             if (enemy.CompareTag("Enemy") || enemy.CompareTag("Player"))
             {
