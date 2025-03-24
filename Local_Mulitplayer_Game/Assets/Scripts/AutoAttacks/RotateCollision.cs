@@ -11,6 +11,8 @@ public class RotateCollision : MonoBehaviour
     private float maxProjectileHP = 100;
     [SerializeField]private float projectileHP;
 
+    [SerializeField] private GameObject explosionFX;
+
 
     void Start()
     {
@@ -36,6 +38,13 @@ public class RotateCollision : MonoBehaviour
         if(projectileHP < 0)
         {
             projectileHP = 0;
+
+            GameManager.Instance.TriggerCameraShake(0.5f);
+            
+            GameObject explodeFX = GameObject.Instantiate(explosionFX, transform.position, Quaternion.identity);
+
+            Destroy(explodeFX, 2f);
+
             DestroyProjectile();
         }
 

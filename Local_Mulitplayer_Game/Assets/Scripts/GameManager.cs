@@ -394,7 +394,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void TriggerCameraShake()
+    public void TriggerCameraShake()
     {
         noise.AmplitudeGain = 1f; // Start camera shake
         noise.FrequencyGain = 2f;
@@ -405,6 +405,14 @@ public class GameManager : MonoBehaviour
     {
         noise.AmplitudeGain = 0f; // Stop camera shake
         noise.FrequencyGain = 0f;
+    }
+
+    //camera shake overload
+    public void TriggerCameraShake(float duration)
+    {
+        noise.AmplitudeGain = 1f; // Start camera shake
+        noise.FrequencyGain = 2f;
+        Invoke("StopCameraShake", duration); // Stop shake after 5 seconds
     }
 
     public void SelectMap(string mapName)

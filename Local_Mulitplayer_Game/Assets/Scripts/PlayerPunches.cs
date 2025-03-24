@@ -36,6 +36,8 @@ public class PlayerPunches : MonoBehaviour
     bool resetAnimation = false;
     private float dmgCalc;
 
+    [SerializeField] private GameObject upperCutFX;
+
 
 
 
@@ -146,10 +148,17 @@ public class PlayerPunches : MonoBehaviour
                     targetControl = target.GetComponent<PlayerController>();
                     targetControl.Animator.SetTrigger("CriticalHit");
 
+                    //trigger camera shake
+                    GameManager.Instance.TriggerCameraShake();
+
                     //apply forces
                     punchForce = distancePushed * 2f / timePushed;
                     Vector3 criticalVelocity = punchForce * hit.rigidbody.mass * (transform.forward + transform.up);
                     hit.rigidbody.AddForce(criticalVelocity, ForceMode.Impulse);
+
+                    //show particle FX
+                    GameObject hypeFX = GameObject.Instantiate(upperCutFX, transform.position + (transform.forward*1.5f), Quaternion.identity);
+                    Destroy(hypeFX, 3f);
 
                     //critical hit
                     float crit = unscaledMAXDamage;
