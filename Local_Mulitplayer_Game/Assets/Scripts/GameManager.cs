@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Spawn points")]
     public List<Transform> forestSpawnPoints; // Spawn points for players in the forest map
+    public List<Transform> cemeterySpawnPoints; // Spawn points for players in the forest map
+    public List<Transform> winterSpawnPoints; // Spawn points for players in the forest map
     private List<Transform> currentSpawnPoints; // Active spawn points during the match
 
     [Header("Camera Tracking")]
@@ -34,7 +36,10 @@ public class GameManager : MonoBehaviour
     private bool gameStarted = false; // Tracks if the game has started
 
     [Header("Maps")]
+    public string selectedMap = "Forest"; // Default map
     public GameObject forestMap; // The forest map object
+    public GameObject cemeteryMap; // The cemetery map object
+    public GameObject wintermap; // The winter map object
 
     [Header("Player UI")]
     public Slider player1HealthSlider;
@@ -44,11 +49,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI player1NameText;
     public TextMeshProUGUI player2NameText;
 
+
     private bool shakeTriggered = false; // Tracks if camera shake has been triggered
 
     private void Awake()
     {
-        Instance = this; // Singleton setup
+        Instance = this; 
     }
 
     private void Start()
@@ -84,7 +90,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(List<string> chosenHeroes)
     {
         selectedHeroes = chosenHeroes;
-
+        
         for (int i = 0; i < selectedHeroes.Count; i++)
         {
             if (string.IsNullOrEmpty(selectedHeroes[i]))
@@ -96,7 +102,8 @@ public class GameManager : MonoBehaviour
         timer = gameDuration; // Reset timer
         shakeTriggered = false;
         gameStarted = true;
-        currentSpawnPoints = forestSpawnPoints; // Use forest spawn points
+        
+        SelectMap(selectedMap);
         SpawnPlayers(currentSpawnPoints); // Spawn the players
     }
 
@@ -120,21 +127,25 @@ public class GameManager : MonoBehaviour
     {
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
+
         // Assign UI elements to each player based on their name
         if (player.name == "Player 1")
         {
             playerHealth.healthSlider = player1HealthSlider;
             playerHealth.healthText = player1HealthText;
             player1NameText.text = playerName;
+    
         }
         else if (player.name == "Player 2")
         {
             playerHealth.healthSlider = player2HealthSlider;
             playerHealth.healthText = player2HealthText;
             player2NameText.text = playerName;
+   
         }
 
         playerHealth.UpdateHealthUI(); // Update health UI on start
+     
     }
 
     void SpawnPlayers(List<Transform> points)
@@ -266,4 +277,34 @@ public class GameManager : MonoBehaviour
         noise.AmplitudeGain = 0f; // Stop camera shake
         noise.FrequencyGain = 0f;
     }
+
+    public void SelectMap(string mapName)
+    {
+        selectedMap = mapName;
+
+        // Deactivate all maps
+        forestMap.SetActive(false);
+        cemeteryMap.SetActive(false);
+        wintermap.SetActive(false);
+
+        // Activate the chosen map
+        switch (mapName)
+        {
+            case "Forest":
+                forestMap.SetActive(true);
+                currentSpawnPoints = forestSpawnPoints;
+                break;
+            case "Cemetery":
+                cemeteryMap.SetActive(true);
+                currentSpawnPoints = cemeterySpawnPoints;
+                break;
+            case "Winter":
+                wintermap.SetActive(true);
+                currentSpawnPoints = winterSpawnPoints;
+                break;
+        }
+
+        Debug.Log($"Map Selected: {mapName}");
+    }
+
 }

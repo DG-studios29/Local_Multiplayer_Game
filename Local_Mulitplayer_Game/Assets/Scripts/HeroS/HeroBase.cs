@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
+
 //https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Actions.html#action-callbacks
 
 public abstract class HeroBase : MonoBehaviour
@@ -14,6 +17,9 @@ public abstract class HeroBase : MonoBehaviour
     public float ability1CooldownTimer = 0f;
     public float ability2CooldownTimer = 0f;
     public float ultimateCooldownTimer = 0f;
+
+    public Image abilityIcon;
+    public TextMeshProUGUI cooldownText;
 
     protected virtual void Start()
     {
