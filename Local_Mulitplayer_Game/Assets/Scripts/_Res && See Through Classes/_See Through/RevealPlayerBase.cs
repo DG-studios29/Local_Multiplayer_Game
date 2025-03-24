@@ -26,12 +26,17 @@ public class RevealPlayerBase : MonoBehaviour
     #region Built-In Methods
     private void Awake()
     {
-        if (!instance) instance = this;
+        if (!instance)
+        {
+            instance = this;
+        }
+        if (!cam) cam = Camera.main.transform;
+        
     }
-    private void OnValidate()
-    {
-        if(!cam) cam = Camera.main.transform;
-    }
+    //private void OnValidate()
+    //{
+    //    if(!cam) cam = Camera.main.transform;
+    //}
 
     private void Update()
     {
