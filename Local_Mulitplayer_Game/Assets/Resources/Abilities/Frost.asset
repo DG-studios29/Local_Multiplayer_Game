@@ -15,19 +15,19 @@ MonoBehaviour:
   heroName: Frost
   ability1:
     abilityName: Frostball
-    projectilePrefab: {fileID: 3302372391171628307, guid: 111630f92b8f1164cae05b80dcf6f8e7, type: 3}
+    projectilePrefab: {fileID: 5112403345868107898, guid: 68ebf3fe465519a4eb5746736483159c, type: 3}
     cooldown: 5
     damage: 5
     icon: {fileID: 21300000, guid: ea00386aac86ae641b372884a4bda2e0, type: 3}
   ability2:
     abilityName: Frostspikes
-    projectilePrefab: {fileID: 5337696728587280819, guid: d5a2277c36ea9eb4787946ae2a9d4da0, type: 3}
+    projectilePrefab: {fileID: 5112403345868107898, guid: 2318e41a4018dc2488248af7dff70b11, type: 3}
     cooldown: 10
     damage: 10
     icon: {fileID: 21300000, guid: 14cda08a6b188564bb8885916bfaa20f, type: 3}
   ultimate:
     abilityName: Iceage
-    projectilePrefab: {fileID: 391511041649616911, guid: da7a1ccda18103541bd767afdf27da98, type: 3}
+    projectilePrefab: {fileID: 5112403345868107898, guid: 6f34ef0d986e9db4199cf75805f79753, type: 3}
     cooldown: 20
     damage: 20
     icon: {fileID: 21300000, guid: 4c3eb01d2cf6ff74a890a89c6a94f077, type: 3}

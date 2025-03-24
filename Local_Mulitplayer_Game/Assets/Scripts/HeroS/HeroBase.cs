@@ -32,13 +32,14 @@ public abstract class HeroBase : MonoBehaviour
     public Image ability2Icon;
     public Image ultimateIcon;
 
-   
+    public int casterID;
     private Color originalAbility1Color;
     private Color originalAbility2Color;
     private Color originalUltimateColor;
 
     protected virtual void Start()
     {
+        casterID = gameObject.GetInstanceID();
         // Store the original colors of the icons
         originalAbility1Color = ability1Icon.color;
         originalAbility2Color = ability2Icon.color;
