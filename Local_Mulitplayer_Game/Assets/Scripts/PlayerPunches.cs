@@ -4,6 +4,7 @@ public class PlayerPunches : MonoBehaviour
 {
 
     private PlayerController playerController;
+    private GameObject parentObject;
     private Animator animator;
 
 
@@ -42,6 +43,7 @@ public class PlayerPunches : MonoBehaviour
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
+        parentObject = playerController.gameObject;
     }
 
 
@@ -165,17 +167,20 @@ public class PlayerPunches : MonoBehaviour
                 GameObject target = hit.collider.gameObject;
                 EnemyAI targetHealth = target.GetComponent<EnemyAI>();
 
+                if (targetHealth.enemyParent != parentObject)
+                {
+                    //Dont punch parents
 
-
-                //punches on armies are ineffective, save for crits
-                if (chargeVal <= 0.8f)
-                    { 
-                        //targetHealth.TakeDamage(1f);
+                    //punches on armies are ineffective, save for crits
+                    if (chargeVal <= 0.8f)
+                    {
+                        targetHealth.TakeDamage(1f);
                     }
-                else
-                    { 
+                    else
+                    {
                         targetHealth.TakeDamage(5f);
                     }
+                }
             }
 
         }
