@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
+   
     private void Start()
     {
         
@@ -39,7 +39,11 @@ public class MenuManager : MonoBehaviour
     }
 
 
+    public void DisplayControlsMenu()
 
+    {
+
+    }
 
 
 }
