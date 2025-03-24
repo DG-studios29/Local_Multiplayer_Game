@@ -16,10 +16,30 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isFrozen;
     private float freezeDuration;
+
+
+    //show material change
+    [SerializeField] private Material frozenMaterial;
+    [SerializeField] private Material hurtMaterial;
+    private float hurtTime = 0.25f;
+    bool alreadyHurting = false;
+    private Material baseMaterial;
+    private MeshRenderer[] playerMeshRenderers;
+    
+    
+
+
+
     private void Awake()
     {
         currentHealth = maxHealth;
         UpdateHealthUI();
+    }
+
+    private void Start()
+    {
+        playerMeshRenderers = GetComponentsInChildren<MeshRenderer>();
+        baseMaterial = playerMeshRenderers[0].material;
     }
 
     public void TakeDamage(int damage)
@@ -29,6 +49,9 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI(); // 🔹 Ensure UI updates every time damage is taken
 
         Debug.Log($"{gameObject.name} took {damage} damage. Current Health: {currentHealth}");
+
+        if(!alreadyHurting && !isFrozen)
+        StartCoroutine(ShowHurt());
 
         if (currentHealth <= 0)
         {
@@ -69,7 +92,36 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator FreezeDuration()
     {
+        ChangeMat(frozenMaterial);
         yield return new WaitForSeconds(freezeDuration);
         isFrozen = false;
+        ChangeMat(baseMaterial);
     }
+
+
+    private IEnumerator ShowHurt()
+    {
+        
+        alreadyHurting = true;
+        yield return new WaitForSeconds(0.1f);
+
+
+        ChangeMat(hurtMaterial);
+
+        yield return new WaitForSeconds(hurtTime);
+
+        ChangeMat(baseMaterial);
+        alreadyHurting = false;
+    }
+
+    private void ChangeMat(Material materialStatus)
+    {
+        foreach(var part in playerMeshRenderers)
+        {
+            part.material = materialStatus;
+        }
+    }
+
+    
+
 }

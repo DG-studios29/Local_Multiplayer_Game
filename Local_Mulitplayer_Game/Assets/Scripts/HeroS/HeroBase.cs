@@ -18,6 +18,11 @@ public abstract class HeroBase : MonoBehaviour
     public float ability2CooldownTimer = 0f;
     public float ultimateCooldownTimer = 0f;
 
+
+  
+
+    private AutoAttack autoattack;
+
     public TMP_Text ability1CooldownText;
     public TMP_Text ability2CooldownText;
     public TMP_Text ultimateCooldownText;
@@ -31,6 +36,7 @@ public abstract class HeroBase : MonoBehaviour
     private Color originalAbility1Color;
     private Color originalAbility2Color;
     private Color originalUltimateColor;
+
     protected virtual void Start()
     {
         // Store the original colors of the icons
@@ -48,6 +54,9 @@ public abstract class HeroBase : MonoBehaviour
         {
             Debug.LogError($"{gameObject.name} is missing a ProjectileSpawnPoint!");
         }
+
+        autoattack = GetComponentInChildren<AutoAttack>();
+        autoattack.InstantiateRevolver(abilities.itemRevolve);
     }
 
     protected abstract void UseAbility1();

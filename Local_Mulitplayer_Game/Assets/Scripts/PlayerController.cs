@@ -70,6 +70,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnClear(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            AutoAttack auto = GetComponentInChildren<AutoAttack>();
+            auto.TestClear();
+        }
+    }
+
+
     // Make the player move
     private void FixedUpdate()
     {
