@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
 
     private Animator animator;
     public Animator Animator => animator;
-
+  
 
     private Rigidbody rb;
     private Vector2 movementInput;
@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         movementInput = context.ReadValue<Vector2>();
 
     }
+    
+    
+
 
     public void OnPunch(InputAction.CallbackContext context)
     {
@@ -175,7 +178,7 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
             hasTrail = true;
         }
 
-        trailEffect.transform.SetParent(transform);
+        trailEffect.transform.parent = transform;
         trailEffect.transform.localPosition = new Vector3(0, .01f, 0);
         if (speedCoroutine != null) StopCoroutine(speedCoroutine);
         speedCoroutine = StartCoroutine(SpeedBoostEffect(duration, trailEffect));
@@ -183,11 +186,11 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         switch (isPlayer)
         {
             case IsPlayer.PlayerOne:
-                GameManager.Instance.playerOnePowerUps[2].color = GameManager.Instance.playerOnePowerUps[2].color * 10f;
+                GameManager.Instance.playerOnePowerUps[2].alpha = 1f;
                 break;
 
             case IsPlayer.PlayerTwo:
-                GameManager.Instance.playerTwoPowerUps[2].color = GameManager.Instance.playerTwoPowerUps[2].color * 10f;
+                GameManager.Instance.playerTwoPowerUps[2].alpha = 1f;
                 break;
         }
     }
@@ -208,11 +211,11 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
         switch (isPlayer)
         {
             case IsPlayer.PlayerOne:
-                GameManager.Instance.playerOnePowerUps[2].color = GameManager.Instance.playerOnePowerUps[2].color * .4f;
-                break;
-
-            case IsPlayer.PlayerTwo:
-                GameManager.Instance.playerTwoPowerUps[2].color = GameManager.Instance.playerTwoPowerUps[2].color * .4f;
+                GameManager.Instance.playerOnePowerUps[2].alpha = 0.4f;
+                break;                                           
+                                                                 
+            case IsPlayer.PlayerTwo:                             
+                GameManager.Instance.playerTwoPowerUps[2].alpha = 0.4f;
                 break;
         }
     }

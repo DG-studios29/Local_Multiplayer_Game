@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
     private bool isFrozen;
     private float freezeDuration;
 
+    public enum IsPlayer { PlayerOne, PlayerTwo }
+    public IsPlayer isPlayer;
 
     //show material change
     [SerializeField] private Material frozenMaterial;
@@ -34,6 +36,7 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
     private bool isShielded = false;
     private bool hasShieldBubble;
     private Coroutine shieldCoroutine;
+    private Coroutine healthCoroutine;
     
     #endregion
 
@@ -47,6 +50,14 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
     {
         playerMeshRenderers = GetComponentsInChildren<MeshRenderer>();
         baseMaterial = playerMeshRenderers[0].material;
+        StartCoroutine(ValidatePlayer());
+    }
+
+    private IEnumerator ValidatePlayer()
+    {
+        yield return new WaitForSeconds(5f);
+        if (gameObject.name == "Player 1") isPlayer = IsPlayer.PlayerOne;
+        if (gameObject.name == "Player 2") isPlayer = IsPlayer.PlayerTwo;
     }
 
     public void TakeDamage(int damage)
@@ -144,7 +155,7 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
     {
         isShielded = true;
 
-        if(!hasShieldBubble)
+        if (!hasShieldBubble)
         {
             shield = Instantiate(shield);
             hasShieldBubble = true;
@@ -155,8 +166,19 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
         shield.transform.localRotation = Quaternion.identity;
         shield.transform.localScale = new Vector3(.77f, .7f, .7f);
 
-        if(shieldCoroutine != null) StopCoroutine(shieldCoroutine);
-        shieldCoroutine = StartCoroutine (ShieldTime(duration, shield));
+        if (shieldCoroutine != null) StopCoroutine(shieldCoroutine);
+        shieldCoroutine = StartCoroutine(ShieldTime(duration, shield));
+
+        switch (isPlayer)
+        {
+            case IsPlayer.PlayerOne:
+                GameManager.Instance.playerOnePowerUps[1].alpha = 1f;
+                break;
+
+            case IsPlayer.PlayerTwo:
+                GameManager.Instance.playerTwoPowerUps[1].alpha = 1f;
+                break;
+        }
     }
 
     public void GiveHealth(float health)
@@ -164,6 +186,35 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
         currentHealth += (int)health;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
+        if (healthCoroutine != null) StopCoroutine(healthCoroutine);
+        healthCoroutine = StartCoroutine(healthtime());
+
+
+        switch (isPlayer)
+        {
+            case IsPlayer.PlayerOne:
+                GameManager.Instance.playerOnePowerUps[0].alpha = 1f;
+                break;
+
+            case IsPlayer.PlayerTwo:
+                GameManager.Instance.playerTwoPowerUps[0].alpha = 1f;
+                break;
+        }
+    }
+
+    IEnumerator healthtime()
+    {
+        yield return new WaitForSeconds(3f);
+        switch (isPlayer)
+        {
+            case IsPlayer.PlayerOne:
+                GameManager.Instance.playerOnePowerUps[0].alpha = 0.4f;
+                break;
+
+            case IsPlayer.PlayerTwo:
+                GameManager.Instance.playerTwoPowerUps[0].alpha = 0.4f;
+                break;
+        }
     }
 
     public void RefillAbilityBar(float energy)
@@ -177,12 +228,23 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
 
         isShielded = false;
 
-        if(shieldBubble!= null)
+        if (shieldBubble != null)
         {
             Destroy(shieldBubble);
         }
 
         hasShieldBubble = false;
+
+        switch (isPlayer)
+        {
+            case IsPlayer.PlayerOne:
+                GameManager.Instance.playerOnePowerUps[1].alpha = 0.4f;
+                break;
+
+            case IsPlayer.PlayerTwo:
+                GameManager.Instance.playerTwoPowerUps[1].alpha = 0.4f;
+                break;
+        }
     }
     #endregion
 }
