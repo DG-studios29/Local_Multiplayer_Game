@@ -486,7 +486,11 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f87f947f-cc20-4ade-9d7b-d72bd43bfb53
     m_ActionName: 'Player/Pause[/DualShock4GamepadHID/start]'
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1717bf5b-5311-44d3-b272-20938e5a643e
+    m_ActionName: 'Player/PlayerJoin[/DualSenseGamepadHID1/start,/DualSenseGamepadHID/start,/Keyboard/enter]'
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.InputSystem;
 //https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PlayerPrefs.html
 public class GameManager : MonoBehaviour
 {
@@ -79,6 +80,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+  
+            var allPlayers = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
+            foreach (var input in allPlayers)
+            {
+                Destroy(input.gameObject);
+            }
+
         Instance = this; 
     }
 

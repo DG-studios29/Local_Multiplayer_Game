@@ -46,7 +46,7 @@ public class HeroSelectionUI : MonoBehaviour
             button.Initialize();
         }
 
-        Debug.Log("Hero selection started.");
+       
     }
 
     public void OnHeroSelected(string heroName)

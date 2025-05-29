@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
     //Gonna store all this stuff in a Player Punches script after merge
     private PlayerPunches playerPunches;
 
+
     private void OnEnable()
     {
         StartCoroutine(ValidatePlayer());
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour, IPlayerEffect
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        Debug.Log("[Player] Player prefab instantiated!");
 
 
         animator = GetComponent<Animator>();
