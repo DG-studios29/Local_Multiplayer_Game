@@ -47,7 +47,7 @@ public class RotateCollision : MonoBehaviour
         {
             projectileHP = 0;
 
-            GameManager.Instance.TriggerCameraShake(0.5f);
+            
             
             GameObject explodeFX = GameObject.Instantiate(explosionFX, transform.position, Quaternion.identity);
 

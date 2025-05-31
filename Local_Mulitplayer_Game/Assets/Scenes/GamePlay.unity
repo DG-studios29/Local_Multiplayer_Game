@@ -1492,6 +1492,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1028209532}
+        m_TargetAssemblyTypeName: HeroManager, Assembly-CSharp
+        m_MethodName: SelectHero
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &318727386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3133,13 +3145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e131a4c25ccebaf4e8d051d9d11fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 3093234706080368204, guid: bc24a6d4477f0b941ad691821e07abbd, type: 3}
-  numberOfPlayers: 2
+  selectedHeroes: []
   playerMaterials:
   - {fileID: 2100000, guid: 8efea93abd03fb84b9d59b0ee429a98c, type: 2}
   - {fileID: 2100000, guid: ea019199206d3914a8c5188cd135121a, type: 2}
   - {fileID: 2100000, guid: 24b65c9f8b657ef43b21b8ede263b362, type: 2}
   - {fileID: 2100000, guid: adc8bfaf63520e94595895ac706c1d49, type: 2}
+  activePlayers: []
   forestSpawnPoints:
   - {fileID: 1732323360}
   - {fileID: 1870814782}
@@ -3149,31 +3161,17 @@ MonoBehaviour:
   winterSpawnPoints:
   - {fileID: 1258236635}
   - {fileID: 1660929395}
-  targetGroup: {fileID: 1092727097}
-  cineCamera: {fileID: 1253251809}
-  noise: {fileID: 1253251805}
-  selectedHeroes: []
-  gameDuration: 300
-  timer: 0
-  timerText: {fileID: 944516789}
   selectedMap: Winter
   forestMap: {fileID: 635569689}
   cemeteryMap: {fileID: 635569690}
   wintermap: {fileID: 635569688}
+  targetGroup: {fileID: 1092727097}
   player1HealthSlider: {fileID: 1356256000}
   player1HealthText: {fileID: 1337548081}
   player2HealthSlider: {fileID: 1099281684}
   player2HealthText: {fileID: 1660617750}
   player1NameText: {fileID: 703857867}
   player2NameText: {fileID: 32936632}
-  playerOnePowerUps:
-  - {fileID: 1667048546}
-  - {fileID: 1438481684}
-  - {fileID: 1448480691}
-  playerTwoPowerUps:
-  - {fileID: 1126230751}
-  - {fileID: 1795865105}
-  - {fileID: 229496936}
   player1Ability1Icon: {fileID: 1579919479}
   player1Ability1CooldownText: {fileID: 808180144}
   player2Ability1Icon: {fileID: 1194045301}
@@ -3186,10 +3184,16 @@ MonoBehaviour:
   player1Ability3CooldownText: {fileID: 1652125708}
   player2Ability3Icon: {fileID: 49528742}
   player2Ability3CooldownText: {fileID: 1254278796}
-  endGameText: {fileID: 99432596}
-  gameOverUI: {fileID: 898058959}
-  isPlayer1Alive: 1
-  isPlayer2Alive: 1
+  playerOnePowerUps:
+  - {fileID: 1667048546}
+  - {fileID: 1438481684}
+  - {fileID: 1448480691}
+  playerTwoPowerUps:
+  - {fileID: 1126230751}
+  - {fileID: 1795865105}
+  - {fileID: 229496936}
+  gameDuration: 300
+  timerText: {fileID: 944516789}
 --- !u!4 &621055610
 Transform:
   m_ObjectHideFlags: 0
@@ -3227,11 +3231,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1560793580}
         m_TargetAssemblyTypeName: PlayerJoinUI, Assembly-CSharp
         m_MethodName: OnPlayerJoined
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
-          m_ObjectArgument: {fileID: 8658154429024464363, guid: bc24a6d4477f0b941ad691821e07abbd, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
-            Unity.InputSystem
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3589,7 +3592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &651884613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5461,6 +5464,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1457246282}
+        m_TargetAssemblyTypeName: HeroManager, Assembly-CSharp
+        m_MethodName: SelectHero
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &884696562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6261,6 +6276,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 988816962}
+        m_TargetAssemblyTypeName: HeroManager, Assembly-CSharp
+        m_MethodName: SelectHero
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &955844526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6391,7 +6418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &983213388
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11558,6 +11585,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputManager: {fileID: 621055611}
+  joinPanel: {fileID: 1233498409}
+  heroPanel: {fileID: 2099332121}
+  continueButton: {fileID: 1750659966}
 --- !u!114 &1560793580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11678,7 +11708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1594679980
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13134,7 +13164,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1750659969}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1560793579}
+        m_TargetAssemblyTypeName: PlayerJoinManager, Assembly-CSharp
+        m_MethodName: ContinueToHeroSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1750659969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13190,7 +13232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1757698201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15986,13 +16028,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 621055608}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 23946544}
+        m_TargetAssemblyTypeName: HeroManager, Assembly-CSharp
+        m_MethodName: SelectHero
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

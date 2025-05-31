@@ -40,15 +40,18 @@ public abstract class HeroBase : MonoBehaviour
     protected virtual void Start()
     {
         casterID = gameObject.GetInstanceID();
-        // Store the original colors of the icons
-        originalAbility1Color = ability1Icon.color;
-        originalAbility2Color = ability2Icon.color;
-        originalUltimateColor = ultimateIcon.color;
+
+        if (ability1Icon) originalAbility1Color = ability1Icon.color;
+        if (ability2Icon) originalAbility2Color = ability2Icon.color;
+        if (ultimateIcon) originalUltimateColor = ultimateIcon.color;
 
         playerInput = GetComponent<PlayerInput>();
-        playerInput.actions["Ability1"].performed += ctx => UseAbility1();
-        playerInput.actions["Ability2"].performed += ctx => UseAbility2();
-        playerInput.actions["Ultimate"].performed += ctx => UseUltimate();
+        if (playerInput != null)
+        {
+            playerInput.actions["Ability1"].performed += ctx => UseAbility1();
+            playerInput.actions["Ability2"].performed += ctx => UseAbility2();
+            playerInput.actions["Ultimate"].performed += ctx => UseUltimate();
+        }
 
         projectileSpawnPoint = transform.Find("ProjectileSpawnPoint");
         if (!projectileSpawnPoint)
@@ -57,8 +60,12 @@ public abstract class HeroBase : MonoBehaviour
         }
 
         autoattack = GetComponentInChildren<AutoAttack>();
-        autoattack.InstantiateRevolver(abilities.itemRevolve);
+        if (autoattack != null && abilities != null)
+        {
+            autoattack.InstantiateRevolver(abilities.itemRevolve);
+        }
     }
+
 
     protected abstract void UseAbility1();
     protected abstract void UseAbility2();
@@ -100,13 +107,17 @@ public abstract class HeroBase : MonoBehaviour
 
     private void Update()
     {
-        UpdateCooldowns(); 
+        if (ability1Icon == null || ability2Icon == null || ultimateIcon == null ||
+            ability1CooldownText == null || ability2CooldownText == null || ultimateCooldownText == null)
+            return;
 
-        // Handle the visuals for the ability icons and cooldown text
+        UpdateCooldowns();
+
         UpdateAbilityUI(ability1CooldownTimer, ability1Icon, ability1CooldownText);
         UpdateAbilityUI(ability2CooldownTimer, ability2Icon, ability2CooldownText);
         UpdateAbilityUI(ultimateCooldownTimer, ultimateIcon, ultimateCooldownText);
     }
+
 
     void UpdateCooldowns()
     {
@@ -125,28 +136,29 @@ public abstract class HeroBase : MonoBehaviour
     }
     void UpdateAbilityUI(float cooldownTimer, Image abilityIcon, TMP_Text cooldownText)
     {
+        if (abilityIcon == null || cooldownText == null)
+            return;
+
         if (cooldownTimer > 0)
         {
-            // Ability is on cooldown
-            abilityIcon.color = Color.gray; // Change the icon color to gray
-            cooldownText.gameObject.SetActive(true); // Show the cooldown text
-            cooldownText.text = cooldownTimer.ToString("F0"); // Update the cooldown timer text
+            abilityIcon.color = Color.gray;
+            cooldownText.gameObject.SetActive(true);
+            cooldownText.text = cooldownTimer.ToString("F0");
         }
         else
         {
-            // Ability is ready
-            abilityIcon.color = originalAbility1Color; // Reset icon color to original
-            cooldownText.gameObject.SetActive(false); // Hide the cooldown text
+            cooldownText.gameObject.SetActive(false);
 
-            // Ability is ready
-            abilityIcon.color = originalAbility2Color; // Reset icon color to original
-            cooldownText.gameObject.SetActive(false); // Hide the cooldown text
-
-            // Ability is ready
-            abilityIcon.color = originalUltimateColor; // Reset icon color to original
-            cooldownText.gameObject.SetActive(false); // Hide the cooldown text
+            // Safely reset icon color
+            if (abilityIcon == ability1Icon)
+                abilityIcon.color = originalAbility1Color;
+            else if (abilityIcon == ability2Icon)
+                abilityIcon.color = originalAbility2Color;
+            else if (abilityIcon == ultimateIcon)
+                abilityIcon.color = originalUltimateColor;
         }
     }
+
 
     public void ResetCooldowns()
     {

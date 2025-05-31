@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour, IPlayerEffect
     public Slider healthSlider;
     public TMP_Text healthText;
 
+
     private bool isFrozen;
     private float freezeDuration;
 

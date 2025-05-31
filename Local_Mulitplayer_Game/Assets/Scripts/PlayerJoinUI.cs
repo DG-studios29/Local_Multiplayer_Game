@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿// PlayerJoinUI.cs
+using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
@@ -11,10 +11,7 @@ public class PlayerJoinUI : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("[UI] OnPlayerJoined() was triggered!");
-
         int index = playerInput.playerIndex;
-        Debug.Log($"[UI] Player joined with index: {index}");
 
         if (index < 0 || index >= playerPanels.Length)
         {
@@ -23,26 +20,15 @@ public class PlayerJoinUI : MonoBehaviour
         }
 
         playerPanels[index].SetActive(true);
-
         if (playerLabels.Length > index && playerLabels[index] != null)
-        {
             playerLabels[index].text = $"Player {index + 1} Joined!";
-            Debug.Log($"[UI] Set player label: {playerLabels[index].name} → Player {index + 1} Joined!");
-        }
 
         if (playerColors.Length > index)
         {
-            Color playerColor = playerColors[index];
-
-            var images = playerPanels[index].GetComponentsInChildren<Image>();
-            foreach (var img in images)
-            {
-                Color original = img.color;
-                Color adjustedColor = new Color(playerColor.r, playerColor.g, playerColor.b, original.a);
-                img.color = adjustedColor;
-            }
-
-            Debug.Log($"[UI] Applied player color (preserved alpha): {playerColor}");
+            foreach (var img in playerPanels[index].GetComponentsInChildren<UnityEngine.UI.Image>())
+                img.color = new Color(playerColors[index].r, playerColors[index].g, playerColors[index].b, img.color.a);
         }
+
+        GameManager.Instance?.RegisterPlayer(playerInput);
     }
 }

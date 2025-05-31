@@ -12,11 +12,11 @@ public class HeroSelectionUI : MonoBehaviour
     public Button startGameButton;
     public List<HeroManager> heroButtons;
 
-    public List<Image> playerHeroImages;  // List to hold Image components for each player
-    public List<TextMeshProUGUI> playerHeroNames;    // List to hold Text components for player hero names
+    public List<Image> playerHeroImages;
+    public List<TextMeshProUGUI> playerHeroNames;
 
     private Dictionary<int, string> chosenHeroes = new Dictionary<int, string>();
-    private int currentSelectingPlayer = 0;  // Tracks which player is selecting
+    private int currentSelectingPlayer = 0;
 
     private void Awake()
     {
@@ -27,52 +27,55 @@ public class HeroSelectionUI : MonoBehaviour
     public void Setup(int numberOfPlayers)
     {
         selectionPanel.SetActive(true);
-        chosenHeroes.Clear();
+        chosenHeroes.Clear(); 
+        currentSelectingPlayer = 0;
 
-        // Initialize all players with no selection
         for (int i = 0; i < numberOfPlayers; i++)
         {
             chosenHeroes[i] = "";
-            // Ensure UI is cleared for each player
-            playerHeroImages[i].sprite = null;  // Clear the image
-            playerHeroNames[i].text = "Select Hero";  // Placeholder text
+            playerHeroImages[i].sprite = null;
+            playerHeroNames[i].text = "Select Hero";
         }
 
         startGameButton.interactable = false;
 
-        // Assign button listeners
         foreach (var button in heroButtons)
         {
             button.Initialize();
         }
-
-       
     }
 
     public void OnHeroSelected(string heroName)
     {
+        // Prevent duplicate hero assignment
+        if (chosenHeroes.ContainsValue(heroName))
+        {
+            Debug.LogWarning($"Hero {heroName} is already taken!");
+            return;
+        }
+
+        // Assign hero to the current player
         if (chosenHeroes.ContainsKey(currentSelectingPlayer))
         {
             chosenHeroes[currentSelectingPlayer] = heroName;
-            Debug.Log($"Player {currentSelectingPlayer + 1} selected {heroName}");
+            Debug.Log($"Player {currentSelectingPlayer + 1} chosen hero: {heroName}");
 
-            // Update visual display for the current player
             UpdatePlayerHeroUI(currentSelectingPlayer, heroName);
 
+            // Only advance if the player hasn't already picked
             currentSelectingPlayer++;
             if (currentSelectingPlayer >= chosenHeroes.Count)
-            {
-                currentSelectingPlayer = 0; // Optionally cycle back to the first player
-            }
+                currentSelectingPlayer = chosenHeroes.Count - 1; // Clamp
         }
 
-        // Check if all players have chosen
+        // Confirm button active only when all slots are filled
         startGameButton.interactable = AreAllHeroesSelected();
     }
 
+
+
     private void UpdatePlayerHeroUI(int playerIndex, string heroName)
     {
-        // Update the hero's image and name in the UI
         Sprite heroSprite = GetHeroSprite(heroName);
         playerHeroImages[playerIndex].sprite = heroSprite;
         playerHeroNames[playerIndex].text = heroName;
@@ -80,35 +83,23 @@ public class HeroSelectionUI : MonoBehaviour
 
     private Sprite GetHeroSprite(string heroName)
     {
-        // This function returns the corresponding sprite based on the hero name.
-        // You would need to map hero names to specific sprites.
-        // For example, you could use a dictionary or switch case to find the correct sprite.
-        // For simplicity, assuming the heroName matches the file name.
-
-        return Resources.Load<Sprite>($"Heroes/{heroName}"); // Example path to hero sprites
+        return Resources.Load<Sprite>($"Heroes/{heroName}");
     }
 
     public void OnHeroChange()
     {
-        // Reset the current player's hero selection
         if (chosenHeroes.ContainsKey(currentSelectingPlayer))
         {
             chosenHeroes[currentSelectingPlayer] = "";
             Debug.Log($"Player {currentSelectingPlayer + 1} changed their selection.");
         }
-
-        // Allow the player to select a new hero (revert to selection mode for this player)
-        Debug.Log($"Player {currentSelectingPlayer + 1} can now choose a new hero.");
     }
 
     private bool AreAllHeroesSelected()
     {
         foreach (var hero in chosenHeroes.Values)
         {
-            if (string.IsNullOrEmpty(hero))
-            {
-                return false;
-            }
+            if (string.IsNullOrEmpty(hero)) return false;
         }
         return true;
     }
@@ -116,8 +107,16 @@ public class HeroSelectionUI : MonoBehaviour
     public void OnStartGame()
     {
         selectionPanel.SetActive(false);
-        GameManager.Instance.StartGame(new List<string>(chosenHeroes.Values));
-
         playerUICanvas.SetActive(true);
+
+        GameManager.Instance.selectedHeroes = new List<string>();
+
+        foreach (var kvp in chosenHeroes)
+        {
+            Debug.Log($"Player {kvp.Key} picked hero: {kvp.Value}");
+            GameManager.Instance.selectedHeroes.Add(kvp.Value);
+        }
+
+        GameManager.Instance.StartGame(GameManager.Instance.selectedHeroes);
     }
 }

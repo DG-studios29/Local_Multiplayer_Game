@@ -6,14 +6,21 @@ public class HeroManager : MonoBehaviour
     public Button heroButton;
     public string heroName;
 
-
     public void Initialize()
     {
+        heroButton.onClick.RemoveAllListeners(); 
         heroButton.onClick.AddListener(() => SelectHero());
     }
 
-    void SelectHero()
+    public void SelectHero()
     {
-        HeroSelectionUI.Instance.OnHeroSelected(heroName);
+        if (!string.IsNullOrEmpty(heroName))
+        {
+            HeroSelectionUI.Instance.OnHeroSelected(heroName);
+        }
+        else
+        {
+            Debug.LogWarning("[HeroManager] Hero name is empty on button.");
+        }
     }
 }

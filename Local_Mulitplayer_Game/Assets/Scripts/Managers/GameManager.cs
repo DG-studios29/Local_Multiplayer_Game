@@ -1,59 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.InputSystem;
-//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PlayerPrefs.html
+using TMPro;
+using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     [Header("Player Settings")]
-    public GameObject playerPrefab; // The player prefab to spawn
-    public int numberOfPlayers = 2; // Default number of players
+    public List<string> selectedHeroes = new List<string>();
+    public List<Material> playerMaterials;
+    public List<GameObject> activePlayers = new List<GameObject>();
 
-    [Header("Player Materials")]
-    public List<Material> playerMaterials; // Materials for each player
-
-    [Header("Spawn points")]
-    public List<Transform> forestSpawnPoints; // Spawn points for players in the forest map
-    public List<Transform> cemeterySpawnPoints; // Spawn points for players in the forest map
-    public List<Transform> winterSpawnPoints; // Spawn points for players in the forest map
-    private List<Transform> currentSpawnPoints; // Active spawn points during the match
-
-    [Header("Camera Tracking")]
-    public CinemachineTargetGroup targetGroup; // Tracks players for the camera
-    public CinemachineCamera cineCamera; // Main game camera
-    public CinemachineBasicMultiChannelPerlin noise; // Camera shake effect
-
-    public List<string> selectedHeroes = new List<string>(); // Stores chosen heroes
-
-    [Header("Game Timers")]
-    public float gameDuration = 300f; // Total game time in seconds
-    public float timer; // Countdown timer
-    private bool gameStarted = false; // Tracks if the game has started
-    public TextMeshProUGUI timerText;
+    [Header("Spawn Points")]
+    public List<Transform> forestSpawnPoints;
+    public List<Transform> cemeterySpawnPoints;
+    public List<Transform> winterSpawnPoints;
+    private List<Transform> currentSpawnPoints;
 
     [Header("Maps")]
-    public string selectedMap = "Forest"; // Default map
-    public GameObject forestMap; // The forest map object
-    public GameObject cemeteryMap; // The cemetery map object
-    public GameObject wintermap; // The winter map object
+    public string selectedMap = "Forest";
+    public GameObject forestMap;
+    public GameObject cemeteryMap;
+    public GameObject wintermap;
+
+    [Header("Camera")]
+    public CinemachineTargetGroup targetGroup;
 
     [Header("Player UI")]
     public Slider player1HealthSlider;
     public TMP_Text player1HealthText;
     public Slider player2HealthSlider;
     public TMP_Text player2HealthText;
-    public TextMeshProUGUI player1NameText;
-    public TextMeshProUGUI player2NameText;
-
-    [Header("Player Active Powerups"), Space(10f)]
-    public CanvasGroup[] playerOnePowerUps = new CanvasGroup[3];
-    public CanvasGroup[] playerTwoPowerUps = new CanvasGroup[3];
+    public TMP_Text player1NameText;
+    public TMP_Text player2NameText;
 
     [Header("Hero Abilities UI")]
     public Image player1Ability1Icon;
@@ -69,40 +52,38 @@ public class GameManager : MonoBehaviour
     public Image player2Ability3Icon;
     public TMP_Text player2Ability3CooldownText;
 
-    [Header("Game End Settings")]
-    public TMP_Text endGameText; // To display the end game result (e.g., winner)
-    public GameObject gameOverUI; // UI panel to show the game over screen
-    public bool isPlayer1Alive = true;
-    public bool isPlayer2Alive = true;
+    [Header("Player Active Powerups")]
+    public CanvasGroup[] playerOnePowerUps = new CanvasGroup[3];
+    public CanvasGroup[] playerTwoPowerUps = new CanvasGroup[3];
 
-
-    private bool shakeTriggered = false; // Tracks if camera shake has been triggered
+    [Header("Game Timer")]
+    public float gameDuration = 300f;
+    private float timer;
+    private bool gameStarted = false;
+    private bool shakeTriggered = false;
+    public TextMeshProUGUI timerText;
 
     private void Awake()
     {
-  
-            var allPlayers = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
-            foreach (var input in allPlayers)
-            {
-                Destroy(input.gameObject);
-            }
+        Instance = this;
 
-        Instance = this; 
+        var allPlayers = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
+        foreach (var input in allPlayers)
+        {
+            Destroy(input.gameObject);
+        }
     }
 
     private void Start()
     {
-        ShowHeroSelectionUI(); // Show hero selection screen when game starts
+        HeroSelectionUI.Instance.Setup(2); // Hardcoded for now
     }
 
-    void Update()
+    private void Update()
     {
         if (gameStarted)
         {
             HandleGameTimer();
-
-            // Check if players are alive
-            CheckPlayerHealth();
         }
     }
 
@@ -112,13 +93,7 @@ public class GameManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
             UpdateTimerUI();
-            if (timer <= gameDuration / 2 && !shakeTriggered)
-            {
-                TriggerCameraShake(); // Shake the camera halfway through the match
-                shakeTriggered = true;
-            }
         }
-        
     }
 
     void UpdateTimerUI()
@@ -128,142 +103,116 @@ public class GameManager : MonoBehaviour
         timerText.text = $"{minutes:00}:{seconds:00}";
     }
 
-    void CheckPlayerHealth()
-    {
-        // Check if Player 1 is alive
-        GameObject player1 = GameObject.Find("Player 1");
-        if (player1 != null)
-        {
-            PlayerHealth player1Health = player1.GetComponent<PlayerHealth>();
-            if (player1Health.currentHealth <= 0 && isPlayer1Alive)
-            {
-                isPlayer1Alive = false;
-                EndGame("Player 2 wins!"); // Player 2 wins if Player 1 dies
-            }
-        }
-
-        // Check if Player 2 is alive
-        GameObject player2 = GameObject.Find("Player 2");
-        if (player2 != null)
-        {
-            PlayerHealth player2Health = player2.GetComponent<PlayerHealth>();
-            if (player2Health.currentHealth <= 0 && isPlayer2Alive)
-            {
-                isPlayer2Alive = false;
-                EndGame("Player 1 wins!"); // Player 1 wins if Player 2 dies
-            }
-        }
-
-        // If both players are alive, check the timer
-        if (timer <= 0)
-        {
-            if (isPlayer1Alive && isPlayer2Alive)
-            {
-                // If both players are alive when time runs out, check health
-                int player1Health = (int)player1.GetComponent<PlayerHealth>().currentHealth;
-                int player2Health = (int)player2.GetComponent<PlayerHealth>().currentHealth;
-                if (player1Health > player2Health)
-                {
-                    EndGame("Player 1 wins!");
-                }
-                else if (player2Health > player1Health)
-                {
-                    EndGame("Player 2 wins!");
-                }
-                else
-                {
-                    EndGame("It's a draw!"); // In case both have the same health
-                }
-            }
-        }
-    }
-
-    // End the game and display the result
-    void EndGame(string winner)
-    {
-        gameStarted = false;
-
-        // Store the winner's name in PlayerPrefs (or use a singleton for more complex storage)
-        PlayerPrefs.SetString("Winner", winner);
-        PlayerPrefs.Save(); // Ensure the value is saved
-
-        Debug.Log(winner + " is the winner!");
-
-        // Load the Game Over scene
-        SceneManager.LoadScene("GameOver");
-    }
-
-
-
-
-
     public void StartGame(List<string> chosenHeroes)
     {
         selectedHeroes = chosenHeroes;
-        
+
         for (int i = 0; i < selectedHeroes.Count; i++)
         {
             if (string.IsNullOrEmpty(selectedHeroes[i]))
-            {
-                selectedHeroes[i] = "Blazeheart"; // Default hero if none chosen
-            }
+                selectedHeroes[i] = "Blazeheart";
         }
 
-        timer = gameDuration; // Reset timer
+        timer = gameDuration;
         shakeTriggered = false;
         gameStarted = true;
-        
+
         SelectMap(selectedMap);
-        SpawnPlayers(currentSpawnPoints); // Spawn the players
+
+        var players = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
+        for (int i = 0; i < players.Length; i++)
+        {
+            PlayerInput input = players[i];
+            GameObject player = input.gameObject;
+            int index = input.playerIndex;
+
+            Vector3 spawnPos = currentSpawnPoints.Count > index
+                ? currentSpawnPoints[index].position
+                : Vector3.zero;
+
+            player.transform.position = spawnPos + Vector3.up * 0.5f; 
+
+            player.name = $"Player {index + 1}";
+            AssignHeroScript(player, selectedHeroes[index]);
+            AssignPlayerMaterials(player, index);
+            SetupPlayerUI(player, player.name);
+            SetupHeroAbilitiesUI(player);
+            AddPlayerToCamera(player);
+        }
+
+        HeroSelectionUI.Instance.playerUICanvas.SetActive(true);
+        Debug.Log("[GameManager] Game started.");
     }
 
-    //void LoadSuddenDeathScene()
-    //{
-    //    Debug.Log("Loading Sudden Death Scene...");
+    public void SelectMap(string mapName)
+    {
+        forestMap.SetActive(false);
+        cemeteryMap.SetActive(false);
+        wintermap.SetActive(false);
 
-    //    PlayerData.ClearData();
+        switch (mapName)
+        {
+            case "Forest": forestMap.SetActive(true); currentSpawnPoints = forestSpawnPoints; break;
+            case "Cemetery": cemeteryMap.SetActive(true); currentSpawnPoints = cemeterySpawnPoints; break;
+            case "Winter": wintermap.SetActive(true); currentSpawnPoints = winterSpawnPoints; break;
+        }
+    }
 
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-    //    foreach (var player in players)
-    //    {
-    //        PlayerData.SavePlayerStats(player);
-    //    }
+    public void AssignHeroScript(GameObject player, string heroName)
+    {
+        var existing = player.GetComponent<HeroBase>();
+        if (existing != null) Destroy(existing);
 
-    //    SceneManager.LoadScene("SuddenDeath");
-    //}
+        HeroBase hero = null;
+        HeroAbility data = Resources.Load<HeroAbility>($"Abilities/{heroName}");
 
+        switch (heroName)
+        {
+            case "Blazeheart": hero = player.AddComponent<Blazeheart>(); break;
+            case "Frost": hero = player.AddComponent<Frost>(); break;
+            case "Nightshade": hero = player.AddComponent<Nightshade>(); break;
+            case "Stonewarden": hero = player.AddComponent<Stonewarden>(); break;
+        }
+
+        if (hero != null && data != null)
+            hero.abilities = data;
+    }
+
+    public void AssignPlayerMaterials(GameObject player, int index)
+    {
+        if (selectedHeroes.Count <= index) return;
+
+        string heroName = selectedHeroes[index];
+        Material mat = playerMaterials.Find(m => m.name.StartsWith(heroName));
+        if (mat == null) return;
+
+        foreach (var r in player.GetComponentsInChildren<MeshRenderer>())
+            r.material = mat;
+    }
 
     public void SetupPlayerUI(GameObject player, string playerName)
     {
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-
-
-        // Assign UI elements to each player based on their name
+        var hp = player.GetComponent<PlayerHealth>();
         if (player.name == "Player 1")
         {
-            playerHealth.healthSlider = player1HealthSlider;
-            playerHealth.healthText = player1HealthText;
+            hp.healthSlider = player1HealthSlider;
+            hp.healthText = player1HealthText;
             player1NameText.text = playerName;
-
         }
         else if (player.name == "Player 2")
         {
-            playerHealth.healthSlider = player2HealthSlider;
-            playerHealth.healthText = player2HealthText;
+            hp.healthSlider = player2HealthSlider;
+            hp.healthText = player2HealthText;
             player2NameText.text = playerName;
-
         }
-
-        playerHealth.UpdateHealthUI(); // Update health UI on start
-
+        hp.UpdateHealthUI();
     }
 
     public void SetupHeroAbilitiesUI(GameObject player)
     {
-        // Get the HeroBase script from the player to access its abilities
-        HeroBase hero = player.GetComponent<HeroBase>();
+        var hero = player.GetComponent<HeroBase>();
+        if (hero == null || hero.abilities == null) return;
 
-        // Check which player is setting up and assign corresponding UI elements
         if (player.name == "Player 1")
         {
             hero.ability1Icon = player1Ability1Icon;
@@ -294,175 +243,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    void SpawnPlayers(List<Transform> points)
+    public void RegisterPlayer(PlayerInput playerInput)
     {
-        
-        for (int i = 0; i < numberOfPlayers; i++)
+        GameObject player = playerInput.gameObject;
+        int index = playerInput.playerIndex;
+
+        // Optional: position player here if needed
+        if (index < forestSpawnPoints.Count)
         {
-            if (i < points.Count)
-            {
-                // Spawn player at a spawn point
-                GameObject player = Instantiate(playerPrefab, points[i].position, Quaternion.identity);
-                player.name = "Player " + (i + 1);
-                // Add the player to the players list
-                
-                AddPlayerToCamera(player, 1f, 2f); // Add player to camera tracking
-                AssignHeroScript(player, selectedHeroes[i]); // Attach hero script
-                AssignPlayerMaterials(player, i); // Assign player materials
-                string playerName = "Player " + (i + 1);
-                GameManager.Instance.SetupPlayerUI(player, playerName); // Setup UI
-                GameManager.Instance.SetupHeroAbilitiesUI(player);
-                RevealPlayerBase.instance.players.Add(player.transform);
-            }
-            else
-            {
-                Debug.LogWarning("Not enough spawn points for all players!");
-            }
-        }
-    }
-
-    public void AddPlayerToCamera(GameObject player, float weight = 1f, float radius = 2f)
-    {
-        if (targetGroup == null || player == null) return;
-        targetGroup.AddMember(player.transform, weight, radius); // Add player to camera group
-    }
-
-    void ShowHeroSelectionUI()
-    {
-        HeroSelectionUI.Instance.Setup(numberOfPlayers); // Show hero selection screen
-    }
-
-    void AssignHeroScript(GameObject player, string heroName)
-    {
-        HeroBase hero = null;
-        HeroAbility abilityData = Resources.Load<HeroAbility>($"Abilities/{heroName}");
-
-        switch (heroName)
-        {
-            case "Blazeheart":
-                hero = player.AddComponent<Blazeheart>();
-                break;
-            case "Frost":
-                hero = player.AddComponent<Frost>();
-                break;
-            case "Nightshade":
-                hero = player.AddComponent<Nightshade>();
-                break;
-            case "Stonewarden":
-                hero = player.AddComponent<Stonewarden>();
-                break;
-            default:
-                Debug.LogWarning("Hero not found: " + heroName);
-                return;
+            player.transform.position = forestSpawnPoints[index].position;
         }
 
-        if (hero != null && abilityData != null)
-        {
-            hero.abilities = abilityData;
-        }
-        else
-        {
-            Debug.LogError($"Failed to assign abilities to {heroName}");
-        }
+        player.name = "Player " + (index + 1);
+
+        if (!activePlayers.Contains(player))
+            activePlayers.Add(player);
+
+        AddPlayerToCamera(player);
     }
 
 
-    void AssignPlayerMaterials(GameObject player, int playerIndex)
+    public void AddPlayerToCamera(GameObject player)
     {
-        // Add hero-specific material based on selection
-        if (selectedHeroes.Count > playerIndex)
-        {
-            string heroName = selectedHeroes[playerIndex];
-
-            Material chosenMaterial = GetMaterialForHero(heroName);
-
-            if (chosenMaterial != null)
-            {
-                MeshRenderer[] meshRenderers = player.GetComponentsInChildren<MeshRenderer>();
-                foreach (var meshRenderer in meshRenderers)
-                {
-                    meshRenderer.material = chosenMaterial;
-                }
-            }
-            else
-            {
-                Debug.LogWarning("No material found for hero: " + heroName);
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Player index out of range in AssignPlayerMaterials!");
-        }
+        if (targetGroup != null && player != null)
+            targetGroup.AddMember(player.transform, 1f, 2f);
     }
-
-    Material GetMaterialForHero(string heroName)
-    {
-        switch (heroName)
-        {
-            case "Blazeheart":
-                return playerMaterials.Find(mat => mat.name == "BlazeheartMaterial");
-            case "Frost":
-                return playerMaterials.Find(mat => mat.name == "FrostMaterial");
-            case "Nightshade":
-                return playerMaterials.Find(mat => mat.name == "NightshadeMaterial");
-            case "Stonewarden":
-                return playerMaterials.Find(mat => mat.name == "StonewardenMaterial");
-            default:
-                Debug.LogWarning("No matching material for hero: " + heroName);
-                return null;
-        }
-    }
-
-
-    public void TriggerCameraShake()
-    {
-        noise.AmplitudeGain = 1f; // Start camera shake
-        noise.FrequencyGain = 2f;
-        Invoke("StopCameraShake", 5f); // Stop shake after 5 seconds
-    }
-
-    void StopCameraShake()
-    {
-        noise.AmplitudeGain = 0f; // Stop camera shake
-        noise.FrequencyGain = 0f;
-    }
-
-    //camera shake overload
-    public void TriggerCameraShake(float duration)
-    {
-        noise.AmplitudeGain = 1f; // Start camera shake
-        noise.FrequencyGain = 2f;
-        Invoke("StopCameraShake", duration); // Stop shake after 5 seconds
-    }
-
-    public void SelectMap(string mapName)
-    {
-        selectedMap = mapName;
-
-        // Deactivate all maps
-        forestMap.SetActive(false);
-        cemeteryMap.SetActive(false);
-        wintermap.SetActive(false);
-
-        // Activate the chosen map
-        switch (mapName)
-        {
-            case "Forest":
-                forestMap.SetActive(true);
-                currentSpawnPoints = forestSpawnPoints;
-                break;
-            case "Cemetery":
-                cemeteryMap.SetActive(true);
-                currentSpawnPoints = cemeterySpawnPoints;
-                break;
-            case "Winter":
-                wintermap.SetActive(true);
-                currentSpawnPoints = winterSpawnPoints;
-                break;
-        }
-
-        Debug.Log($"Map Selected: {mapName}");
-    }
-
 }

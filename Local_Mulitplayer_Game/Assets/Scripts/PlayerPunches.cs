@@ -175,7 +175,7 @@ public class PlayerPunches : MonoBehaviour
                     targetControl.Animator.SetTrigger("CriticalHit");
 
                     //trigger camera shake
-                    GameManager.Instance.TriggerCameraShake();
+                    
 
                     //apply forces
                     punchForce = distancePushed * 2f / timePushed;

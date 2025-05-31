@@ -88,7 +88,7 @@ public class ArenaSampler : MonoBehaviour
                 Debug.LogWarning("position not valid... discarding position now");
             }
 
-            Debug.Log(generatedPositions.Count);
+            //Debug.Log(generatedPositions.Count);
         }
     }
 
